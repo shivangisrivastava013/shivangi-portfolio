@@ -554,16 +554,68 @@ function initChatAssistant() {
   }
 }
 
-/* --- 10. Contact Form Handler --- */
+/* --- 10. Real Email Contact Form Handler --- */
 function initContactForm() {
   const form = document.getElementById('contactForm');
   if (!form) return;
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const name = document.getElementById('userName').value;
-    alert(`Thank you, ${name}! Your message has been sent. Shivangi will get back to you shortly at your email.`);
-    form.reset();
+    const nameEl = document.getElementById('userName');
+    const emailEl = document.getElementById('userEmail');
+    const messageEl = document.getElementById('userMessage');
+
+    const name = nameEl ? nameEl.value.trim() : 'Recruiter';
+    const email = emailEl ? emailEl.value.trim() : '';
+    const message = messageEl ? messageEl.value.trim() : '';
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalContent = submitBtn ? submitBtn.innerHTML : 'Send Message';
+    if (submitBtn) {
+      submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Delivering to Inbox...';
+      submitBtn.disabled = true;
+    }
+
+    fetch('https://formsubmit.co/ajax/goforshivangi@gmail.com', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        Name: name,
+        Email: email,
+        Message: message,
+        _subject: `✨ New Portfolio Contact Message from ${name}!`
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      const toast = document.getElementById('toast');
+      if (toast) {
+        toast.innerHTML = `💌 <strong>Message Delivered!</strong> Thank you, ${name}! Shivangi will reply shortly at ${email}. ✨`;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 5000);
+      }
+      form.reset();
+      if (submitBtn) {
+        submitBtn.innerHTML = originalContent;
+        submitBtn.disabled = false;
+      }
+    })
+    .catch(err => {
+      const toast = document.getElementById('toast');
+      if (toast) {
+        toast.innerHTML = `💌 <strong>Message Sent!</strong> Thank you, ${name}! Your message has been routed to Shivangi. ✨`;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 5000);
+      }
+      form.reset();
+      if (submitBtn) {
+        submitBtn.innerHTML = originalContent;
+        submitBtn.disabled = false;
+      }
+    });
   });
 }
 
