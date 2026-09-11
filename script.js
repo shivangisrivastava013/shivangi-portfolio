@@ -3,6 +3,7 @@
    ========================================================================== */
 
 function runInit() {
+  initLaserPointer();
   initNavbarScroll();
   initMobileMenu();
   initProjectModals();
@@ -514,3 +515,54 @@ window.switchMatrix = function(key) {
       </div>`;
   }
 };
+
+/* --- Laser Pointer Follow Logic --- */
+function initLaserPointer() {
+  const pointer = document.getElementById('laserPointer');
+  const core = document.getElementById('laserCore');
+  if (!pointer || !core) return;
+
+  let mouseX = -500;
+  let mouseY = -500;
+  let currentX = -500;
+  let currentY = -500;
+  let isMoving = false;
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    
+    // Core moves instantly for zero input delay
+    core.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+    
+    if (!isMoving) {
+      isMoving = true;
+      requestAnimationFrame(animateLaser);
+    }
+  });
+
+  // Smooth cyan halo lag behind cursor for high refresh rate visual feedback
+  function animateLaser() {
+    currentX += (mouseX - currentX) * 0.22;
+    currentY += (mouseY - currentY) * 0.22;
+
+    pointer.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate(-50%, -50%)`;
+
+    if (Math.abs(mouseX - currentX) > 0.1 || Math.abs(mouseY - currentY) > 0.1) {
+      requestAnimationFrame(animateLaser);
+    } else {
+      isMoving = false;
+    }
+  }
+
+  document.addEventListener('mouseleave', () => {
+    pointer.style.opacity = '0';
+    core.style.opacity = '0';
+  });
+
+  document.addEventListener('mouseenter', () => {
+    pointer.style.opacity = '1';
+    core.style.opacity = '1';
+  });
+}
+

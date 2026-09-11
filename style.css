@@ -63,6 +63,91 @@ body {
   position: relative;
 }
 
+/* --- Interactive Laser Pointer Cursor Light --- */
+#laserPointer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(6, 182, 212, 0.16) 0%,
+    rgba(59, 130, 246, 0.06) 40%,
+    rgba(9, 13, 22, 0) 70%
+  );
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate3d(-500px, -500px, 0) translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+  mix-blend-mode: screen;
+  will-change: transform;
+}
+
+#laserCore {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accent-cyan);
+  box-shadow: 0 0 10px var(--accent-cyan), 0 0 20px var(--accent-cyan), 0 0 30px #38bdf8;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate3d(-500px, -500px, 0) translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+  will-change: transform;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  #laserPointer, #laserCore {
+    display: none !important;
+  }
+}
+
+/* --- Ambient Tech Grid & Background Orbs --- */
+.bg-grid-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 44px 44px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-glow-blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(130px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.12;
+}
+
+.bg-glow-blob.blob-1 {
+  top: -100px;
+  left: -100px;
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, var(--accent-cyan) 0%, transparent 70%);
+}
+
+.bg-glow-blob.blob-2 {
+  bottom: -150px;
+  right: -100px;
+  width: 650px;
+  height: 650px;
+  background: radial-gradient(circle, var(--accent-blue) 0%, transparent 70%);
+}
+
+
 a {
   color: inherit;
   text-decoration: none;
