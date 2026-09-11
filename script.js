@@ -582,26 +582,41 @@ function initBackgroundCanvas() {
     initParticles();
   });
 
-  let mouse = { x: -1000, y: -1000 };
+  let mouse = { x: -1000, y: -1000, active: false };
   window.addEventListener('mousemove', (e) => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
+    mouse.active = true;
+  });
+  window.addEventListener('mouseleave', () => {
+    mouse.active = false;
   });
 
   let particles = [];
-  const numParticles = Math.min(Math.floor((width * height) / 22000), 55);
+  let signals = [];
+  const numParticles = Math.min(Math.floor((width * height) / 16000), 75);
 
-  function Particle() {
+  function Particle(id) {
+    this.id = id;
     this.x = Math.random() * width;
     this.y = Math.random() * height;
-    this.vx = (Math.random() - 0.5) * 0.45;
-    this.vy = (Math.random() - 0.5) * 0.45;
-    this.radius = Math.random() * 1.8 + 1.2;
-    this.color = Math.random() > 0.4 ? '6, 182, 212' : (Math.random() > 0.5 ? '56, 189, 248' : '16, 185, 129');
-    this.alpha = Math.random() * 0.4 + 0.2;
+    this.vx = (Math.random() - 0.5) * 0.6;
+    this.vy = (Math.random() - 0.5) * 0.6;
+    this.baseRadius = Math.random() * 2 + 1.2;
+    this.radius = this.baseRadius;
+    const rand = Math.random();
+    if (rand > 0.6) {
+      this.color = '6, 182, 212'; // Cyan
+    } else if (rand > 0.3) {
+      this.color = '56, 189, 248'; // Sky Blue
+    } else {
+      this.color = '16, 185, 129'; // Emerald
+    }
+    this.alpha = Math.random() * 0.45 + 0.3;
+    this.pulsePhase = Math.random() * Math.PI * 2;
   }
 
-  Particle.prototype.update = function() {
+  Particle.prototype.update = function(time) {
     this.x += this.vx;
     this.y += this.vy;
 
@@ -610,59 +625,122 @@ function initBackgroundCanvas() {
     if (this.y < 0) this.y = height;
     if (this.y > height) this.y = 0;
 
-    // Gentle cursor interaction
-    const dx = mouse.x - this.x;
-    const dy = mouse.y - this.y;
-    const dist = Math.sqrt(dx * dx + dy * dy);
-    if (dist < 140) {
-      const force = (140 - dist) / 140;
-      this.x -= (dx / dist) * force * 1.2;
-      this.y -= (dy / dist) * force * 1.2;
+    // Gentle pulse radius
+    this.radius = this.baseRadius + Math.sin(time * 0.003 + this.pulsePhase) * 0.8;
+
+    // Cursor interaction (repulsion + attraction blend)
+    if (mouse.active) {
+      const dx = mouse.x - this.x;
+      const dy = mouse.y - this.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 160) {
+        const force = (160 - dist) / 160;
+        this.x -= (dx / dist) * force * 1.5;
+        this.y -= (dy / dist) * force * 1.5;
+      }
     }
   };
 
   Particle.prototype.draw = function() {
     ctx.beginPath();
-    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.arc(this.x, this.y, Math.max(0.5, this.radius), 0, Math.PI * 2);
     ctx.fillStyle = `rgba(${this.color}, ${this.alpha})`;
-    ctx.shadowBlur = 8;
-    ctx.shadowColor = `rgba(${this.color}, 0.8)`;
+    ctx.shadowBlur = 12;
+    ctx.shadowColor = `rgba(${this.color}, 0.9)`;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+  };
+
+  function Signal(p1, p2) {
+    this.p1 = p1;
+    this.p2 = p2;
+    this.progress = 0;
+    this.speed = Math.random() * 0.02 + 0.01;
+  }
+
+  Signal.prototype.update = function() {
+    this.progress += this.speed;
+  };
+
+  Signal.prototype.draw = function() {
+    const x = this.p1.x + (this.p2.x - this.p1.x) * this.progress;
+    const y = this.p1.y + (this.p2.y - this.p1.y) * this.progress;
+    ctx.beginPath();
+    ctx.arc(x, y, 2, 0, Math.PI * 2);
+    ctx.fillStyle = '#38bdf8';
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = '#06b6d4';
     ctx.fill();
     ctx.shadowBlur = 0;
   };
 
   function initParticles() {
     particles = [];
+    signals = [];
     for (let i = 0; i < numParticles; i++) {
-      particles.push(new Particle());
+      particles.push(new Particle(i));
     }
   }
 
-  function render() {
+  let lastSignalTime = 0;
+
+  function render(time) {
     ctx.clearRect(0, 0, width, height);
 
     // Update and draw particles
     for (let i = 0; i < particles.length; i++) {
-      particles[i].update();
+      particles[i].update(time);
       particles[i].draw();
     }
 
     // Connect close nodes with neural graph edges
+    const maxDist = 145;
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
         const dy = particles[i].y - particles[j].y;
         const dist = Math.sqrt(dx * dx + dy * dy);
 
-        if (dist < 130) {
-          const edgeAlpha = (1 - dist / 130) * 0.18;
+        if (dist < maxDist) {
+          const edgeAlpha = (1 - dist / maxDist) * 0.26;
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
           ctx.strokeStyle = `rgba(6, 182, 212, ${edgeAlpha})`;
-          ctx.lineWidth = 0.8;
+          ctx.lineWidth = 0.9;
+          ctx.stroke();
+
+          // Periodically spawn data signals along graph edges
+          if (time - lastSignalTime > 800 && Math.random() < 0.015 && signals.length < 12) {
+            signals.push(new Signal(particles[i], particles[j]));
+            lastSignalTime = time;
+          }
+        }
+      }
+
+      // Connect mouse to nearby particles
+      if (mouse.active) {
+        const dx = mouse.x - particles[i].x;
+        const dy = mouse.y - particles[i].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 180) {
+          const alpha = (1 - dist / 180) * 0.35;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.strokeStyle = `rgba(56, 189, 248, ${alpha})`;
+          ctx.lineWidth = 1;
           ctx.stroke();
         }
+      }
+    }
+
+    // Update and draw signals
+    for (let i = signals.length - 1; i >= 0; i--) {
+      signals[i].update();
+      signals[i].draw();
+      if (signals[i].progress >= 1) {
+        signals.splice(i, 1);
       }
     }
 
@@ -670,7 +748,8 @@ function initBackgroundCanvas() {
   }
 
   initParticles();
-  render();
+  requestAnimationFrame(render);
 }
+
 
 
