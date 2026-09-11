@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css?v=5.0" />
+  <link rel="stylesheet" href="style.css?v=6.0" />
 </head>
 <body>
 
@@ -67,19 +67,19 @@
           </p>
 
           <div class="hero-stats">
-            <div class="stat-card">
+            <div class="stat-card stat-card-cyan">
               <span class="stat-number">3.8<span class="stat-small">/4.0</span></span>
               <span class="stat-label">MS AI GPA (NJIT)</span>
             </div>
-            <div class="stat-card">
+            <div class="stat-card stat-card-emerald">
               <span class="stat-number">8.14<span class="stat-small">/10</span></span>
               <span class="stat-label">B.Tech GPA (Manipal)</span>
             </div>
-            <div class="stat-card">
+            <div class="stat-card stat-card-blue">
               <span class="stat-number">6</span>
               <span class="stat-label">Published Projects</span>
             </div>
-            <div class="stat-card">
+            <div class="stat-card stat-card-amber">
               <span class="stat-number">4</span>
               <span class="stat-label">Industry Roles</span>
             </div>
@@ -145,10 +145,10 @@
     </section>
 
     <!-- About Section -->
-    <section class="section about-section" id="about">
+    <section class="section section-alt about-section" id="about">
       <div class="section-container">
         <div class="section-header text-center">
-          <span class="section-badge">BACKGROUND & FOCUS</span>
+          <span class="section-badge"><i class="fa-solid fa-compass"></i> BACKGROUND & FOCUS</span>
           <h2 class="section-title">Applied AI & Software Engineering</h2>
           <p class="section-subtitle">Bridging theoretical machine learning with production software, autonomous perception systems, and information retrieval.</p>
         </div>
@@ -162,7 +162,7 @@
             </p>
           </div>
 
-          <div class="about-card glass-card">
+          <div class="about-card glass-card about-card-emerald">
             <div class="about-icon"><i class="fa-solid fa-eye"></i></div>
             <h3>Computer Vision & Robotics</h3>
             <p>
@@ -170,7 +170,7 @@
             </p>
           </div>
 
-          <div class="about-card glass-card">
+          <div class="about-card glass-card about-card-blue">
             <div class="about-icon"><i class="fa-solid fa-shield-halved"></i></div>
             <h3>Graph ML & Security</h3>
             <p>
@@ -185,7 +185,7 @@
     <section class="section skills-section" id="skills">
       <div class="section-container">
         <div class="section-header text-center">
-          <span class="section-badge">TECHNICAL TOOLKIT</span>
+          <span class="section-badge"><i class="fa-solid fa-layer-group"></i> TECHNICAL TOOLKIT</span>
           <h2 class="section-title">Skills & Technologies</h2>
           <p class="section-subtitle">Comprehensive stack spanning machine learning frameworks, system architecture, data engineering, and cloud platforms.</p>
         </div>
@@ -194,7 +194,7 @@
           <!-- Programming & Data -->
           <div class="skill-category-card glass-card">
             <div class="category-header">
-              <i class="fa-solid fa-code"></i>
+              <div class="category-header-icon"><i class="fa-solid fa-code"></i></div>
               <h3>Programming & Data</h3>
             </div>
             <div class="skills-pills">
@@ -211,7 +211,7 @@
           <!-- AI/ML & GenAI -->
           <div class="skill-category-card glass-card">
             <div class="category-header">
-              <i class="fa-solid fa-microchip"></i>
+              <div class="category-header-icon"><i class="fa-solid fa-microchip"></i></div>
               <h3>AI/ML & GenAI</h3>
             </div>
             <div class="skills-pills">
@@ -233,7 +233,7 @@
           <!-- Data Engineering, Systems & Cloud -->
           <div class="skill-category-card glass-card">
             <div class="category-header">
-              <i class="fa-solid fa-server"></i>
+              <div class="category-header-icon"><i class="fa-solid fa-server"></i></div>
               <h3>Systems, Cloud & Robotics</h3>
             </div>
             <div class="skills-pills">
@@ -253,7 +253,7 @@
           <!-- Leadership & Governance -->
           <div class="skill-category-card glass-card">
             <div class="category-header">
-              <i class="fa-solid fa-user-group"></i>
+              <div class="category-header-icon"><i class="fa-solid fa-user-group"></i></div>
               <h3>Leadership & Management</h3>
             </div>
             <div class="skills-pills">
@@ -268,17 +268,17 @@
     </section>
 
     <!-- Featured Projects Section -->
-    <section class="section projects-section" id="projects">
+    <section class="section section-alt projects-section" id="projects">
       <div class="section-container">
         <div class="section-header text-center">
-          <span class="section-badge">PORTFOLIO WORK</span>
+          <span class="section-badge"><i class="fa-solid fa-cubes"></i> PORTFOLIO WORK</span>
           <h2 class="section-title">Featured Engineering Projects</h2>
           <p class="section-subtitle">Evaluated systems spanning deep learning image watermarking, RAG retrieval, ROS 2 autonomous navigation, SAM 2 visual segmentation, GNNs, and 3D reconstruction.</p>
         </div>
 
         <div class="projects-bento-grid">
           <!-- Project 1: ShadowTag -->
-          <div class="project-card glass-card bento-wide" data-category="cv">
+          <div class="project-card glass-card bento-wide card-amber" data-category="cv">
             <div class="project-banner">
               <span class="project-badge">Deep Learning Image Watermarking</span>
               <div class="banner-icon"><i class="fa-solid fa-shield-halved"></i></div>
@@ -303,7 +303,7 @@
           </div>
 
           <!-- Project 2: CareerLens RAG -->
-          <div class="project-card glass-card bento-wide" data-category="rag">
+          <div class="project-card glass-card bento-wide card-cyan" data-category="rag">
             <div class="project-banner">
               <span class="project-badge">Generative AI & RAG Engine</span>
               <div class="banner-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
@@ -328,7 +328,7 @@
           </div>
 
           <!-- Project 3: ROS 2 Autonomous Robot Navigation -->
-          <div class="project-card glass-card bento-medium" data-category="robotics">
+          <div class="project-card glass-card bento-medium card-emerald" data-category="robotics">
             <div class="project-banner">
               <span class="project-badge">Robotics & Distributed Telemetry</span>
               <div class="banner-icon"><i class="fa-solid fa-robot"></i></div>
@@ -354,7 +354,7 @@
           </div>
 
           <!-- Project 4: Real-Time Vision Pipeline with SAM 2 -->
-          <div class="project-card glass-card bento-medium" data-category="cv">
+          <div class="project-card glass-card bento-medium card-blue" data-category="cv">
             <div class="project-banner">
               <span class="project-badge">Foundation Vision Models</span>
               <div class="banner-icon"><i class="fa-solid fa-object-group"></i></div>
@@ -379,7 +379,7 @@
           </div>
 
           <!-- Project 5: GNN Benchmarking -->
-          <div class="project-card glass-card bento-compact" data-category="graph">
+          <div class="project-card glass-card bento-compact card-sky" data-category="graph">
             <div class="project-banner">
               <span class="project-badge">Graph Machine Learning</span>
               <div class="banner-icon"><i class="fa-solid fa-diagram-project"></i></div>
@@ -399,7 +399,7 @@
           </div>
 
           <!-- Project 6: NeuralScene 3D Gaussian Splatting -->
-          <div class="project-card glass-card bento-compact" data-category="3d">
+          <div class="project-card glass-card bento-compact card-indigo" data-category="3d">
             <div class="project-banner">
               <span class="project-badge">3D Vision & Neural Rendering</span>
               <div class="banner-icon"><i class="fa-solid fa-cubes"></i></div>
@@ -425,7 +425,7 @@
     <section class="section experience-section" id="experience">
       <div class="section-container">
         <div class="section-header text-center">
-          <span class="section-badge">CAREER MATRIX</span>
+          <span class="section-badge"><i class="fa-solid fa-timeline"></i> CAREER MATRIX</span>
           <h2 class="section-title">Education & Work Experience</h2>
           <p class="section-subtitle">Select any academic degree or professional role below to view documented responsibilities and verified achievements.</p>
         </div>
@@ -516,17 +516,17 @@
     </section>
 
     <!-- Certifications Section -->
-    <section class="section certs-section" id="certifications">
+    <section class="section section-alt certs-section" id="certifications">
       <div class="section-container">
         <div class="section-header text-center">
-          <span class="section-badge">CREDENTIALS</span>
+          <span class="section-badge"><i class="fa-solid fa-certificate"></i> CREDENTIALS</span>
           <h2 class="section-title">Certifications & Training</h2>
           <p class="section-subtitle">Documented professional specializations and technical coursework credentials.</p>
         </div>
 
         <div class="certs-grid">
           <div class="cert-card glass-card">
-            <div class="cert-icon"><i class="fa-brands fa-google"></i></div>
+            <div class="cert-icon-box google"><i class="fa-brands fa-google"></i></div>
             <div class="cert-info">
               <h4>Data Analytics Specialization</h4>
               <p>Google</p>
@@ -534,7 +534,7 @@
           </div>
 
           <div class="cert-card glass-card">
-            <div class="cert-icon"><i class="fa-solid fa-brain"></i></div>
+            <div class="cert-icon-box deeplearning"><i class="fa-solid fa-brain"></i></div>
             <div class="cert-info">
               <h4>AI For Everyone</h4>
               <p>DeepLearning.ai</p>
@@ -542,7 +542,7 @@
           </div>
 
           <div class="cert-card glass-card">
-            <div class="cert-icon"><i class="fa-solid fa-square-root-variable"></i></div>
+            <div class="cert-icon-box mathworks"><i class="fa-solid fa-square-root-variable"></i></div>
             <div class="cert-info">
               <h4>MATLAB Onramp</h4>
               <p>MathWorks</p>
@@ -550,7 +550,7 @@
           </div>
 
           <div class="cert-card glass-card">
-            <div class="cert-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="cert-icon-box politecnico"><i class="fa-solid fa-graduation-cap"></i></div>
             <div class="cert-info">
               <h4>Machine Learning: An Overview</h4>
               <p>Politecnico di Milano</p>
@@ -558,7 +558,7 @@
           </div>
 
           <div class="cert-card glass-card">
-            <div class="cert-icon"><i class="fa-brands fa-google"></i></div>
+            <div class="cert-icon-box google"><i class="fa-brands fa-google"></i></div>
             <div class="cert-info">
               <h4>Technical Support Fundamentals</h4>
               <p>Google</p>
@@ -566,7 +566,7 @@
           </div>
 
           <div class="cert-card glass-card">
-            <div class="cert-icon"><i class="fa-solid fa-network-wired"></i></div>
+            <div class="cert-icon-box google"><i class="fa-solid fa-network-wired"></i></div>
             <div class="cert-info">
               <h4>Introduction to Internet of Things</h4>
               <p>Stanford University</p>
@@ -574,7 +574,7 @@
           </div>
 
           <div class="cert-card glass-card">
-            <div class="cert-icon"><i class="fa-solid fa-robot"></i></div>
+            <div class="cert-icon-box google"><i class="fa-solid fa-robot"></i></div>
             <div class="cert-info">
               <h4>Elements of AI</h4>
               <p>Google Digital Garage</p>
@@ -597,18 +597,18 @@
               <h4>Academic Foundations</h4>
               <p>MS in AI @ NJIT (GPA 3.8/4.0) and B.Tech in CSE (GPA 8.14/10). Strong theoretical grounding in machine learning and mathematical algorithms.</p>
             </div>
-            <div class="wholesome-grid-card">
-              <div class="wholesome-icon"><i class="fa-solid fa-diagram-project"></i></div>
+            <div class="wholesome-grid-card" style="border-top-color: var(--accent-emerald);">
+              <div class="wholesome-icon" style="color: var(--accent-emerald);"><i class="fa-solid fa-diagram-project"></i></div>
               <h4>Empirical Validation</h4>
               <p>6 evaluated projects across RAG vector retrieval, PyTorch GNNs, SAM 2 zero-shot vision, ROS 2 autonomous navigation, and digital steganography.</p>
             </div>
-            <div class="wholesome-grid-card">
-              <div class="wholesome-icon"><i class="fa-solid fa-briefcase"></i></div>
+            <div class="wholesome-grid-card" style="border-top-color: var(--accent-blue);">
+              <div class="wholesome-icon" style="color: var(--accent-blue);"><i class="fa-solid fa-briefcase"></i></div>
               <h4>Industry Experience</h4>
               <p>Experienced across 4 roles in university administration, Salesforce CRM workflow automation, machine learning text summarization, and cybersecurity.</p>
             </div>
-            <div class="wholesome-grid-card">
-              <div class="wholesome-icon"><i class="fa-solid fa-server"></i></div>
+            <div class="wholesome-grid-card" style="border-top-color: var(--accent-amber);">
+              <div class="wholesome-icon" style="color: var(--accent-amber);"><i class="fa-solid fa-server"></i></div>
               <h4>Production Stack</h4>
               <p>Proficient with Docker containerization, PyTorch CUDA GPU optimization, ROS 2 middleware, Zenoh telemetry, PostgreSQL, and Git version control.</p>
             </div>
@@ -624,7 +624,7 @@
     </section>
 
     <!-- Candidate Knowledge Assistant Section -->
-    <section class="section ai-assistant-section">
+    <section class="section section-alt ai-assistant-section">
       <div class="section-container">
         <div class="ai-chat-wrapper glass-card">
           <div class="chat-header">
@@ -665,7 +665,7 @@
     <section class="section contact-section" id="contact">
       <div class="section-container">
         <div class="section-header text-center">
-          <span class="section-badge">CONNECT</span>
+          <span class="section-badge"><i class="fa-regular fa-envelope"></i> CONNECT</span>
           <h2 class="section-title">Get In Touch</h2>
           <p class="section-subtitle">Direct communication channel for professional inquiries, software engineering roles, and academic discussions.</p>
         </div>
@@ -789,7 +789,7 @@
         <div class="resume-text-content">
           <div style="text-align: center; margin-bottom: 20px;">
             <h2 style="font-family: var(--font-heading); color: var(--text-main); font-size: 1.8rem; margin-bottom: 4px;">SHIVANGI SRIVASTAVA</h2>
-            <p style="color: var(--accent-light-blue); font-size: 0.95rem;">Newark, NJ | +1 (848) 315-8969 | goforshivangi@gmail.com | linkedin.com/in/shivangisrivastava013</p>
+            <p style="color: var(--accent-cyan); font-size: 0.95rem;">Newark, NJ | +1 (848) 315-8969 | goforshivangi@gmail.com | linkedin.com/in/shivangisrivastava013</p>
           </div>
 
           <hr>
@@ -854,6 +854,6 @@
   <!-- Toast Notification Container -->
   <div class="toast" id="toast">Copied to clipboard.</div>
 
-  <script src="script.js?v=17.0"></script>
+  <script src="script.js?v=18.0"></script>
 </body>
 </html>
