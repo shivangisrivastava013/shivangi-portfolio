@@ -3,6 +3,7 @@
    ========================================================================== */
 
 function runInit() {
+  initBackgroundCanvas();
   initLaserPointer();
   initNavbarScroll();
   initMobileMenu();
@@ -565,4 +566,111 @@ function initLaserPointer() {
     core.style.opacity = '1';
   });
 }
+
+/* --- Dynamic Neural Network Canvas Background --- */
+function initBackgroundCanvas() {
+  const canvas = document.getElementById('bgCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  let width = (canvas.width = window.innerWidth);
+  let height = (canvas.height = window.innerHeight);
+
+  window.addEventListener('resize', () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+    initParticles();
+  });
+
+  let mouse = { x: -1000, y: -1000 };
+  window.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+
+  let particles = [];
+  const numParticles = Math.min(Math.floor((width * height) / 22000), 55);
+
+  function Particle() {
+    this.x = Math.random() * width;
+    this.y = Math.random() * height;
+    this.vx = (Math.random() - 0.5) * 0.45;
+    this.vy = (Math.random() - 0.5) * 0.45;
+    this.radius = Math.random() * 1.8 + 1.2;
+    this.color = Math.random() > 0.4 ? '6, 182, 212' : (Math.random() > 0.5 ? '56, 189, 248' : '16, 185, 129');
+    this.alpha = Math.random() * 0.4 + 0.2;
+  }
+
+  Particle.prototype.update = function() {
+    this.x += this.vx;
+    this.y += this.vy;
+
+    if (this.x < 0) this.x = width;
+    if (this.x > width) this.x = 0;
+    if (this.y < 0) this.y = height;
+    if (this.y > height) this.y = 0;
+
+    // Gentle cursor interaction
+    const dx = mouse.x - this.x;
+    const dy = mouse.y - this.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    if (dist < 140) {
+      const force = (140 - dist) / 140;
+      this.x -= (dx / dist) * force * 1.2;
+      this.y -= (dy / dist) * force * 1.2;
+    }
+  };
+
+  Particle.prototype.draw = function() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${this.color}, ${this.alpha})`;
+    ctx.shadowBlur = 8;
+    ctx.shadowColor = `rgba(${this.color}, 0.8)`;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+  };
+
+  function initParticles() {
+    particles = [];
+    for (let i = 0; i < numParticles; i++) {
+      particles.push(new Particle());
+    }
+  }
+
+  function render() {
+    ctx.clearRect(0, 0, width, height);
+
+    // Update and draw particles
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].update();
+      particles[i].draw();
+    }
+
+    // Connect close nodes with neural graph edges
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < 130) {
+          const edgeAlpha = (1 - dist / 130) * 0.18;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(6, 182, 212, ${edgeAlpha})`;
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+        }
+      }
+    }
+
+    requestAnimationFrame(render);
+  }
+
+  initParticles();
+  render();
+}
+
 

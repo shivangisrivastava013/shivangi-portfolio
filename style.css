@@ -107,7 +107,18 @@ body {
   }
 }
 
-/* --- Ambient Tech Grid & Background Orbs --- */
+/* --- Ambient Tech Grid, Canvas & Animated Background Orbs --- */
+#bgCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.75;
+}
+
 .bg-grid-overlay {
   position: fixed;
   top: 0;
@@ -115,9 +126,10 @@ body {
   width: 100vw;
   height: 100vh;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 44px 44px;
+    radial-gradient(rgba(6, 182, 212, 0.15) 1px, transparent 1px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
   pointer-events: none;
   z-index: 0;
 }
@@ -125,26 +137,54 @@ body {
 .bg-glow-blob {
   position: fixed;
   border-radius: 50%;
-  filter: blur(130px);
+  filter: blur(120px);
   pointer-events: none;
   z-index: 0;
-  opacity: 0.12;
+  opacity: 0.18;
+  animation: floatBlob 16s ease-in-out infinite alternate;
 }
 
 .bg-glow-blob.blob-1 {
   top: -100px;
   left: -100px;
-  width: 550px;
-  height: 550px;
+  width: 600px;
+  height: 600px;
   background: radial-gradient(circle, var(--accent-cyan) 0%, transparent 70%);
+  animation-duration: 18s;
 }
 
 .bg-glow-blob.blob-2 {
   bottom: -150px;
   right: -100px;
-  width: 650px;
-  height: 650px;
+  width: 700px;
+  height: 700px;
   background: radial-gradient(circle, var(--accent-blue) 0%, transparent 70%);
+  animation-duration: 22s;
+  animation-delay: -5s;
+}
+
+.bg-glow-blob.blob-3 {
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--accent-emerald) 0%, transparent 70%);
+  opacity: 0.10;
+  animation-duration: 25s;
+  animation-delay: -10s;
+}
+
+@keyframes floatBlob {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(40px, -30px) scale(1.08);
+  }
+  100% {
+    transform: translate(-30px, 40px) scale(0.95);
+  }
 }
 
 
