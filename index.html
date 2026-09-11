@@ -3,25 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Shivangi Srivastava - AI Engineer | MS in Artificial Intelligence at NJIT. Specializing in RAG, Deep Learning, Graph Neural Networks, and NLP." />
-  <title>Shivangi Srivastava — MS AI @ NJIT | Portfolio</title>
+  <meta name="description" content="Shivangi Srivastava - AI & Machine Learning Engineer | MS in Artificial Intelligence at NJIT. Specializing in RAG, Deep Learning, Graph Neural Networks, and Autonomous Vision Pipelines." />
+  <title>Shivangi Srivastava - MS in AI @ NJIT | Portfolio</title>
+  <link rel="canonical" href="https://shivangisrivastava.com/" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css?v=4.0" />
+  <link rel="stylesheet" href="style.css?v=5.0" />
 </head>
 <body>
-  <!-- Neural Particle Canvas Background -->
-  <canvas id="particleCanvas"></canvas>
 
   <!-- Navigation Header -->
   <header class="navbar" id="navbar">
     <div class="nav-container">
       <a href="#hero" class="nav-logo">
-        <span class="logo-icon"><i class="fa-solid fa-brain-circuit"></i></span>
+        <span class="logo-icon"><i class="fa-solid fa-code"></i></span>
         <span class="logo-text">Shivangi Srivastava <span class="logo-sub">| MS AI @ NJIT</span></span>
       </a>
 
@@ -30,7 +30,7 @@
         <a href="#skills" class="nav-link"><i class="fa-solid fa-code"></i> Skills</a>
         <a href="#projects" class="nav-link"><i class="fa-solid fa-diagram-project"></i> Projects</a>
         <a href="#experience" class="nav-link"><i class="fa-solid fa-briefcase"></i> Experience</a>
-        <a href="#certifications" class="nav-link"><i class="fa-solid fa-certificate"></i> Certificates</a>
+        <a href="#certifications" class="nav-link"><i class="fa-solid fa-certificate"></i> Credentials</a>
         <a href="#contact" class="nav-link"><i class="fa-regular fa-envelope"></i> Contact</a>
       </nav>
 
@@ -38,7 +38,7 @@
         <button class="btn btn-outline" id="openResumeBtn">
           <i class="fa-solid fa-file-pdf"></i> Resume
         </button>
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation Menu">
           <i class="fa-solid fa-bars"></i>
         </button>
       </div>
@@ -51,50 +51,48 @@
       <div class="hero-container">
         <div class="hero-content">
           <div class="badge-status">
-            <span class="pulse-dot"></span>
-            Seeking AI Engineer & Copilot / Automation Roles
+            <i class="fa-solid fa-graduation-cap"></i> MS in AI Candidate @ NJIT | GPA: 3.8 / 4.0
           </div>
 
           <h1 class="hero-title">
-            Hi, I'm <span class="gradient-text">Shivangi Srivastava</span>
+            Shivangi Srivastava
           </h1>
 
           <h2 class="hero-subtitle">
-            <span id="typingText"></span><span class="cursor">|</span>
+            AI & Machine Learning Engineer
           </h2>
 
           <p class="hero-description">
-            AI Engineer pursuing an <strong>MS in Artificial Intelligence at NJIT</strong> (GPA 3.8/4.0). I bridge theoretical deep learning, 
-            <strong>Retrieval-Augmented Generation (RAG)</strong>, and <strong>Graph Neural Networks (GNNs)</strong> with clean, reproducible software that solves real human problems. Fueled by caffeine, sleeplessness, sarcasm, and an unreasonable amount of PyTorch tensors!
+            Graduate AI student at New Jersey Institute of Technology (NJIT) with a 3.8/4.0 GPA and a B.Tech in CSE (AI & ML) from Manipal University. Specialized in Retrieval-Augmented Generation (RAG), Deep Learning, Graph Neural Networks, and Autonomous Perception pipelines.
           </p>
 
           <div class="hero-stats">
             <div class="stat-card">
-              <span class="stat-number">3.8<span class="stat-small">/4</span></span>
+              <span class="stat-number">3.8<span class="stat-small">/4.0</span></span>
               <span class="stat-label">MS AI GPA (NJIT)</span>
             </div>
             <div class="stat-card">
-              <span class="stat-number">4+</span>
-              <span class="stat-label">AI/ML Core Projects</span>
+              <span class="stat-number">8.14<span class="stat-small">/10</span></span>
+              <span class="stat-label">B.Tech GPA (Manipal)</span>
             </div>
             <div class="stat-card">
-              <span class="stat-number">3</span>
-              <span class="stat-label">Industry Internships</span>
+              <span class="stat-number">6</span>
+              <span class="stat-label">Published Projects</span>
             </div>
             <div class="stat-card">
-              <span class="stat-number">7+</span>
-              <span class="stat-label">Certifications</span>
+              <span class="stat-number">4</span>
+              <span class="stat-label">Industry Roles</span>
             </div>
           </div>
 
           <div class="hero-cta">
             <a href="#projects" class="btn btn-primary">
-              <i class="fa-solid fa-rocket"></i> Explore Projects
+              <i class="fa-solid fa-diagram-project"></i> View Projects
             </a>
             <a href="#contact" class="btn btn-secondary">
-              <i class="fa-regular fa-paper-plane"></i> Get In Touch
+              <i class="fa-regular fa-paper-plane"></i> Contact Me
             </a>
-            <button class="btn btn-icon" id="quickCopyEmailBtn" title="Copy Email">
+            <button class="btn btn-icon" id="quickCopyEmailBtn" data-copy="goforshivangi@gmail.com" title="Copy Email">
               <i class="fa-regular fa-copy"></i>
             </button>
           </div>
@@ -121,9 +119,9 @@
                 <span class="dot green"></span>
               </div>
               <div class="terminal-tabs">
-                <button type="button" class="term-tab active" onclick="switchTerminalTab('core')">shivangi_core.py</button>
+                <button type="button" class="term-tab active" onclick="switchTerminalTab('core')">profile.py</button>
                 <button type="button" class="term-tab" onclick="switchTerminalTab('stack')">stack.json</button>
-                <button type="button" class="term-tab" onclick="switchTerminalTab('pitch')">pitch.txt</button>
+                <button type="button" class="term-tab" onclick="switchTerminalTab('pitch')">summary.txt</button>
               </div>
             </div>
             <div class="avatar-body">
@@ -131,15 +129,14 @@
                 <span class="code-keyword">class</span> <span class="code-class">AIEngineer</span>:
                 <br>&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-func">__init__</span>(self):
                 <br>&nbsp;&nbsp;&nbsp;&nbsp;self.name = <span class="code-string">"Shivangi Srivastava"</span>
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;self.degree = <span class="code-string">"MS in AI @ NJIT (GPA 3.8)"</span>
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;self.focus = [<span class="code-string">"LLMs & RAG"</span>, <span class="code-string">"GNNs"</span>, <span class="code-string">"Robotics"</span>]
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;self.superpower = <span class="code-string">"Turning coffee into clean code ☕"</span>
-                <br><br>&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-func">recruiter_pitch</span>(self):
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> <span class="code-string">"High-performance ML engineering & 100% team dedication ✨"</span>
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;self.degree = <span class="code-string">"MS in AI @ NJIT (GPA 3.8/4.0)"</span>
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;self.specialization = [<span class="code-string">"RAG & LLMs"</span>, <span class="code-string">"Deep Learning"</span>, <span class="code-string">"GNNs"</span>, <span class="code-string">"Robotics Vision"</span>]
+                <br><br>&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-func">get_key_metrics</span>(self):
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> {<span class="code-string">"shadowtag_psnr"</span>: <span class="code-string">"34.7 dB"</span>, <span class="code-string">"careerlens_mrr"</span>: <span class="code-string">"0.81"</span>}
               </div>
             </div>
             <div class="avatar-footer">
-              <span class="status-indicator"><i class="fa-solid fa-circle-check"></i> System Operational</span>
+              <span class="status-indicator"><i class="fa-solid fa-circle-check"></i> Systems Active</span>
               <span class="location-tag"><i class="fa-solid fa-location-dot"></i> Newark, NJ</span>
             </div>
           </div>
@@ -151,33 +148,33 @@
     <section class="section about-section" id="about">
       <div class="section-container">
         <div class="section-header text-center">
-          <span class="section-badge">BACKGROUND & VISION</span>
-          <h2 class="section-title">Driven by Ethical & Intelligent Systems</h2>
-          <p class="section-subtitle">Bridging theoretical artificial intelligence with impactful, real-world automated solutions.</p>
+          <span class="section-badge">BACKGROUND & FOCUS</span>
+          <h2 class="section-title">Applied AI & Software Engineering</h2>
+          <p class="section-subtitle">Bridging theoretical machine learning with production software, autonomous perception systems, and information retrieval.</p>
         </div>
 
         <div class="about-grid">
           <div class="about-card glass-card">
-            <div class="about-icon"><i class="fa-solid fa-brain-circuit"></i></div>
-            <h3>Core Expertise</h3>
+            <div class="about-icon"><i class="fa-solid fa-brain"></i></div>
+            <h3>Deep Learning & RAG</h3>
             <p>
-              Designing end-to-end Machine Learning, Deep Learning, and NLP applications using Python. Specialized in Retrieval-Augmented Generation (RAG), Graph Neural Networks, and Convolutional Autoencoders for watermarking and security.
+              Architecting Retrieval-Augmented Generation pipelines using Sentence Transformers, FAISS vector indexing, and PyTorch for semantic skill extraction and document matching.
             </p>
           </div>
 
           <div class="about-card glass-card">
-            <div class="about-icon"><i class="fa-solid fa-sliders"></i></div>
-            <h3>Automation & Enterprise</h3>
+            <div class="about-icon"><i class="fa-solid fa-eye"></i></div>
+            <h3>Computer Vision & Robotics</h3>
             <p>
-              Proven record in low-code workflow automation, validation rules, reporting dashboards, and CRM optimization from my experience as a Salesforce Intern at SmartInternz and ML Intern at Suvidha Mahila Mandal.
+              Engineering real-time vision pipelines combining YOLOv8 detection, SAM 2 segmentation, ROS 2 middleware, Gazebo simulation, and Zenoh telemetry for autonomous navigation.
             </p>
           </div>
 
           <div class="about-card glass-card">
             <div class="about-icon"><i class="fa-solid fa-shield-halved"></i></div>
-            <h3>Ethical & Secure AI</h3>
+            <h3>Graph ML & Security</h3>
             <p>
-              Grounded in cybersecurity principles and ethical hacking background. Committed to engineering transparent, privacy-preserving, and non-hallucinating AI copilots and automation tools.
+              Benchmarking GCN and GraphSAGE architectures on citation networks and training convolutional autoencoders for invisible digital image steganography.
             </p>
           </div>
         </div>
@@ -189,84 +186,81 @@
       <div class="section-container">
         <div class="section-header text-center">
           <span class="section-badge">TECHNICAL TOOLKIT</span>
-          <h2 class="section-title">Technologies & Frameworks</h2>
-          <p class="section-subtitle">Comprehensive stack spanning modern machine learning, cloud infrastructure, and data pipelines.</p>
+          <h2 class="section-title">Skills & Technologies</h2>
+          <p class="section-subtitle">Comprehensive stack spanning machine learning frameworks, system architecture, data engineering, and cloud platforms.</p>
         </div>
 
         <div class="skills-categories">
-          <!-- AI/ML & Deep Learning -->
+          <!-- Programming & Data -->
+          <div class="skill-category-card glass-card">
+            <div class="category-header">
+              <i class="fa-solid fa-code"></i>
+              <h3>Programming & Data</h3>
+            </div>
+            <div class="skills-pills">
+              <span class="pill primary">Python</span>
+              <span class="pill primary">SQL</span>
+              <span class="pill">PostgreSQL</span>
+              <span class="pill">MongoDB</span>
+              <span class="pill">R</span>
+              <span class="pill">C</span>
+              <span class="pill">MATLAB</span>
+            </div>
+          </div>
+
+          <!-- AI/ML & GenAI -->
           <div class="skill-category-card glass-card">
             <div class="category-header">
               <i class="fa-solid fa-microchip"></i>
-              <h3>AI / ML & Deep Learning</h3>
+              <h3>AI/ML & GenAI</h3>
             </div>
             <div class="skills-pills">
               <span class="pill primary">PyTorch</span>
               <span class="pill primary">TensorFlow</span>
-              <span class="pill primary">Keras</span>
-              <span class="pill">Scikit-Learn</span>
-              <span class="pill">Graph Neural Networks (GNNs)</span>
-              <span class="pill">Transformers</span>
-              <span class="pill">CNNs & RNNs</span>
-              <span class="pill">Autoencoders</span>
-              <span class="pill">Model Evaluation</span>
+              <span class="pill primary">PyTorch Geometric</span>
+              <span class="pill primary">FAISS</span>
+              <span class="pill primary">RAG</span>
+              <span class="pill">Hugging Face</span>
+              <span class="pill">Sentence Transformers</span>
+              <span class="pill">Keras</span>
+              <span class="pill">scikit-learn</span>
+              <span class="pill">YOLOv8</span>
+              <span class="pill">SAM 2</span>
+              <span class="pill">OpenCV</span>
             </div>
           </div>
 
-          <!-- NLP & Generative AI -->
+          <!-- Data Engineering, Systems & Cloud -->
           <div class="skill-category-card glass-card">
             <div class="category-header">
-              <i class="fa-solid fa-wand-magic-sparkles"></i>
-              <h3>NLP & Generative AI</h3>
+              <i class="fa-solid fa-server"></i>
+              <h3>Systems, Cloud & Robotics</h3>
             </div>
             <div class="skills-pills">
-              <span class="pill primary">RAG Architectures</span>
-              <span class="pill primary">Vector Embeddings</span>
-              <span class="pill primary">Semantic Similarity</span>
-              <span class="pill">Text Summarization</span>
-              <span class="pill">Prompt Engineering</span>
-              <span class="pill">LLM Prompting</span>
-              <span class="pill">Response Evaluation</span>
-            </div>
-          </div>
-
-          <!-- Programming & Engineering -->
-          <div class="skill-category-card glass-card">
-            <div class="category-header">
-              <i class="fa-solid fa-code-compare"></i>
-              <h3>Programming & Engineering</h3>
-            </div>
-            <div class="skills-pills">
-              <span class="pill primary">Python</span>
-              <span class="pill">SQL</span>
-              <span class="pill">R</span>
-              <span class="pill">C</span>
-              <span class="pill">MATLAB</span>
-              <span class="pill">Data Structures & Algorithms</span>
-              <span class="pill primary">Docker & WSL2 Setup</span>
-              <span class="pill primary">CUDA & PyTorch GPU Config</span>
+              <span class="pill primary">ROS 2</span>
+              <span class="pill primary">Docker</span>
+              <span class="pill primary">Zenoh</span>
+              <span class="pill">Spark</span>
+              <span class="pill">Hadoop</span>
               <span class="pill">Git</span>
-              <span class="pill">Jupyter / Colab</span>
+              <span class="pill">AWS</span>
+              <span class="pill">Google Cloud</span>
+              <span class="pill">Jupyter</span>
+              <span class="pill">Tableau</span>
             </div>
           </div>
 
-          <!-- Cloud, Data & Distributed Systems -->
+          <!-- Leadership & Governance -->
           <div class="skill-category-card glass-card">
             <div class="category-header">
-              <i class="fa-solid fa-cloud-arrow-up"></i>
-              <h3>Cloud, Data & Distributed Systems</h3>
+              <i class="fa-solid fa-user-group"></i>
+              <h3>Leadership & Management</h3>
             </div>
             <div class="skills-pills">
-              <span class="pill primary">ROS2 Node Development</span>
-              <span class="pill primary">Zenoh Distributed Messaging</span>
-              <span class="pill">PostgreSQL Integration</span>
-              <span class="pill">AWS & Google Cloud</span>
-              <span class="pill">MongoDB</span>
-              <span class="pill">SQL Server & Oracle</span>
-              <span class="pill">Hadoop & Spark</span>
-              <span class="pill">REST APIs</span>
-              <span class="pill">Reproducible Experimentation Pipelines</span>
-              <span class="pill">Tableau & Power BI</span>
+              <span class="pill primary">President @ GWiCS (NJIT)</span>
+              <span class="pill">Treasurer @ ANOVA</span>
+              <span class="pill">Head of Content @ LearnIT</span>
+              <span class="pill">Technical Seminar Coordination</span>
             </div>
           </div>
         </div>
@@ -279,29 +273,28 @@
         <div class="section-header text-center">
           <span class="section-badge">PORTFOLIO WORK</span>
           <h2 class="section-title">Featured Engineering Projects</h2>
-          <p class="section-subtitle">A showcase of systems spanning Generative AI/RAG, Graph ML, Deep Vision, Robotics, and Distributed Systems.</p>
+          <p class="section-subtitle">Evaluated systems spanning deep learning image watermarking, RAG retrieval, ROS 2 autonomous navigation, SAM 2 visual segmentation, GNNs, and 3D reconstruction.</p>
         </div>
 
-        <!-- Projects Bento Grid Layout -->
         <div class="projects-bento-grid">
-          <!-- Bento Item 1: AI Career RAG Assistant (Featured Wide) -->
-          <div class="project-card glass-card bento-wide" data-category="rag">
-            <div class="project-banner gradient-1">
-              <span class="project-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> Featured GenAI & RAG System</span>
-              <div class="banner-icon"><i class="fa-solid fa-file-contract"></i></div>
+          <!-- Project 1: ShadowTag -->
+          <div class="project-card glass-card bento-wide" data-category="cv">
+            <div class="project-banner">
+              <span class="project-badge">Deep Learning Image Watermarking</span>
+              <div class="banner-icon"><i class="fa-solid fa-shield-halved"></i></div>
             </div>
             <div class="project-content">
-              <h3 class="project-title">AI Career RAG Assistant</h3>
-              <p class="project-subtitle">Resume-Job Matching & Skill Gap Engine</p>
+              <h3 class="project-title">ShadowTag</h3>
+              <p class="project-subtitle">Convolutional Autoencoders for Invisible Steganography</p>
               <p class="project-desc">
-                Retrieval-Augmented Generation system parsing resumes and job descriptions using Sentence Transformers & FAISS vector search to perform semantic matching and skill gap recommendations.
+                Trained a convolutional encoder-decoder that embeds invisible watermarks into images and recovers them after common image distortions. Achieved 34.7 dB PSNR, 0.96 SSIM, and 94.2% watermark recovery (92% recovery after JPEG Q=70 compression and 89% after cropping).
               </p>
               <div class="project-tech">
                 <span>Python</span>
-                <span>LangChain</span>
-                <span>FAISS</span>
-                <span>Hugging Face</span>
-                <span>LLMs</span>
+                <span>TensorFlow</span>
+                <span>PyTorch</span>
+                <span>OpenCV</span>
+                <span>Autoencoders</span>
               </div>
               <button class="btn btn-small btn-outline open-modal-btn" data-project="project1">
                 <i class="fa-solid fa-circle-info"></i> Project Details
@@ -309,113 +302,75 @@
             </div>
           </div>
 
-          <!-- Bento Item 2: Autonomous Robot Navigation (Featured Wide) -->
-          <div class="project-card glass-card bento-wide" data-category="robotics">
-            <div class="project-banner gradient-2">
-              <span class="project-badge"><i class="fa-solid fa-robot"></i> Featured Robotics & Distributed Architecture</span>
-              <div class="banner-icon"><i class="fa-solid fa-car-side"></i></div>
+          <!-- Project 2: CareerLens RAG -->
+          <div class="project-card glass-card bento-wide" data-category="rag">
+            <div class="project-banner">
+              <span class="project-badge">Generative AI & RAG Engine</span>
+              <div class="banner-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
             </div>
             <div class="project-content">
-              <h3 class="project-title">Autonomous Robot Navigation</h3>
-              <p class="project-subtitle">ROS2, YOLO, Gazebo & Zenoh</p>
+              <h3 class="project-title">CareerLens</h3>
+              <p class="project-subtitle">AI Career RAG Assistant & Skill Gap Engine</p>
               <p class="project-desc">
-                Engineered an autonomous navigation system utilizing ROS2, Gazebo physics simulation, YOLO object detection, Zenoh distributed messaging, PostgreSQL logging, and Docker.
+                RAG-based career assistant comparing resumes against 100 job descriptions, retrieving the 5 most relevant chunks per job, extracting skills, and generating recommendations via semantic matching. Reached 0.88 Recall@5, 0.81 MRR, 84% match agreement, and 0.86 F1 for skill extraction.
               </p>
               <div class="project-tech">
-                <span>ROS2</span>
-                <span>Gazebo</span>
-                <span>YOLO</span>
-                <span>Zenoh</span>
-                <span>PostgreSQL</span>
-                <span>Docker</span>
+                <span>Python</span>
+                <span>RAG</span>
+                <span>Sentence Transformers</span>
+                <span>FAISS</span>
+                <span>NLP</span>
               </div>
-              <button class="btn btn-small btn-outline open-modal-btn" data-project="project7">
+              <button class="btn btn-small btn-outline open-modal-btn" data-project="project2">
                 <i class="fa-solid fa-circle-info"></i> Project Details
               </button>
             </div>
           </div>
 
-          <!-- Bento Item 3: GNNs for Citation Networks -->
-          <div class="project-card glass-card bento-medium" data-category="graph-deep">
-            <div class="project-banner gradient-2">
-              <span class="project-badge"><i class="fa-solid fa-circle-nodes"></i> Graph ML</span>
-              <div class="banner-icon"><i class="fa-solid fa-network-wired"></i></div>
+          <!-- Project 3: ROS 2 Autonomous Robot Navigation -->
+          <div class="project-card glass-card bento-medium" data-category="robotics">
+            <div class="project-banner">
+              <span class="project-badge">Robotics & Distributed Telemetry</span>
+              <div class="banner-icon"><i class="fa-solid fa-robot"></i></div>
             </div>
             <div class="project-content">
-              <h3 class="project-title">GNNs for Citation Networks</h3>
-              <p class="project-subtitle">Node Classification on Structured Graphs</p>
+              <h3 class="project-title">Autonomous Robotic Perception Pipeline</h3>
+              <p class="project-subtitle">ROS 2, YOLOv8, Gazebo & Zenoh</p>
               <p class="project-desc">
-                Implemented Graph Convolutional Networks (GCN) and GraphSAGE in PyTorch Geometric for semi-supervised node classification on citation graphs with hyperparameter tuning.
+                TurtleBot perception pipeline in Gazebo detecting objects via YOLOv8, publishing metadata through ROS 2 and Zenoh, and logging to PostgreSQL. Reached 0.91 mAP@50 at 18 FPS with 55 ms latency.
               </p>
               <div class="project-tech">
-                <span>PyTorch</span>
-                <span>PyTorch Geometric</span>
-                <span>GCN</span>
-                <span>GraphSAGE</span>
+                <span>ROS 2</span>
+                <span>YOLOv8</span>
+                <span>Gazebo</span>
+                <span>Zenoh</span>
+                <span>PostgreSQL</span>
+                <span>Docker</span>
               </div>
-              <button class="btn btn-small btn-outline open-modal-btn" data-project="project2">
+              <button class="btn btn-small btn-outline open-modal-btn" data-project="project3">
                 <i class="fa-solid fa-circle-info"></i> Details
               </button>
             </div>
           </div>
 
-          <!-- Bento Item 4: Image Segmentation with SAM2 -->
+          <!-- Project 4: Real-Time Vision Pipeline with SAM 2 -->
           <div class="project-card glass-card bento-medium" data-category="cv">
-            <div class="project-banner gradient-4">
-              <span class="project-badge"><i class="fa-solid fa-eye"></i> Computer Vision</span>
+            <div class="project-banner">
+              <span class="project-badge">Foundation Vision Models</span>
               <div class="banner-icon"><i class="fa-solid fa-object-group"></i></div>
             </div>
             <div class="project-content">
-              <h3 class="project-title">Image Segmentation using SAM2</h3>
-              <p class="project-subtitle">Meta SAM2 & Roboflow</p>
+              <h3 class="project-title">Real-Time Multi-Stage Vision Pipeline</h3>
+              <p class="project-subtitle">YOLO & Meta SAM 2 Integration</p>
               <p class="project-desc">
-                Built an automated zero-shot image segmentation pipeline integrating Roboflow datasets and Meta's SAM2 foundation model for high-precision mask generation.
+                Combined YOLO detection with SAM 2 segmentation on ~1,500 annotated images across 5 classes. Reached 0.89 mAP@50, 0.90 precision, 0.86 recall, and 0.87 mean IoU processing at 14 FPS.
               </p>
               <div class="project-tech">
-                <span>PyTorch</span>
-                <span>Meta SAM2</span>
-                <span>Roboflow</span>
-                <span>Python</span>
-              </div>
-              <button class="btn btn-small btn-outline open-modal-btn" data-project="project6">
-                <i class="fa-solid fa-circle-info"></i> Details
-              </button>
-            </div>
-          </div>
-
-          <!-- Bento Item 5: ShadowTag Steganography -->
-          <div class="project-card glass-card bento-compact" data-category="cv">
-            <div class="project-banner gradient-4">
-              <span class="project-badge"><i class="fa-solid fa-shield-halved"></i> AI Security</span>
-              <div class="banner-icon"><i class="fa-solid fa-lock"></i></div>
-            </div>
-            <div class="project-content">
-              <h3 class="project-title">ShadowTag Steganography</h3>
-              <p class="project-desc">Invisible watermarking using autoencoders under noise attacks.</p>
-              <div class="project-tech">
+                <span>YOLO</span>
+                <span>SAM 2</span>
                 <span>PyTorch</span>
                 <span>OpenCV</span>
-                <span>Autoencoders</span>
-              </div>
-              <button class="btn btn-small btn-outline open-modal-btn" data-project="project5">
-                <i class="fa-solid fa-circle-info"></i> Details
-              </button>
-            </div>
-          </div>
-
-          <!-- Bento Item 6: NLP Transformers -->
-          <div class="project-card glass-card bento-compact" data-category="rag">
-            <div class="project-banner gradient-1">
-              <span class="project-badge"><i class="fa-solid fa-brain"></i> Transformers</span>
-              <div class="banner-icon"><i class="fa-solid fa-font"></i></div>
-            </div>
-            <div class="project-content">
-              <h3 class="project-title">NLP Transformers</h3>
-              <p class="project-desc">BERT & GPT multi-head self-attention sequence modeling.</p>
-              <div class="project-tech">
-                <span>PyTorch</span>
-                <span>Hugging Face</span>
-                <span>BERT/GPT</span>
+                <span>Roboflow</span>
               </div>
               <button class="btn btn-small btn-outline open-modal-btn" data-project="project4">
                 <i class="fa-solid fa-circle-info"></i> Details
@@ -423,21 +378,41 @@
             </div>
           </div>
 
-          <!-- Bento Item 7: Robotic Pouring -->
-          <div class="project-card glass-card bento-compact" data-category="graph-deep">
-            <div class="project-banner gradient-3">
-              <span class="project-badge"><i class="fa-solid fa-flask"></i> Deep Learning</span>
-              <div class="banner-icon"><i class="fa-solid fa-wine-glass"></i></div>
+          <!-- Project 5: GNN Benchmarking -->
+          <div class="project-card glass-card bento-compact" data-category="graph">
+            <div class="project-banner">
+              <span class="project-badge">Graph Machine Learning</span>
+              <div class="banner-icon"><i class="fa-solid fa-diagram-project"></i></div>
             </div>
             <div class="project-content">
-              <h3 class="project-title">Robotic Pouring</h3>
-              <p class="project-desc">Deep visual metric embeddings on TFRecord video datasets.</p>
+              <h3 class="project-title">GNN Benchmarking</h3>
+              <p class="project-desc">GraphSAGE node classification reaching 88.1% accuracy and 0.87 F1 score (1.7% gain over GCN).</p>
               <div class="project-tech">
-                <span>TensorFlow</span>
-                <span>TFRecords</span>
-                <span>Metric Embeddings</span>
+                <span>PyTorch Geometric</span>
+                <span>GCN</span>
+                <span>GraphSAGE</span>
               </div>
-              <button class="btn btn-small btn-outline open-modal-btn" data-project="project3">
+              <button class="btn btn-small btn-outline open-modal-btn" data-project="project5">
+                <i class="fa-solid fa-circle-info"></i> Details
+              </button>
+            </div>
+          </div>
+
+          <!-- Project 6: NeuralScene 3D Gaussian Splatting -->
+          <div class="project-card glass-card bento-compact" data-category="3d">
+            <div class="project-banner">
+              <span class="project-badge">3D Vision & Neural Rendering</span>
+              <div class="banner-icon"><i class="fa-solid fa-cubes"></i></div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">NeuralScene 3DGS</h3>
+              <p class="project-desc">Reconstructed interior spaces from 150 Polycam images reaching 29.8 dB PSNR, 0.94 SSIM on NVIDIA T4.</p>
+              <div class="project-tech">
+                <span>COLMAP</span>
+                <span>3DGS</span>
+                <span>gsplat</span>
+              </div>
+              <button class="btn btn-small btn-outline open-modal-btn" data-project="project6">
                 <i class="fa-solid fa-circle-info"></i> Details
               </button>
             </div>
@@ -446,23 +421,23 @@
       </div>
     </section>
 
-    <!-- Experience & Education Interactive Matrix Section -->
+    <!-- Experience & Education Matrix Section -->
     <section class="section experience-section" id="experience">
       <div class="section-container">
         <div class="section-header text-center">
           <span class="section-badge">CAREER MATRIX</span>
-          <h2 class="section-title">Interactive Experience & Education Matrix</h2>
-          <p class="section-subtitle">Click any role or degree on the left to inspect detailed achievements & technical impact.</p>
+          <h2 class="section-title">Education & Work Experience</h2>
+          <p class="section-subtitle">Select any academic degree or professional role below to view documented responsibilities and verified achievements.</p>
         </div>
 
         <div class="matrix-wrapper glass-card">
-          <!-- Left Matrix Selectors -->
+          <!-- Matrix Tab Selectors -->
           <div class="matrix-nav">
             <button type="button" class="matrix-tab active" onclick="switchMatrix('njit')">
               <div class="matrix-tab-icon"><i class="fa-solid fa-graduation-cap"></i></div>
               <div>
                 <strong>MS in AI @ NJIT</strong>
-                <span>Dec 2026 (Enrolled) • GPA 3.8</span>
+                <span>Sept 2025 - Dec 2026 | GPA 3.8 / 4.0</span>
               </div>
             </button>
 
@@ -470,15 +445,31 @@
               <div class="matrix-tab-icon"><i class="fa-solid fa-user-graduate"></i></div>
               <div>
                 <strong>B.Tech in CSE @ Manipal</strong>
-                <span>July 2025 (Graduated) • GPA 8.14</span>
+                <span>Aug 2021 - Jul 2025 | GPA 8.14 / 10</span>
+              </div>
+            </button>
+
+            <button type="button" class="matrix-tab" onclick="switchMatrix('residence')">
+              <div class="matrix-tab-icon"><i class="fa-solid fa-briefcase"></i></div>
+              <div>
+                <strong>Office Assistant @ NJIT</strong>
+                <span>May 2025 - Present</span>
               </div>
             </button>
 
             <button type="button" class="matrix-tab" onclick="switchMatrix('salesforce')">
-              <div class="matrix-tab-icon"><i class="fa-solid fa-cloud"></i></div>
+              <div class="matrix-tab-icon"><i class="fa-solid fa-briefcase"></i></div>
               <div>
                 <strong>Salesforce Intern</strong>
-                <span>May 2024 – July 2024</span>
+                <span>May 2024 - Jul 2024</span>
+              </div>
+            </button>
+
+            <button type="button" class="matrix-tab" onclick="switchMatrix('cyber')">
+              <div class="matrix-tab-icon"><i class="fa-solid fa-shield-halved"></i></div>
+              <div>
+                <strong>Cybersecurity Intern</strong>
+                <span>Nov 2022 - Feb 2023</span>
               </div>
             </button>
 
@@ -486,49 +477,40 @@
               <div class="matrix-tab-icon"><i class="fa-solid fa-robot"></i></div>
               <div>
                 <strong>ML Intern @ Suvidha</strong>
-                <span>Feb 2023 – Mar 2023</span>
-              </div>
-            </button>
-
-            <button type="button" class="matrix-tab" onclick="switchMatrix('cyber')">
-              <div class="matrix-tab-icon"><i class="fa-solid fa-shield-halved"></i></div>
-              <div>
-                <strong>Training Intern @ Cyber Secured</strong>
-                <span>Nov 2022 – Feb 2023</span>
+                <span>Feb 2023 - Mar 2023</span>
               </div>
             </button>
           </div>
 
-          <!-- Right Matrix Details Panel -->
+          <!-- Matrix Details Panel -->
           <div class="matrix-details" id="matrixDetails">
             <div class="matrix-detail-card">
               <div class="matrix-detail-header">
-                <span class="grad-status-badge in-progress"><i class="fa-solid fa-spinner fa-spin"></i> Enrolled • Expected Dec 2026</span>
+                <span class="grad-status-badge">Sept 2025 - Dec 2026</span>
                 <h3>Master of Science in Artificial Intelligence</h3>
-                <p class="matrix-org"><i class="fa-solid fa-building-columns"></i> New Jersey Institute of Technology (NJIT) • Newark, NJ</p>
+                <p class="matrix-org"><i class="fa-solid fa-building-columns"></i> New Jersey Institute of Technology (NJIT) | Newark, NJ</p>
               </div>
               <div class="matrix-body">
                 <div class="matrix-metric-badge">
                   <span class="m-val">3.8 / 4.0</span>
                   <span class="m-lbl">Master's GPA</span>
                 </div>
-                <h4>Key Graduate Coursework:</h4>
+                <h4>Graduate Leadership:</h4>
+                <p style="margin-bottom: 14px; font-size: 0.95rem; color: var(--text-main);">President, Graduate Women in Computing Society (GWiCS) - Leading graduate computing community initiatives and student engagement.</p>
+                <h4>Relevant Coursework:</h4>
                 <div class="skills-pills">
                   <span class="pill primary">Machine Learning</span>
                   <span class="pill primary">Deep Learning</span>
+                  <span class="pill primary">NLP</span>
                   <span class="pill primary">Graph Neural Networks</span>
-                  <span class="pill">Computational Neuroscience</span>
                   <span class="pill">Big Data Analytics</span>
                   <span class="pill">AI for Robotics</span>
-                  <span class="pill">NLP</span>
-                  <span class="pill">Federated ML</span>
+                  <span class="pill">Federated Machine Learning</span>
+                  <span class="pill">Computational Neuroscience</span>
                 </div>
-                <h4 style="margin-top: 18px;">Research & Focus:</h4>
-                <p>Developing robust RAG vector retrieval pipelines, GNN node classification models, and ROS2 autonomous navigation telemetry systems.</p>
               </div>
             </div>
           </div>
-        </div>
         </div>
       </div>
     </section>
@@ -539,12 +521,12 @@
         <div class="section-header text-center">
           <span class="section-badge">CREDENTIALS</span>
           <h2 class="section-title">Certifications & Training</h2>
-          <p class="section-subtitle">Continuous learning and industry-recognized specialization badges.</p>
+          <p class="section-subtitle">Documented professional specializations and technical coursework credentials.</p>
         </div>
 
         <div class="certs-grid">
           <div class="cert-card glass-card">
-            <div class="cert-icon google-color"><i class="fa-brands fa-google"></i></div>
+            <div class="cert-icon"><i class="fa-brands fa-google"></i></div>
             <div class="cert-info">
               <h4>Data Analytics Specialization</h4>
               <p>Google</p>
@@ -552,7 +534,7 @@
           </div>
 
           <div class="cert-card glass-card">
-            <div class="cert-icon dl-color"><i class="fa-solid fa-brain"></i></div>
+            <div class="cert-icon"><i class="fa-solid fa-brain"></i></div>
             <div class="cert-info">
               <h4>AI For Everyone</h4>
               <p>DeepLearning.ai</p>
@@ -560,7 +542,7 @@
           </div>
 
           <div class="cert-card glass-card">
-            <div class="cert-icon math-color"><i class="fa-solid fa-square-root-variable"></i></div>
+            <div class="cert-icon"><i class="fa-solid fa-square-root-variable"></i></div>
             <div class="cert-info">
               <h4>MATLAB Onramp</h4>
               <p>MathWorks</p>
@@ -568,7 +550,7 @@
           </div>
 
           <div class="cert-card glass-card">
-            <div class="cert-icon poly-color"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="cert-icon"><i class="fa-solid fa-graduation-cap"></i></div>
             <div class="cert-info">
               <h4>Machine Learning: An Overview</h4>
               <p>Politecnico di Milano</p>
@@ -576,7 +558,7 @@
           </div>
 
           <div class="cert-card glass-card">
-            <div class="cert-icon google-color"><i class="fa-brands fa-google"></i></div>
+            <div class="cert-icon"><i class="fa-brands fa-google"></i></div>
             <div class="cert-info">
               <h4>Technical Support Fundamentals</h4>
               <p>Google</p>
@@ -584,7 +566,7 @@
           </div>
 
           <div class="cert-card glass-card">
-            <div class="cert-icon stanford-color"><i class="fa-solid fa-wifi"></i></div>
+            <div class="cert-icon"><i class="fa-solid fa-network-wired"></i></div>
             <div class="cert-info">
               <h4>Introduction to Internet of Things</h4>
               <p>Stanford University</p>
@@ -592,7 +574,7 @@
           </div>
 
           <div class="cert-card glass-card">
-            <div class="cert-icon google-color"><i class="fa-solid fa-robot"></i></div>
+            <div class="cert-icon"><i class="fa-solid fa-robot"></i></div>
             <div class="cert-info">
               <h4>Elements of AI</h4>
               <p>Google Digital Garage</p>
@@ -602,7 +584,46 @@
       </div>
     </section>
 
-    <!-- Interactive AI Assistant Feature Section ("Ask Shivangi AI") -->
+    <!-- Engineering Strengths Section -->
+    <section class="section wholesome-section" id="engineering-strengths">
+      <div class="section-container">
+        <div class="wholesome-card glass-card text-center">
+          <h2 class="wholesome-title">Core Engineering Strengths</h2>
+          <p class="wholesome-subtitle">Key technical pillars driving reproducible research, clean architecture, and practical AI implementations.</p>
+
+          <div class="wholesome-grid">
+            <div class="wholesome-grid-card">
+              <div class="wholesome-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+              <h4>Academic Foundations</h4>
+              <p>MS in AI @ NJIT (GPA 3.8/4.0) and B.Tech in CSE (GPA 8.14/10). Strong theoretical grounding in machine learning and mathematical algorithms.</p>
+            </div>
+            <div class="wholesome-grid-card">
+              <div class="wholesome-icon"><i class="fa-solid fa-diagram-project"></i></div>
+              <h4>Empirical Validation</h4>
+              <p>6 evaluated projects across RAG vector retrieval, PyTorch GNNs, SAM 2 zero-shot vision, ROS 2 autonomous navigation, and digital steganography.</p>
+            </div>
+            <div class="wholesome-grid-card">
+              <div class="wholesome-icon"><i class="fa-solid fa-briefcase"></i></div>
+              <h4>Industry Experience</h4>
+              <p>Experienced across 4 roles in university administration, Salesforce CRM workflow automation, machine learning text summarization, and cybersecurity.</p>
+            </div>
+            <div class="wholesome-grid-card">
+              <div class="wholesome-icon"><i class="fa-solid fa-server"></i></div>
+              <h4>Production Stack</h4>
+              <p>Proficient with Docker containerization, PyTorch CUDA GPU optimization, ROS 2 middleware, Zenoh telemetry, PostgreSQL, and Git version control.</p>
+            </div>
+          </div>
+
+          <div class="wholesome-actions">
+            <a href="#contact" class="btn btn-primary">
+              <i class="fa-regular fa-envelope"></i> Get In Touch
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Candidate Knowledge Assistant Section -->
     <section class="section ai-assistant-section">
       <div class="section-container">
         <div class="ai-chat-wrapper glass-card">
@@ -610,80 +631,32 @@
             <div class="bot-info">
               <div class="bot-avatar"><i class="fa-solid fa-robot"></i></div>
               <div>
-                <h3>Shivangi AI Assistant <span class="beta-badge">Grounded RAG</span></h3>
-                <p>Interactive Candidate Knowledge Engine • Ask about education, projects, skills & experience</p>
+                <h3>Candidate Knowledge Assistant <span class="beta-badge">RAG Query</span></h3>
+                <p>Interactive query engine for academic degrees, project benchmarks, internships, and technical skills.</p>
               </div>
             </div>
-            <span class="online-status"><i class="fa-solid fa-circle"></i> Live Knowledge Base</span>
+            <span class="online-status"><i class="fa-solid fa-circle"></i> Verified Knowledge Base</span>
           </div>
 
           <div class="chat-messages" id="chatMessages">
             <div class="chat-bubble bot">
-              Welcome! I'm Shivangi's verified AI Assistant. Ask me anything about her MS degree at NJIT, projects (RAG, GNNs, Steganography, Computer Vision), internships, or technical skills!
+              Welcome. Query information regarding Shivangi's MS degree at NJIT, B.Tech at Manipal, engineering projects (RAG, GNNs, Steganography, ROS 2), professional experience, or technical stack.
             </div>
           </div>
 
           <div class="quick-questions">
-            <button type="button" class="quick-btn wholesome-btn-highlight" onclick="askQuickQuestion('whyhire', 'Why Hire Shivangi? 🍒')"><i class="fa-solid fa-heart"></i> Why Hire Shivangi? 🍒</button>
+            <button type="button" class="quick-btn" onclick="askQuickQuestion('overview', 'Candidate Overview')"><i class="fa-solid fa-user"></i> Candidate Overview</button>
             <button type="button" class="quick-btn" onclick="askQuickQuestion('education', 'NJIT & Manipal Education')"><i class="fa-solid fa-graduation-cap"></i> NJIT & Manipal Education</button>
-            <button type="button" class="quick-btn" onclick="askQuickQuestion('rag', 'RAG Assistant Project')"><i class="fa-solid fa-wand-magic-sparkles"></i> RAG Assistant Project</button>
-            <button type="button" class="quick-btn" onclick="askQuickQuestion('gnn', 'Graph Neural Networks')"><i class="fa-solid fa-circle-nodes"></i> Graph Neural Networks</button>
+            <button type="button" class="quick-btn" onclick="askQuickQuestion('projects', 'Engineering Projects')"><i class="fa-solid fa-diagram-project"></i> Engineering Projects</button>
             <button type="button" class="quick-btn" onclick="askQuickQuestion('experience', 'Work Experience')"><i class="fa-solid fa-briefcase"></i> Work Experience</button>
             <button type="button" class="quick-btn" onclick="askQuickQuestion('skills', 'Technical Skills')"><i class="fa-solid fa-code"></i> Technical Skills</button>
-            <button type="button" class="quick-btn" onclick="askQuickQuestion('contact', 'Contact & Email')"><i class="fa-regular fa-envelope"></i> Contact & Email</button>
+            <button type="button" class="quick-btn" onclick="askQuickQuestion('contact', 'Contact Details')"><i class="fa-regular fa-envelope"></i> Contact Details</button>
           </div>
 
           <form class="chat-input-area" id="chatForm">
-            <input type="text" id="chatInput" placeholder="Ask a question about Shivangi..." required />
+            <input type="text" id="chatInput" placeholder="Enter query regarding Shivangi's portfolio..." required />
             <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i></button>
           </form>
-        </div>
-      </div>
-    </section>
-
-    <!-- Wholesome & Charming "Hire Me" Recruiter Section -->
-    <section class="section wholesome-section" id="wholesome-pitch">
-      <div class="section-container">
-        <div class="wholesome-card glass-card text-center">
-          <div class="wholesome-cherry-badge">🍒✨</div>
-          <h2 class="wholesome-title">
-            Hire me please, pretty please with a cherry on top! <span class="cherry-bounce">🍒</span>
-          </h2>
-          <p class="wholesome-subtitle">
-            (I promise I write clean, well-commented code, clean up my Docker containers, double-check my RAG vector embeddings, and bring great energy & snacks to team syncs! ☕🎵)
-          </p>
-
-          <div class="wholesome-grid">
-            <div class="wholesome-grid-card">
-              <div class="wholesome-icon">🎓</div>
-              <h4>Rock-Solid Foundations</h4>
-              <p>MS in AI @ NJIT (GPA 3.8/4.0) & B.Tech in CSE AI/ML (GPA 8.14/10). Strong mathematical rigor & problem-solving mindset.</p>
-            </div>
-            <div class="wholesome-grid-card">
-              <div class="wholesome-icon">🚀</div>
-              <h4>Shipped Core Projects</h4>
-              <p>7 end-to-end projects across RAG architectures, PyTorch GNNs, SAM2 Zero-Shot Vision, ROS2 Autonomous Robots & Steganography.</p>
-            </div>
-            <div class="wholesome-grid-card">
-              <div class="wholesome-icon">🤝</div>
-              <h4>Delightful Team Player</h4>
-              <p>Experienced across 3 internships (Salesforce, Suvidha, Cyber Secured India). Quick learner, clear communicator, 100% reliable.</p>
-            </div>
-            <div class="wholesome-grid-card">
-              <div class="wholesome-icon">🛠️</div>
-              <h4>Real Production Stack</h4>
-              <p>Versed in Docker, WSL2, PyTorch CUDA GPU tuning, Zenoh distributed telemetry, PostgreSQL, and reproducible ML pipelines.</p>
-            </div>
-          </div>
-
-          <div class="wholesome-actions">
-            <a href="#contact" class="btn btn-primary btn-lg pulse-glow">
-              <i class="fa-solid fa-paper-plane"></i> Send an Offer / Let's Connect!
-            </a>
-            <button type="button" class="btn btn-secondary btn-lg wholesome-confetti-btn" onclick="triggerEmojiConfetti(event)">
-              🥹 Press for a Recruiter Blessing! 🙏
-            </button>
-          </div>
         </div>
       </div>
     </section>
@@ -694,13 +667,13 @@
         <div class="section-header text-center">
           <span class="section-badge">CONNECT</span>
           <h2 class="section-title">Get In Touch</h2>
-          <p class="section-subtitle">Interested in collaborating or discussing AI roles? Reach out directly!</p>
+          <p class="section-subtitle">Direct communication channel for professional inquiries, software engineering roles, and academic discussions.</p>
         </div>
 
         <div class="contact-grid">
           <div class="contact-info-card glass-card">
             <h3>Contact Details</h3>
-            <p>Feel free to reach out via email, phone, or LinkedIn. I'm actively seeking full-time and internship opportunities in Artificial Intelligence and ML engineering.</p>
+            <p>Available via email, phone, or LinkedIn for full-time employment and internship opportunities in Artificial Intelligence and Machine Learning engineering.</p>
 
             <div class="contact-methods">
               <div class="method-item">
@@ -743,26 +716,26 @@
             </div>
           </div>
 
-          <!-- Direct Email Delivery Contact Form -->
+          <!-- Direct Contact Form -->
           <form action="https://formsubmit.co/goforshivangi@gmail.com" method="POST" class="contact-form glass-card" id="contactForm">
-            <input type="hidden" name="_subject" value="✨ New Portfolio Contact Message for Shivangi!">
+            <input type="hidden" name="_subject" value="New Portfolio Inquiry for Shivangi Srivastava">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_template" value="table">
             
             <h3>Send Message</h3>
             <div class="form-group">
               <label for="userName">Your Name</label>
-              <input type="text" name="name" id="userName" placeholder="John Doe" required />
+              <input type="text" name="name" id="userName" placeholder="First Last" required />
             </div>
 
             <div class="form-group">
-              <label for="userEmail">Your Email</label>
-              <input type="email" name="email" id="userEmail" placeholder="john@example.com" required />
+              <label for="userEmail">Your Email Address</label>
+              <input type="email" name="email" id="userEmail" placeholder="name@example.com" required />
             </div>
 
             <div class="form-group">
               <label for="userMessage">Message</label>
-              <textarea name="message" id="userMessage" rows="4" placeholder="Hi Shivangi, I saw your portfolio and would love to connect..." required></textarea>
+              <textarea name="message" id="userMessage" rows="4" placeholder="Enter message details..." required></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary btn-full">
@@ -777,7 +750,11 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-container">
-      <p>© 2026 Shivangi Srivastava. Built with HTML, CSS & JavaScript.</p>
+      <p>&copy; 2026 Shivangi Srivastava. All rights reserved.</p>
+      <div style="display: flex; gap: 20px; font-size: 0.88rem;">
+        <a href="privacy-policy.html" style="color: var(--text-muted);">Privacy Policy</a>
+        <a href="terms-and-conditions.html" style="color: var(--text-muted);">Terms & Conditions</a>
+      </div>
       <a href="#hero" class="back-to-top" title="Back to top">
         <i class="fa-solid fa-arrow-up"></i>
       </a>
@@ -801,82 +778,82 @@
     <div class="modal-card resume-modal-card glass-card">
       <button class="modal-close" id="resumeModalClose">&times;</button>
       <div class="resume-header">
-        <h2>Shivangi Srivastava — Curriculum Vitae</h2>
+        <h2>Shivangi Srivastava - Curriculum Vitae</h2>
         <div class="resume-actions">
           <a href="mailto:goforshivangi@gmail.com?subject=Resume%20Request" class="btn btn-primary btn-small">
-            <i class="fa-solid fa-envelope"></i> Request Official Copy
+            <i class="fa-solid fa-envelope"></i> Request Official PDF
           </a>
         </div>
       </div>
       <div class="resume-body">
         <div class="resume-text-content">
           <div style="text-align: center; margin-bottom: 20px;">
-            <h2 style="font-family: var(--font-heading); color: var(--text-main); font-size: 1.8rem; margin-bottom: 4px;">Shivangi Srivastava</h2>
-            <p style="color: var(--accent-cyan); font-size: 0.95rem;">goforshivangi@gmail.com | +1 (848) 315-8969 | linkedin.com/in/shivangisrivastava013</p>
+            <h2 style="font-family: var(--font-heading); color: var(--text-main); font-size: 1.8rem; margin-bottom: 4px;">SHIVANGI SRIVASTAVA</h2>
+            <p style="color: var(--accent-light-blue); font-size: 0.95rem;">Newark, NJ | +1 (848) 315-8969 | goforshivangi@gmail.com | linkedin.com/in/shivangisrivastava013</p>
           </div>
 
-          <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px;">
-            AI Engineer pursuing a Master of Science in Artificial Intelligence with practical experience designing machine learning, natural language processing, and deep learning applications using Python for retrieval, automation, graph learning, and computer vision. Familiar with PyTorch, TensorFlow, scikit-learn, SQL, Docker, Git, AWS & GCP, and experimentation in artificial intelligence. Knowledgeable in Salesforce workflow setup, automation from data, model assessment, and technical system documentation. Seeking to develop ethical, productive, and reliable AI assistants/copilots and automation solutions.
-          </p>
-          
           <hr>
           <h3>EDUCATION</h3>
-          <p><strong>New Jersey Institute of Technology</strong> — <em>MS in Artificial Intelligence</em> (Sept 2025 – Dec 2026) | GPA: 3.8 / 4.0</p>
-          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">Relevant Coursework: Machine Learning | Computational Neuroscience | Big Data Analytics | Deep Learning | Graph Neural Networks | AI for Robotics | Natural Language Processing | Advanced Federated Machine Learning</p>
+          <p><strong>New Jersey Institute of Technology (NJIT)</strong> - Newark, NJ (Sept 2025 - Dec 2026)</p>
+          <p><em>M.S. in Artificial Intelligence</em> | GPA: 3.8/4.0 | President, Graduate Women in Computing Society (GWiCS)</p>
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px;">Relevant Coursework: Machine Learning, Deep Learning, NLP, Graph Neural Networks, Big Data Analytics, AI for Robotics, Federated Machine Learning, Computational Neuroscience</p>
           
-          <p><strong>Manipal University</strong> — <em>B.Tech (Hons.) Computer Science Engineering in AI & ML</em> (Aug 2021 – July 2025) | GPA: 8.14 / 10</p>
-          <p style="font-size: 0.85rem; color: var(--text-muted);">Roles: Treasurer @ ANOVA (Data Science Dept Club) | Head of Content @ LearnIT (Official IT Dept Club)</p>
-          
+          <p><strong>Manipal University</strong> - Jaipur, India (Aug 2021 - Jul 2025)</p>
+          <p><em>B.Tech. (Hons.) Computer Science Engineering - Artificial Intelligence & Machine Learning</em> | GPA: 8.14/10</p>
+
           <hr>
           <h3>TECHNICAL SKILLS</h3>
-          <p>• <strong>Programming & Engineering:</strong> Python, SQL, R, C, MATLAB, Data Structures & Algorithms, Debugging, Error Handling, Git, Docker, Jupyter Notebook</p>
-          <p>• <strong>AI/ML & Deep Learning:</strong> PyTorch, TensorFlow, Keras, Scikit-learn, CNNs, RNNs, Transformers, Graph Neural Networks, Model Evaluation</p>
-          <p>• <strong>NLP & Generative AI:</strong> Retrieval-Augmented Generation (RAG), Text Summarization, Embeddings, Semantic Similarity, Prompt Engineering, Response Evaluation</p>
-          <p>• <strong>Data & Integration:</strong> REST API Concepts, SQL Server, Oracle, MongoDB, NoSQL, RDBMS Tuning, Data Pipelines, Data Preprocessing</p>
-          <p>• <strong>Cloud & Big Data:</strong> AWS, Google Cloud, Hadoop, Spark</p>
-          <p>• <strong>Visualization & Analytics:</strong> Matplotlib, Seaborn, Tableau, Power BI basics</p>
+          <p>• <strong>Programming & Data:</strong> Python, R, C, MATLAB, SQL, PostgreSQL, MongoDB</p>
+          <p>• <strong>AI/ML & GenAI:</strong> PyTorch, TensorFlow, Keras, scikit-learn, PyTorch Geometric, Hugging Face, Sentence Transformers, FAISS, RAG, YOLOv8, SAM 2, OpenCV</p>
+          <p>• <strong>Data Engineering, Systems & Cloud:</strong> Spark, Hadoop, ROS 2, Zenoh, Docker, Git, AWS, Google Cloud, Jupyter, Tableau</p>
 
           <hr>
-          <h3>CORE PROJECTS</h3>
-          <p>• <strong>AI Career RAG Assistant — Resume-Job Matching and Skill Gap Analysis</strong><br>
-          <em>Tech: Python, NLP, Embeddings, Semantic Similarity, RAG, Pandas, Scikit-learn, LLM Prompting, Jupyter/Colab</em><br>
-          Built an AI-assisted resume-job matching system parsing resumes and job descriptions using vector embeddings and semantic similarity logic beyond keyword matching. Implemented structured scoring, explainable match categories, and RAG-style prompt design for grounded role-specific guidance.</p>
+          <h3>EXPERIENCE</h3>
+          <p>• <strong>New Jersey Institute of Technology Residence Life</strong> - <em>Office Assistant</em> (May 2025 - Present)<br>
+          Assist in running the Residence Life Main Office by responding to questions from residents, maintaining records, fulfilling administrative queries, and directing concerns while maintaining confidentiality of student records. Collaborate with staff to manage day-to-day issues and escalate emergencies.</p>
 
-          <p>• <strong>Graph Transformer Architectures for Learning on Structured Data</strong><br>
-          <em>Tech: Python, PyTorch, PyTorch Geometric, Transformers, GNNs, Scikit-learn, Colab</em><br>
-          Implemented and compared GCN, GAT, GraphSAGE, pure Transformer, and hybrid GCN + Transformer models for semi-supervised node classification on Cora, CiteSeer, and PubMed. Conducted validation-selected test accuracy, t-SNE visualization, and ablation studies.</p>
+          <p>• <strong>Salesforce x SmartInternz</strong> - <em>Salesforce Intern</em> (May 2024 - Jul 2024)<br>
+          Created and configured Salesforce applications with 3 key automation and reporting components (workflows, validation rules, dashboards). Implemented CRM processes end-to-end by translating business requirements into Salesforce configurations.</p>
 
-          <p>• <strong>ShadowTag: Deep Learning-Based Steganography Model</strong><br>
-          <em>Tech: Python, TensorFlow, PyTorch, OpenCV, Autoencoders</em><br>
-          Designed an invisible watermarking system using convolutional autoencoders to embed/extract watermarks while maintaining high image quality. Validated robustness against noise, compression, and geometric transformations.</p>
+          <p>• <strong>Cyber Secured India</strong> - <em>Cybersecurity Training Intern</em> (Nov 2022 - Feb 2023)<br>
+          Engaged in ethical hacking, vulnerability assessments, penetration testing, and secure network configurations through practical lab exercises. Coordinated 20+ national webinars related to cybersecurity awareness and enhanced audience participation by 40%.</p>
 
-          <p>• <strong>Helmet Detection and Number Plate Extraction System</strong><br>
-          <em>Tech: Python, YOLOv3, OpenCV, TensorFlow</em><br>
-          Real-time computer vision system using YOLOv3 to detect helmet compliance and extract vehicle number plates automatically for road safety automation.</p>
+          <p>• <strong>Suvidha Mahila Mandal</strong> - <em>Machine Learning Intern</em> (Feb 2023 - Mar 2023)<br>
+          Developed text summarization models using MeanSum architecture in Python and TensorFlow, applying neural methods for extractive and abstractive summarization. Conducted literature reviews on neural summarization and analyzed model behavior.</p>
 
           <hr>
-          <h3>PROFESSIONAL EXPERIENCE</h3>
-          <p>• <strong>Salesforce Intern</strong> — <em>Salesforce x SmartInternz</em> (May 2024 – July 2024)<br>
-          Customized Salesforce workflows, validation rules, dashboards, and CRM configs. Supported enterprise app config, process requirements translation, and role-based access enablement.</p>
+          <h3>PROJECTS</h3>
+          <p>• <strong>ShadowTag - Deep Learning Image Watermarking</strong> | Python, TensorFlow, PyTorch, OpenCV, Autoencoders<br>
+          Designed and trained a convolutional encoder-decoder that embeds invisible watermarks into images and recovers them after common image distortions. Reached 34.7 dB PSNR, 0.96 SSIM, and 94.2% watermark recovery; recovery remained at 92% after JPEG Q=70 compression and 89% after cropping.</p>
 
-          <p>• <strong>Machine Learning Intern</strong> — <em>Suvidha Mahila Mandal</em> (Feb 2023 – March 2023)<br>
-          Developed NLP-based text summarization models using MeanSum architecture (Python/TensorFlow). Researched extractive & abstractive summarization and communicated AI insights to non-technical stakeholders.</p>
+          <p>• <strong>CareerLens - AI Career RAG Assistant</strong> | Python, RAG, Sentence Transformers, FAISS, NLP<br>
+          Built a RAG-based career assistant that compares resumes with 100 job descriptions, retrieves the 5 most relevant chunks per job, extracts skills, identifies gaps, and generates recommendations using semantic matching. Measured 0.88 Recall@5 and 0.81 MRR for retrieval, with 84% agreement on manually reviewed job matches and 0.86 F1 for skill extraction.</p>
 
-          <p>• <strong>Training Intern</strong> — <em>Cyber Secured India</em> (Nov 2022 – Feb 2023)<br>
-          Ethical hacking, network security, vulnerability assessment, penetration testing. Coordinated 20+ national webinars with 200+ attendees and monitored digital assets for compliance.</p>
+          <p>• <strong>Autonomous Robotic Perception & Distributed Telemetry Pipeline</strong> | ROS 2, YOLOv8, Gazebo, Zenoh, PostgreSQL, Docker<br>
+          Built a TurtleBot perception pipeline in Gazebo detecting objects with YOLOv8, publishing detection metadata through ROS 2 and Zenoh, and storing results in PostgreSQL. Reached 0.91 mAP@50, 0.90 precision, and 0.87 recall across 6 classes running at 18 FPS with 55 ms median detection latency.</p>
+
+          <p>• <strong>Real-Time Multi-Stage Vision Pipeline</strong> | YOLO, SAM 2, PyTorch, OpenCV, Roboflow<br>
+          Combined YOLO detection with SAM 2 segmentation on ~1,500 annotated images across 5 classes. The final pipeline reached 0.89 mAP@50, 0.90 precision, 0.86 recall, and 0.87 mean IoU processing at 14 FPS (~71 ms/frame).</p>
+
+          <p>• <strong>Graph Neural Network Benchmarking</strong> | PyTorch Geometric, GCN, GraphSAGE<br>
+          Implemented GCN and GraphSAGE node-classification models under the same evaluation setup. GraphSAGE performed best at 88.1% accuracy and 0.87 F1, compared with 86.4% accuracy and 0.85 F1 for GCN (1.7 percentage-point gain).</p>
+
+          <p>• <strong>NeuralScene - 3D Gaussian Splatting Room Reconstruction</strong> | COLMAP, 3DGS, gsplat, Neural Rendering<br>
+          Reconstructed room spaces from ~150 Polycam images using COLMAP for camera poses and 3D Gaussian Splatting with gsplat. Trained for 7,000 iterations in ~45 minutes on an NVIDIA T4, reaching 29.8 dB PSNR, 0.94 SSIM, and 0.12 LPIPS.</p>
 
           <hr>
-          <h3>CERTIFICATES</h3>
-          <p>Google Data Analytics Specialization • DeepLearning.ai AI For Everyone • MathWorks MATLAB Onramp • Politecnico di Milano Machine Learning • Google Technical Support Fundamentals • Stanford University Introduction to IoT • Google Digital Garage Elements of AI</p>
+          <h3>LEADERSHIP & ACTIVITIES</h3>
+          <p>• <strong>President:</strong> Graduate Women in Computing Society (GWiCS), NJIT - Lead graduate computing community initiatives and student engagement.</p>
+          <p>• <strong>Treasurer:</strong> ANOVA - Data Science Departmental Club, Manipal University.</p>
+          <p>• <strong>Head of Content:</strong> LearnIT - Official IT Department Club, Manipal University.</p>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Toast Notification Container -->
-  <div class="toast" id="toast">Copied to clipboard!</div>
+  <div class="toast" id="toast">Copied to clipboard.</div>
 
-  <script src="script.js?v=16.0"></script>
+  <script src="script.js?v=17.0"></script>
 </body>
 </html>
-<!-- GitHub Pages Deployment Trigger -->
