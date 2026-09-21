@@ -7,7 +7,7 @@ on:
     branches: [ main, master ]
 
 jobs:
-  validate:
+  validate-and-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,7 +22,7 @@ jobs:
           python -m json.tool data/projects.json > /dev/null
           echo "data/projects.json is valid JSON"
 
-      - name: Check HTML and JS Syntax
+      - name: Check HTML Syntax
         run: |
           python -c "
           import html.parser
@@ -30,3 +30,17 @@ jobs:
               html.parser.HTMLParser().feed(f.read())
           print('index.html parsed successfully')
           "
+
+      - name: Install Test Dependencies & Playwright
+        run: |
+          pip install playwright pytest
+          playwright install chromium
+
+      - name: Start Local Web Server
+        run: |
+          python -m http.server 8000 &
+          sleep 2
+
+      - name: Run Browser Smoke Test
+        run: |
+          python tests/test_browser_smoke.py

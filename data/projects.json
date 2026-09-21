@@ -7,7 +7,7 @@
     "category": "rag",
     "card_class": "card-cyan",
     "github_url": "https://github.com/shivangisrivastava013/AI-Career-RAG-Assistant",
-    "results_url": "https://github.com/shivangisrivastava013/AI-Career-RAG-Assistant/tree/main/results",
+    "results_url": "https://github.com/shivangisrivastava013/AI-Career-RAG-Assistant/tree/main/artifacts",
     "demo_url": null,
     "description": "RAG-based career assistant matching candidate profiles against a synthetic 50-job benchmark. Features two-stage retrieval with Sentence Transformers and FAISS, structured required/preferred skill extraction, and template-based recommendations.",
     "tech": ["Python", "RAG", "Sentence Transformers", "FAISS", "Streamlit", "Docker"],
@@ -43,8 +43,8 @@
     "category": "robotics",
     "card_class": "card-emerald",
     "github_url": "https://github.com/shivangisrivastava013/ROS2-Autonomous-Robot-Navigation",
-    "results_url": "https://github.com/shivangisrivastava013/ROS2-Autonomous-Robot-Navigation/tree/main/results",
-    "demo_url": null,
+    "results_url": null,
+    "demo_url": "https://github.com/shivangisrivastava013/ROS2-Autonomous-Robot-Navigation/blob/main/demo.py",
     "description": "Functional ROS 2 Humble package featuring rclpy nodes for laser scans (/scan), odometry (/odom), and cmd_vel commands. Includes state-machine obstacle avoidance, YOLO perception node, Gazebo world launch files, and Zenoh/PostgreSQL telemetry.",
     "tech": ["ROS 2 Humble", "rclpy", "YOLOv8", "Gazebo", "Zenoh", "PostgreSQL", "Docker"],
     "metrics": [
@@ -61,7 +61,7 @@
     "category": "cv",
     "card_class": "card-blue",
     "github_url": "https://github.com/shivangisrivastava013/SAM2-Image-Segmentation",
-    "results_url": "https://github.com/shivangisrivastava013/SAM2-Image-Segmentation/tree/main/results",
+    "results_url": "https://github.com/shivangisrivastava013/SAM2-Image-Segmentation/tree/main/examples/output",
     "demo_url": null,
     "description": "Multi-stage visual segmentation pipeline combining YOLO bounding-box detection with Meta SAM 2 promptable mask segmentation. Includes benchmark runner and mock CPU validation mode.",
     "tech": ["SAM 2", "YOLO", "PyTorch", "OpenCV", "PyTest", "Docker"],
@@ -98,12 +98,12 @@
     "github_url": "https://github.com/shivangisrivastava013/NLP-Transformer-Summarizer",
     "results_url": "https://github.com/shivangisrivastava013/NLP-Transformer-Summarizer/tree/main/results",
     "demo_url": null,
-    "description": "Long-document summarization workbench featuring token-aware sliding window chunking, hierarchical BART/Flan-T5 models, 3-class sentiment analysis, ROUGE/BERTScore evaluation, and interactive Streamlit UI.",
+    "description": "Long-document summarization workbench with token-aware chunking, hierarchical BART and Flan-T5 support, threshold-based neutral sentiment handling, transparent fallback reporting, and ROUGE evaluation.",
     "tech": ["Hugging Face", "BART", "Flan-T5", "ROUGE", "BERTScore", "Streamlit", "Docker"],
     "metrics": [
-      { "label": "Chunking", "value": "Token-Aware", "context": "Sliding window overlap" },
-      { "label": "Evaluation", "value": "ROUGE & BERTScore", "context": "Reproducible benchmark" },
-      { "label": "Sentiment", "value": "3-Class Calibrated", "context": "Positive/Negative/Neutral" }
+      { "label": "Chunking", "value": "Token-Aware", "context": "Configurable sliding-window overlap" },
+      { "label": "Evaluation", "value": "ROUGE + Similarity", "context": "Fallback mode clearly reported" },
+      { "label": "Sentiment", "value": "Threshold-Based", "context": "Positive, negative, and neutral output" }
     ]
   },
   {

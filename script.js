@@ -40,6 +40,97 @@ if (document.readyState === 'loading') {
   runInit();
 }
 
+/* --- 1. Navbar Scroll & Scrollspy --- */
+function initNavbarScroll() {
+  const navbar = document.getElementById('navbar');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('section[id]');
+
+  window.addEventListener('scroll', () => {
+    if (navbar) {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    }
+    let current = '';
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 120) {
+        current = section.id;
+      }
+    });
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+    });
+  });
+}
+
+/* --- 2. Mobile Navigation Menu --- */
+function initMobileMenu() {
+  const toggle = document.getElementById('menuToggle');
+  const links = document.getElementById('navLinks');
+  if (!toggle || !links) return;
+
+  toggle.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    links.classList.toggle('active');
+  });
+
+  links.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      links.classList.remove('active');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+
+/* --- 3. Dynamic Projects Grid Rendering --- */
+function renderProjectsGrid() {
+  const grid = document.getElementById('projectsGrid');
+  if (!grid) return;
+
+  grid.innerHTML = PROJECTS_DATA.map(project => {
+    const metrics = project.metrics.map(metric =>
+      `<span class="metric-pill"><strong>${metric.label}:</strong> ${metric.value}</span>`
+    ).join('');
+
+    const technologies = project.tech.map(item => `<span>${item}</span>`).join('');
+
+    const links = [];
+    if (project.github_url) {
+      links.push(`<a href="${project.github_url}" target="_blank" rel="noopener" class="btn btn-small btn-primary"><i class="fa-brands fa-github"></i> View Code</a>`);
+    }
+    if (project.results_url) {
+      const isExamples = project.results_url.includes('examples/output');
+      const label = isExamples ? 'View Examples' : 'View Results';
+      const icon = isExamples ? 'fa-image' : 'fa-chart-bar';
+      links.push(`<a href="${project.results_url}" target="_blank" rel="noopener" class="btn btn-small btn-secondary"><i class="fa-solid ${icon}"></i> ${label}</a>`);
+    }
+    if (project.demo_url) {
+      links.push(`<a href="${project.demo_url}" target="_blank" rel="noopener" class="btn btn-small btn-secondary"><i class="fa-solid fa-play"></i> View Demo</a>`);
+    }
+    if (!project.github_url) {
+      links.push('<span class="private-tag"><i class="fa-solid fa-lock"></i> Private Research</span>');
+    }
+    links.push(`<button class="btn btn-small btn-outline open-modal-btn" data-project="${project.id}"><i class="fa-solid fa-circle-info"></i> Details</button>`);
+
+    return `
+      <article class="project-card glass-card ${project.card_class}" data-category="${project.category}">
+        <div class="project-banner">
+          <span class="project-badge">${project.badge}</span>
+          <div class="banner-icon"><i class="fa-solid fa-code"></i></div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">${project.title}</h3>
+          <p class="project-subtitle">${project.subtitle}</p>
+          <p class="project-desc">${project.description}</p>
+          <div class="project-metrics">${metrics}</div>
+          <div class="project-tech">${technologies}</div>
+          <div class="project-actions">${links.join(' ')}</div>
+        </div>
+      </article>
+    `;
+  }).join('');
+}
+
 /* --- Modal Focus Trapping & Restoration Utilities --- */
 let activeTriggerElement = null;
 
@@ -94,7 +185,13 @@ function initProjectModals() {
         actionButtons += `<a href="${data.github_url}" target="_blank" rel="noopener" class="btn btn-primary"><i class="fa-brands fa-github"></i> Open Repository</a> `;
       }
       if (data.results_url) {
-        actionButtons += `<a href="${data.results_url}" target="_blank" rel="noopener" class="btn btn-secondary"><i class="fa-solid fa-chart-line"></i> View Artifacts</a>`;
+        const isExamples = data.results_url.includes('examples/output');
+        const label = isExamples ? 'View Examples' : 'View Results';
+        const icon = isExamples ? 'fa-image' : 'fa-chart-line';
+        actionButtons += `<a href="${data.results_url}" target="_blank" rel="noopener" class="btn btn-secondary"><i class="fa-solid ${icon}"></i> ${label}</a> `;
+      }
+      if (data.demo_url) {
+        actionButtons += `<a href="${data.demo_url}" target="_blank" rel="noopener" class="btn btn-secondary"><i class="fa-solid fa-play"></i> View Demo</a> `;
       }
 
       modalBody.innerHTML = `
@@ -111,7 +208,7 @@ function initProjectModals() {
           ${data.description}
         </p>
 
-        <h4 style="color: var(--text-main); margin-bottom: 8px;">Committed Empirical Metrics:</h4>
+        <h4 style="color: var(--text-main); margin-bottom: 8px;">Results and Evidence:</h4>
         <ul style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.8; margin-bottom: 24px; padding-left: 20px;">
           ${metricsList}
         </ul>
@@ -259,7 +356,6 @@ function initPortfolioAssistant() {
   function handleUserQuery(queryText) {
     if (!queryText.trim()) return;
 
-    // Append user message
     const uMsg = document.createElement('div');
     uMsg.className = 'msg msg-user';
     uMsg.style.cssText = 'align-self: flex-end; background: #0284c7; color: #fff; padding: 8px 12px; border-radius: 12px; max-width: 85%;';
@@ -281,11 +377,11 @@ function initPortfolioAssistant() {
     } else if (lower.includes('sam') || lower.includes('vision') || lower.includes('yolo')) {
       reply = "SAM 2 Vision Pipeline: Multi-stage pipeline combining YOLO object detection with Meta SAM 2 promptable mask segmentation, verified with 100% PyTest suite pass.";
     } else if (lower.includes('nlp') || lower.includes('summariz')) {
-      reply = "NLP Transformer Summarizer: Long-document summarization with token-aware chunking, hierarchical BART/Flan-T5 models, 3-class sentiment, and ROUGE evaluation.";
+      reply = "NLP Transformer Summarizer: Long-document summarization workbench with token-aware chunking, hierarchical BART and Flan-T5 support, threshold-based neutral sentiment handling, transparent fallback reporting, and ROUGE evaluation.";
     } else if (lower.includes('github') || lower.includes('code') || lower.includes('repo')) {
       reply = "All code repositories are available at https://github.com/shivangisrivastava013 with direct links on each project card.";
     } else {
-      reply = "Shivangi's portfolio features 7 projects across RAG, Graph ML, ROS 2 Robotics, Vision Foundation Models, and Continuous Control RL. Click any project card for direct code links!";
+      reply = "Shivangi's portfolio features 8 projects across RAG, Graph ML, ROS 2 Robotics, Vision Foundation Models, and Continuous Control RL. Click any project card for direct code links!";
     }
 
     setTimeout(() => {
@@ -360,13 +456,6 @@ function initBackgroundCanvas() {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
     initParticles();
-  });
-
-  let mouse = { x: -1000, y: -1000, active: false };
-  window.addEventListener('mousemove', (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-    mouse.active = true;
   });
 
   let particles = [];
