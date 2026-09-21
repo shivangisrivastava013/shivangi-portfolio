@@ -2,151 +2,7 @@
    Shivangi Srivastava - Portfolio Interactive Script (Data-Driven)
    ========================================================================== */
 
-let PROJECTS_DATA = [
-  {
-    "id": "career-rag",
-    "title": "AI Career RAG Assistant",
-    "subtitle": "Enterprise RAG Architecture & Skill Gap Engine",
-    "badge": "Generative AI & RAG Engine",
-    "category": "rag",
-    "card_class": "card-cyan",
-    "github_url": "https://github.com/shivangisrivastava013/AI-Career-RAG-Assistant",
-    "results_url": "https://github.com/shivangisrivastava013/AI-Career-RAG-Assistant/tree/main/results",
-    "demo_url": null,
-    "description": "RAG-based career assistant matching candidate profiles against a synthetic 50-job benchmark. Features two-stage retrieval with Sentence Transformers and FAISS, structured required/preferred skill extraction, and template-based recommendations.",
-    "tech": ["Python", "RAG", "Sentence Transformers", "FAISS", "Streamlit", "Docker"],
-    "metrics": [
-      { "label": "Recall@5", "value": "0.9333", "context": "50-job synthetic benchmark" },
-      { "label": "MRR", "value": "0.8367", "context": "Mean Reciprocal Rank" },
-      { "label": "Skill F1", "value": "0.9085", "context": "Structured skill extraction" }
-    ]
-  },
-  {
-    "id": "gnn-citation",
-    "title": "GNN Citation Network Classification",
-    "subtitle": "PyTorch Geometric Multi-Model Benchmark",
-    "badge": "Graph Machine Learning",
-    "category": "graph",
-    "card_class": "card-sky",
-    "github_url": "https://github.com/shivangisrivastava013/GNN-Citation-Network-Classification",
-    "results_url": "https://github.com/shivangisrivastava013/GNN-Citation-Network-Classification/tree/main/results",
-    "demo_url": null,
-    "description": "PyTorch Geometric framework evaluating MLP, GCN, and GraphSAGE on Cora and Citeseer datasets. Evaluated across 5 random seeds using validation early stopping and single test set evaluation.",
-    "tech": ["PyTorch Geometric", "GCN", "GraphSAGE", "PyTorch", "Planetoid", "Docker"],
-    "metrics": [
-      { "label": "Cora GCN Acc", "value": "80.72% ± 0.93%", "context": "5-seed average" },
-      { "label": "Cora GCN F1", "value": "0.8007", "context": "Macro F1" },
-      { "label": "Citeseer GraphSAGE Acc", "value": "68.30% ± 0.51%", "context": "5-seed average" }
-    ]
-  },
-  {
-    "id": "ros2-nav",
-    "title": "ROS 2 Autonomous Robot Navigation",
-    "subtitle": "Colcon Package, State Machine & Zenoh Telemetry",
-    "badge": "Robotics & Middleware",
-    "category": "robotics",
-    "card_class": "card-emerald",
-    "github_url": "https://github.com/shivangisrivastava013/ROS2-Autonomous-Robot-Navigation",
-    "results_url": "https://github.com/shivangisrivastava013/ROS2-Autonomous-Robot-Navigation/tree/main/results",
-    "demo_url": null,
-    "description": "Functional ROS 2 Humble package featuring rclpy nodes for laser scans (/scan), odometry (/odom), and cmd_vel commands. Includes state-machine obstacle avoidance, YOLO perception node, Gazebo world launch files, and Zenoh/PostgreSQL telemetry.",
-    "tech": ["ROS 2 Humble", "rclpy", "YOLOv8", "Gazebo", "Zenoh", "PostgreSQL", "Docker"],
-    "metrics": [
-      { "label": "Package Build", "value": "colcon build", "context": "ROS 2 Humble package" },
-      { "label": "Perception", "value": "YOLO Node", "context": "Obstacle detection" },
-      { "label": "Telemetry", "value": "Zenoh / Postgres", "context": "Distributed logging" }
-    ]
-  },
-  {
-    "id": "sam2-vision",
-    "title": "SAM 2 Vision Pipeline Benchmark",
-    "subtitle": "YOLO Detection & Meta SAM 2 Segmentation",
-    "badge": "Foundation Vision Models",
-    "category": "cv",
-    "card_class": "card-blue",
-    "github_url": "https://github.com/shivangisrivastava013/SAM2-Image-Segmentation",
-    "results_url": "https://github.com/shivangisrivastava013/SAM2-Image-Segmentation/tree/main/results",
-    "demo_url": null,
-    "description": "Multi-stage visual segmentation pipeline combining YOLO bounding-box detection with Meta SAM 2 promptable mask segmentation. Includes benchmark runner and mock CPU validation mode.",
-    "tech": ["SAM 2", "YOLO", "PyTorch", "OpenCV", "PyTest", "Docker"],
-    "metrics": [
-      { "label": "Test Suite", "value": "100% Pass", "context": "11/11 PyTest cases" },
-      { "label": "Pipeline Mode", "value": "Zero-Shot SAM 2", "context": "Promptable segmentation" }
-    ]
-  },
-  {
-    "id": "robotic-pouring",
-    "title": "Precision Robotic Pouring Motion Control",
-    "subtitle": "Gymnasium Simulation & RL Benchmark",
-    "badge": "Continuous Control & RL",
-    "category": "robotics",
-    "card_class": "card-amber",
-    "github_url": "https://github.com/shivangisrivastava013/Robotic-Pouring-Motion-Control",
-    "results_url": "https://github.com/shivangisrivastava013/Robotic-Pouring-Motion-Control/tree/main/results",
-    "demo_url": null,
-    "description": "Gymnasium continuous-control environment modeling numerical fluid dynamics. Benchmarks Rule-Based and PID feedback controllers against PPO and SAC continuous reinforcement learning baselines.",
-    "tech": ["Gymnasium", "Stable-Baselines3", "PPO", "SAC", "PID", "PyTorch", "Docker"],
-    "metrics": [
-      { "label": "Rule-Based & PID", "value": "100.0% Success", "context": "MAE 2.9 - 5.5 ml" },
-      { "label": "PPO (RL)", "value": "40.0% Success", "context": "After reward shaping" },
-      { "label": "SAC (RL)", "value": "0.0% Success", "context": "Continuous RL baseline" }
-    ]
-  },
-  {
-    "id": "nlp-summarizer",
-    "title": "NLP Transformer Summarizer & Sentiment Workbench",
-    "subtitle": "Long-Document Chunking & ROUGE Evaluation",
-    "badge": "Natural Language Processing",
-    "category": "nlp",
-    "card_class": "card-indigo",
-    "github_url": "https://github.com/shivangisrivastava013/NLP-Transformer-Summarizer",
-    "results_url": "https://github.com/shivangisrivastava013/NLP-Transformer-Summarizer/tree/main/results",
-    "demo_url": null,
-    "description": "Long-document summarization workbench featuring token-aware sliding window chunking, hierarchical BART/Flan-T5 models, 3-class sentiment analysis, ROUGE/BERTScore evaluation, and interactive Streamlit UI.",
-    "tech": ["Hugging Face", "BART", "Flan-T5", "ROUGE", "BERTScore", "Streamlit", "Docker"],
-    "metrics": [
-      { "label": "Chunking", "value": "Token-Aware", "context": "Sliding window overlap" },
-      { "label": "Evaluation", "value": "ROUGE & BERTScore", "context": "Reproducible benchmark" },
-      { "label": "Sentiment", "value": "3-Class Calibrated", "context": "Positive/Negative/Neutral" }
-    ]
-  },
-  {
-    "id": "shadowtag",
-    "title": "ShadowTag - Image Watermarking",
-    "subtitle": "Convolutional Autoencoders for Steganography",
-    "badge": "Private Academic Research Project",
-    "category": "cv",
-    "card_class": "card-amber",
-    "github_url": null,
-    "results_url": null,
-    "demo_url": null,
-    "description": "Convolutional encoder-decoder architecture embedding invisible watermarks into images and recovering them post distortions (JPEG compression, cropping). Private academic research project.",
-    "tech": ["Python", "TensorFlow", "PyTorch", "OpenCV", "Autoencoders"],
-    "metrics": [
-      { "label": "PSNR", "value": "34.7 dB", "context": "Image fidelity" },
-      { "label": "SSIM", "value": "0.96", "context": "Structural similarity" },
-      { "label": "Recovery", "value": "94.2%", "context": "Post distortion" }
-    ]
-  },
-  {
-    "id": "neuralscene",
-    "title": "NeuralScene 3DGS",
-    "subtitle": "3D Gaussian Splatting Room Reconstruction",
-    "badge": "Private Academic Research Project",
-    "category": "3d",
-    "card_class": "card-indigo",
-    "github_url": null,
-    "results_url": null,
-    "demo_url": null,
-    "description": "Reconstructed interior spaces from 150 Polycam images using COLMAP for camera poses and 3D Gaussian Splatting with gsplat. Private academic research project.",
-    "tech": ["COLMAP", "3DGS", "gsplat", "PyTorch", "CUDA"],
-    "metrics": [
-      { "label": "PSNR", "value": "29.8 dB", "context": "Novel view rendering" },
-      { "label": "SSIM", "value": "0.94", "context": "Structural accuracy" },
-      { "label": "LPIPS", "value": "0.12", "context": "Perceptual metric" }
-    ]
-  }
-];
+let PROJECTS_DATA = [];
 
 async function loadProjectsData() {
   try {
@@ -156,9 +12,11 @@ async function loadProjectsData() {
       if (Array.isArray(data) && data.length > 0) {
         PROJECTS_DATA = data;
       }
+    } else {
+      console.error('Failed to fetch data/projects.json: HTTP status', res.status);
     }
   } catch (err) {
-    console.info('Loaded fallback PROJECTS_DATA array for local file:// protocol');
+    console.error('Error loading data/projects.json:', err);
   }
   renderProjectsGrid();
 }
