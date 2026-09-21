@@ -1,17 +1,164 @@
 /* ==========================================================================
-   Shivangi Srivastava - Portfolio Interactive Script
+   Shivangi Srivastava - Portfolio Interactive Script (Data-Driven)
    ========================================================================== */
+
+const PROJECTS_DATA = [
+  {
+    "id": "career-rag",
+    "title": "AI Career RAG Assistant",
+    "subtitle": "Enterprise RAG Architecture & Skill Gap Engine",
+    "badge": "Generative AI & RAG Engine",
+    "category": "rag",
+    "card_class": "card-cyan",
+    "github_url": "https://github.com/shivangisrivastava013/AI-Career-RAG-Assistant",
+    "results_url": "https://github.com/shivangisrivastava013/AI-Career-RAG-Assistant/tree/main/results",
+    "demo_url": null,
+    "description": "RAG-based career assistant matching candidate profiles against a synthetic 50-job benchmark. Features two-stage retrieval with Sentence Transformers and FAISS, structured required/preferred skill extraction, and template-based recommendations.",
+    "tech": ["Python", "RAG", "Sentence Transformers", "FAISS", "Streamlit", "Docker"],
+    "metrics": [
+      { "label": "Recall@5", "value": "0.9333", "context": "50-job synthetic benchmark" },
+      { "label": "MRR", "value": "0.8367", "context": "Mean Reciprocal Rank" },
+      { "label": "Skill F1", "value": "0.9085", "context": "Structured skill extraction" }
+    ]
+  },
+  {
+    "id": "gnn-citation",
+    "title": "GNN Citation Network Classification",
+    "subtitle": "PyTorch Geometric Multi-Model Benchmark",
+    "badge": "Graph Machine Learning",
+    "category": "graph",
+    "card_class": "card-sky",
+    "github_url": "https://github.com/shivangisrivastava013/GNN-Citation-Network-Classification",
+    "results_url": "https://github.com/shivangisrivastava013/GNN-Citation-Network-Classification/tree/main/results",
+    "demo_url": null,
+    "description": "PyTorch Geometric framework evaluating MLP, GCN, and GraphSAGE on Cora and Citeseer datasets. Evaluated across 5 random seeds using validation early stopping and single test set evaluation.",
+    "tech": ["PyTorch Geometric", "GCN", "GraphSAGE", "PyTorch", "Planetoid", "Docker"],
+    "metrics": [
+      { "label": "Cora GCN Acc", "value": "80.72% ± 0.93%", "context": "5-seed average" },
+      { "label": "Cora GCN F1", "value": "0.8007", "context": "Macro F1" },
+      { "label": "Citeseer GraphSAGE Acc", "value": "68.30% ± 0.51%", "context": "5-seed average" }
+    ]
+  },
+  {
+    "id": "ros2-nav",
+    "title": "ROS 2 Autonomous Robot Navigation",
+    "subtitle": "Colcon Package, State Machine & Zenoh Telemetry",
+    "badge": "Robotics & Middleware",
+    "category": "robotics",
+    "card_class": "card-emerald",
+    "github_url": "https://github.com/shivangisrivastava013/ROS2-Autonomous-Robot-Navigation",
+    "results_url": "https://github.com/shivangisrivastava013/ROS2-Autonomous-Robot-Navigation/tree/main/results",
+    "demo_url": null,
+    "description": "Functional ROS 2 Humble package featuring rclpy nodes for laser scans (/scan), odometry (/odom), and cmd_vel commands. Includes state-machine obstacle avoidance, YOLO perception node, Gazebo world launch files, and Zenoh/PostgreSQL telemetry.",
+    "tech": ["ROS 2 Humble", "rclpy", "YOLOv8", "Gazebo", "Zenoh", "PostgreSQL", "Docker"],
+    "metrics": [
+      { "label": "Package Build", "value": "colcon build", "context": "ROS 2 Humble package" },
+      { "label": "Perception", "value": "YOLO Node", "context": "Obstacle detection" },
+      { "label": "Telemetry", "value": "Zenoh / Postgres", "context": "Distributed logging" }
+    ]
+  },
+  {
+    "id": "sam2-vision",
+    "title": "SAM 2 Vision Pipeline Benchmark",
+    "subtitle": "YOLO Detection & Meta SAM 2 Segmentation",
+    "badge": "Foundation Vision Models",
+    "category": "cv",
+    "card_class": "card-blue",
+    "github_url": "https://github.com/shivangisrivastava013/SAM2-Image-Segmentation",
+    "results_url": "https://github.com/shivangisrivastava013/SAM2-Image-Segmentation/tree/main/results",
+    "demo_url": null,
+    "description": "Multi-stage visual segmentation pipeline combining YOLO bounding-box detection with Meta SAM 2 promptable mask segmentation. Includes benchmark runner and mock CPU validation mode.",
+    "tech": ["SAM 2", "YOLO", "PyTorch", "OpenCV", "PyTest", "Docker"],
+    "metrics": [
+      { "label": "Test Suite", "value": "100% Pass", "context": "11/11 PyTest cases" },
+      { "label": "Pipeline Mode", "value": "Zero-Shot SAM 2", "context": "Promptable segmentation" }
+    ]
+  },
+  {
+    "id": "robotic-pouring",
+    "title": "Precision Robotic Pouring Motion Control",
+    "subtitle": "Gymnasium Simulation & RL Benchmark",
+    "badge": "Continuous Control & RL",
+    "category": "robotics",
+    "card_class": "card-amber",
+    "github_url": "https://github.com/shivangisrivastava013/Robotic-Pouring-Motion-Control",
+    "results_url": "https://github.com/shivangisrivastava013/Robotic-Pouring-Motion-Control/tree/main/results",
+    "demo_url": null,
+    "description": "Gymnasium continuous-control environment modeling numerical fluid dynamics. Benchmarks Rule-Based and PID feedback controllers against PPO and SAC continuous reinforcement learning baselines.",
+    "tech": ["Gymnasium", "Stable-Baselines3", "PPO", "SAC", "PID", "PyTorch", "Docker"],
+    "metrics": [
+      { "label": "Rule-Based & PID", "value": "100.0% Success", "context": "MAE 2.9 - 5.5 ml" },
+      { "label": "PPO (RL)", "value": "40.0% Success", "context": "After reward shaping" },
+      { "label": "SAC (RL)", "value": "0.0% Success", "context": "Continuous RL baseline" }
+    ]
+  },
+  {
+    "id": "nlp-summarizer",
+    "title": "NLP Transformer Summarizer & Sentiment Workbench",
+    "subtitle": "Long-Document Chunking & ROUGE Evaluation",
+    "badge": "Natural Language Processing",
+    "category": "nlp",
+    "card_class": "card-indigo",
+    "github_url": "https://github.com/shivangisrivastava013/NLP-Transformer-Summarizer",
+    "results_url": "https://github.com/shivangisrivastava013/NLP-Transformer-Summarizer/tree/main/results",
+    "demo_url": null,
+    "description": "Long-document summarization workbench featuring token-aware sliding window chunking, hierarchical BART/Flan-T5 models, 3-class sentiment analysis, ROUGE/BERTScore evaluation, and interactive Streamlit UI.",
+    "tech": ["Hugging Face", "BART", "Flan-T5", "ROUGE", "BERTScore", "Streamlit", "Docker"],
+    "metrics": [
+      { "label": "Chunking", "value": "Token-Aware", "context": "Sliding window overlap" },
+      { "label": "Evaluation", "value": "ROUGE & BERTScore", "context": "Reproducible benchmark" },
+      { "label": "Sentiment", "value": "3-Class Calibrated", "context": "Positive/Negative/Neutral" }
+    ]
+  },
+  {
+    "id": "shadowtag",
+    "title": "ShadowTag - Image Watermarking",
+    "subtitle": "Convolutional Autoencoders for Steganography",
+    "badge": "Private Academic Research Project",
+    "category": "cv",
+    "card_class": "card-amber",
+    "github_url": null,
+    "results_url": null,
+    "demo_url": null,
+    "description": "Convolutional encoder-decoder architecture embedding invisible watermarks into images and recovering them post distortions (JPEG compression, cropping). Private academic research project.",
+    "tech": ["Python", "TensorFlow", "PyTorch", "OpenCV", "Autoencoders"],
+    "metrics": [
+      { "label": "PSNR", "value": "34.7 dB", "context": "Image fidelity" },
+      { "label": "SSIM", "value": "0.96", "context": "Structural similarity" },
+      { "label": "Recovery", "value": "94.2%", "context": "Post distortion" }
+    ]
+  },
+  {
+    "id": "neuralscene",
+    "title": "NeuralScene 3DGS",
+    "subtitle": "3D Gaussian Splatting Room Reconstruction",
+    "badge": "Private Academic Research Project",
+    "category": "3d",
+    "card_class": "card-indigo",
+    "github_url": null,
+    "results_url": null,
+    "demo_url": null,
+    "description": "Reconstructed interior spaces from 150 Polycam images using COLMAP for camera poses and 3D Gaussian Splatting with gsplat. Private academic research project.",
+    "tech": ["COLMAP", "3DGS", "gsplat", "PyTorch", "CUDA"],
+    "metrics": [
+      { "label": "PSNR", "value": "29.8 dB", "context": "Novel view rendering" },
+      { "label": "SSIM", "value": "0.94", "context": "Structural accuracy" },
+      { "label": "LPIPS", "value": "0.12", "context": "Perceptual metric" }
+    ]
+  }
+];
 
 function runInit() {
   initBackgroundCanvas();
   initLaserPointer();
   initNavbarScroll();
   initMobileMenu();
+  renderProjectsGrid();
   initProjectModals();
   initResumeModal();
   initCopyButtons();
-  initChatAssistant();
-  initContactForm();
+  initPortfolioAssistant();
+  initAccessibility();
 }
 
 if (document.readyState === 'loading') {
@@ -20,20 +167,21 @@ if (document.readyState === 'loading') {
   runInit();
 }
 
-/* --- 1. Navbar Scroll Effect & Active Link Spy --- */
+/* --- 1. Navbar Scroll & Scrollspy --- */
 function initNavbarScroll() {
   const navbar = document.getElementById('navbar');
   const navLinks = document.querySelectorAll('.nav-link');
   const sections = document.querySelectorAll('section[id]');
 
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) {
-      if (navbar) navbar.classList.add('scrolled');
-    } else {
-      if (navbar) navbar.classList.remove('scrolled');
+    if (navbar) {
+      if (window.scrollY > 40) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
     }
 
-    // Scroll spy
     let current = '';
     sections.forEach(section => {
       const sectionTop = section.offsetTop - 120;
@@ -51,7 +199,7 @@ function initNavbarScroll() {
   });
 }
 
-/* --- 2. Mobile Menu Toggle --- */
+/* --- 2. Mobile Navigation Menu --- */
 function initMobileMenu() {
   const toggleBtn = document.getElementById('menuToggle');
   const navLinks = document.getElementById('navLinks');
@@ -59,515 +207,347 @@ function initMobileMenu() {
   if (!toggleBtn || !navLinks) return;
 
   toggleBtn.addEventListener('click', () => {
+    const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+    toggleBtn.setAttribute('aria-expanded', !isExpanded);
     navLinks.classList.toggle('active');
   });
 
   navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       navLinks.classList.remove('active');
+      toggleBtn.setAttribute('aria-expanded', 'false');
     });
   });
 }
 
-/* --- 3. Project Modal Controller --- */
-const projectData = {
-  project1: {
-    title: "ShadowTag - Deep Learning Image Watermarking",
-    subtitle: "Computer Vision & AI Security",
-    tech: ["Python", "TensorFlow", "PyTorch", "OpenCV", "Autoencoders"],
-    overview: "Designed and trained a convolutional encoder-decoder that embeds invisible watermarks into images and recovers them after common image distortions, balancing watermark strength against visual fidelity.",
-    highlights: [
-      "Reached 34.7 dB PSNR, 0.96 SSIM, and 94.2% watermark recovery on clean test datasets.",
-      "Demonstrated resilience beyond clean images: recovery remained at 92% after JPEG Q=70 compression and 89% after image cropping."
-    ]
-  },
-  project2: {
-    title: "CareerLens - AI Career RAG Assistant",
-    subtitle: "Generative AI, NLP & Information Retrieval",
-    tech: ["Python", "RAG", "Sentence Transformers", "FAISS", "NLP"],
-    overview: "Built a RAG-based career assistant that compares resumes with 100 job descriptions, retrieves the 5 most relevant text chunks per job, extracts skills, identifies gaps, and generates recommendations using semantic matching rather than keyword overlap.",
-    highlights: [
-      "Measured 0.88 Recall@5 and 0.81 MRR for vector retrieval.",
-      "Achieved 84% agreement on manually reviewed job matches and 0.86 F1 for skill extraction."
-    ]
-  },
-  project3: {
-    title: "Autonomous Robotic Perception & Distributed Telemetry Pipeline",
-    subtitle: "Robotics, Distributed Systems & Edge AI",
-    tech: ["ROS 2", "YOLOv8", "Gazebo", "Zenoh", "PostgreSQL", "Docker"],
-    overview: "Built a TurtleBot perception pipeline in Gazebo that detects objects with YOLOv8, publishes detection metadata through ROS 2 and Zenoh, and stores results in PostgreSQL through a duplicate-safe ingestion worker.",
-    highlights: [
-      "Reached 0.91 mAP@50, 0.90 precision, and 0.87 recall across 6 object classes while running at 18 FPS with 55 ms median detection latency.",
-      "Successfully processed and stored over 1,200 detection records in PostgreSQL."
-    ]
-  },
-  project4: {
-    title: "Real-Time Multi-Stage Vision Pipeline",
-    subtitle: "Computer Vision & Foundation Models",
-    tech: ["YOLO", "SAM 2", "PyTorch", "OpenCV", "Roboflow"],
-    overview: "Combined YOLO detection with SAM 2 segmentation on approximately 1,500 annotated images across 5 classes, overcoming CUDA, PyTorch dependency, and GPU-inference challenges to keep the pipeline running reliably.",
-    highlights: [
-      "Reached 0.89 mAP@50, 0.90 precision, 0.86 recall, and 0.87 mean IoU.",
-      "Processed real-time video frames at 14 FPS (~71 ms/frame)."
-    ]
-  },
-  project5: {
-    title: "Graph Neural Network Benchmarking",
-    subtitle: "Graph Machine Learning & Node Classification",
-    tech: ["PyTorch Geometric", "GCN", "GraphSAGE", "Python"],
-    overview: "Implemented GCN and GraphSAGE node-classification models, preparing graph data, training both architectures, and comparing their performance under the same evaluation setup.",
-    highlights: [
-      "GraphSAGE performed best at 88.1% accuracy and 0.87 F1 score.",
-      "Achieved a 1.7 percentage-point accuracy gain over GCN (86.4% accuracy and 0.85 F1)."
-    ]
-  },
-  project6: {
-    title: "NeuralScene - 3D Gaussian Splatting Room Reconstruction",
-    subtitle: "3D Vision & Neural Rendering",
-    tech: ["COLMAP", "3DGS", "gsplat", "Neural Rendering", "Python"],
-    overview: "Reconstructed interior room spaces from approximately 150 Polycam images, using COLMAP for camera poses and 3D Gaussian Splatting with gsplat for neural rendering.",
-    highlights: [
-      "Trained reconstruction for 7,000 iterations in ~45 minutes on an NVIDIA T4 GPU.",
-      "Reached 29.8 dB PSNR, 0.94 SSIM, and 0.12 LPIPS quality metrics."
-    ]
-  }
-};
+/* --- 3. Dynamic Projects Rendering --- */
+function renderProjectsGrid() {
+  const grid = document.getElementById('projectsGrid');
+  if (!grid) return;
 
+  grid.innerHTML = PROJECTS_DATA.map(proj => {
+    const metricsHtml = proj.metrics.map(m =>
+      `<span class="metric-pill"><strong>${m.label}:</strong> ${m.value}</span>`
+    ).join(' ');
+
+    const techHtml = proj.tech.map(t => `<span>${t}</span>`).join(' ');
+
+    let linksHtml = '';
+    if (proj.github_url) {
+      linksHtml += `<a href="${proj.github_url}" target="_blank" rel="noopener" class="btn btn-small btn-primary"><i class="fa-brands fa-github"></i> View Code</a> `;
+    }
+    if (proj.results_url) {
+      linksHtml += `<a href="${proj.results_url}" target="_blank" rel="noopener" class="btn btn-small btn-secondary"><i class="fa-solid fa-chart-bar"></i> Results</a> `;
+    }
+    if (!proj.github_url) {
+      linksHtml += `<span class="private-tag"><i class="fa-solid fa-lock"></i> Private Research</span> `;
+    }
+    linksHtml += `<button class="btn btn-small btn-outline open-modal-btn" data-project="${proj.id}"><i class="fa-solid fa-circle-info"></i> Details</button>`;
+
+    return `
+      <div class="project-card glass-card ${proj.card_class}" data-category="${proj.category}">
+        <div class="project-banner">
+          <span class="project-badge">${proj.badge}</span>
+          <div class="banner-icon"><i class="fa-solid fa-code"></i></div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">${proj.title}</h3>
+          <p class="project-subtitle">${proj.subtitle}</p>
+          <p class="project-desc">${proj.description}</p>
+          <div class="project-metrics" style="margin-bottom: 12px; display: flex; flex-wrap: wrap; gap: 6px; font-size: 0.82rem;">
+            ${metricsHtml}
+          </div>
+          <div class="project-tech" style="margin-bottom: 16px;">
+            ${techHtml}
+          </div>
+          <div class="project-actions" style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+            ${linksHtml}
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+/* --- 4. Project Modal Controller --- */
 function initProjectModals() {
   const modal = document.getElementById('projectModal');
   const modalOverlay = document.getElementById('modalOverlay');
   const modalClose = document.getElementById('modalClose');
   const modalBody = document.getElementById('modalBody');
-  const openBtns = document.querySelectorAll('.open-modal-btn');
 
-  if (!modal) return;
+  if (!modal || !modalBody) return;
 
-  openBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const projKey = btn.getAttribute('data-project');
-      const data = projectData[projKey];
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.open-modal-btn');
+    if (!btn) return;
 
-      if (data) {
-        modalBody.innerHTML = `
-          <h2 style="font-family: var(--font-heading); font-size: 1.6rem; color: var(--text-main); margin-bottom: 6px;">${data.title}</h2>
-          <p style="color: var(--accent-light-blue); font-weight: 500; margin-bottom: 20px; font-size: 0.95rem;">${data.subtitle}</p>
-          
-          <div style="margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 8px;">
-            ${data.tech.map(t => `<span style="background: rgba(2,132,199,0.15); color: var(--accent-light-blue); padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-family: var(--font-code); border: 1px solid rgba(2,132,199,0.3);">${t}</span>`).join('')}
-          </div>
+    const projId = btn.getAttribute('data-project');
+    const data = PROJECTS_DATA.find(p => p.id === projId);
 
-          <div style="background: #1e293b; padding: 18px; border-radius: 6px; border: 1px solid var(--border-glass); margin-bottom: 24px;">
-            <h4 style="color: var(--text-main); margin-bottom: 8px;"><i class="fa-solid fa-circle-info"></i> Project Overview</h4>
-            <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">${data.overview}</p>
-          </div>
+    if (data) {
+      const techPills = data.tech.map(t => `<span class="pill">${t}</span>`).join(' ');
+      const metricsList = data.metrics.map(m => `<li><strong>${m.label}:</strong> ${m.value} <em>(${m.context})</em></li>`).join('');
 
-          <h4 style="color: var(--text-main); margin-bottom: 12px;"><i class="fa-solid fa-chart-line"></i> Measured Performance & Achievements</h4>
-          <ul style="padding-left: 20px; color: var(--text-muted); font-size: 0.95rem; line-height: 1.7;">
-            ${data.highlights.map(h => `<li style="margin-bottom: 10px;">${h}</li>`).join('')}
-          </ul>
-        `;
-        modal.classList.add('active');
+      let actionButtons = '';
+      if (data.github_url) {
+        actionButtons += `<a href="${data.github_url}" target="_blank" rel="noopener" class="btn btn-primary"><i class="fa-brands fa-github"></i> Open Repository</a> `;
       }
-    });
+      if (data.results_url) {
+        actionButtons += `<a href="${data.results_url}" target="_blank" rel="noopener" class="btn btn-secondary"><i class="fa-solid fa-chart-line"></i> View Artifacts</a>`;
+      }
+
+      modalBody.innerHTML = `
+        <span class="modal-badge">${data.badge}</span>
+        <h2 style="font-family: var(--font-heading); color: var(--text-main); font-size: 1.8rem; margin: 10px 0 4px 0;">${data.title}</h2>
+        <p style="color: var(--accent-cyan); font-weight: 500; font-size: 0.95rem; margin-bottom: 16px;">${data.subtitle}</p>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;">
+          ${techPills}
+        </div>
+
+        <h4 style="color: var(--text-main); margin-bottom: 8px;">System Architecture & Overview:</h4>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px;">
+          ${data.description}
+        </p>
+
+        <h4 style="color: var(--text-main); margin-bottom: 8px;">Committed Empirical Metrics:</h4>
+        <ul style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.8; margin-bottom: 24px; padding-left: 20px;">
+          ${metricsList}
+        </ul>
+
+        <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px;">
+          ${actionButtons}
+        </div>
+      `;
+
+      modal.classList.add('active');
+      modal.setAttribute('aria-modal', 'true');
+      modal.setAttribute('role', 'dialog');
+      document.body.style.overflow = 'hidden';
+    }
   });
 
-  const closeModal = () => modal.classList.remove('active');
-  if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
+  const closeModal = () => {
+    modal.classList.remove('active');
+    modal.removeAttribute('aria-modal');
+    document.body.style.overflow = '';
+  };
+
   if (modalClose) modalClose.addEventListener('click', closeModal);
+  if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
 }
 
-/* --- 4. Resume Viewer Modal --- */
+/* --- 5. Resume Modal Controller --- */
 function initResumeModal() {
-  const openBtn = document.getElementById('openResumeBtn');
   const modal = document.getElementById('resumeModal');
-  const modalOverlay = document.getElementById('resumeModalOverlay');
-  const modalClose = document.getElementById('resumeModalClose');
+  const openBtn = document.getElementById('openResumeBtn');
+  const closeBtn = document.getElementById('resumeModalClose');
+  const overlay = document.getElementById('resumeModalOverlay');
 
   if (!modal || !openBtn) return;
 
-  openBtn.addEventListener('click', () => modal.classList.add('active'));
-  const closeModal = () => modal.classList.remove('active');
+  const openModal = () => {
+    modal.classList.add('active');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('role', 'dialog');
+    document.body.style.overflow = 'hidden';
+  };
 
-  if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
-  if (modalClose) modalClose.addEventListener('click', closeModal);
+  const closeModal = () => {
+    modal.classList.remove('active');
+    modal.removeAttribute('aria-modal');
+    document.body.style.overflow = '';
+  };
+
+  openBtn.addEventListener('click', openModal);
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (overlay) overlay.addEventListener('click', closeModal);
 }
 
-/* --- 5. Copy to Clipboard Toasts --- */
-function initCopyButtons() {
-  const copyBtns = document.querySelectorAll('.copy-btn, #quickCopyEmailBtn');
-  const toast = document.getElementById('toast');
-
-  copyBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const textToCopy = btn.getAttribute('data-copy') || 'goforshivangi@gmail.com';
-      navigator.clipboard.writeText(textToCopy).then(() => {
-        showToast(`Copied "${textToCopy}" to clipboard.`);
+/* --- 6. Keyboard & Focus Accessibility --- */
+function initAccessibility() {
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const activeModals = document.querySelectorAll('.modal.active');
+      activeModals.forEach(m => {
+        m.classList.remove('active');
       });
-    });
-  });
-
-  function showToast(msg) {
-    if (!toast) return;
-    toast.textContent = msg;
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 3000);
-  }
-}
-
-/* --- 6. AI Knowledge Assistant --- */
-function generateAIReply(query) {
-  if (!query) query = '';
-  const q = query.toLowerCase().trim();
-
-  // 0. Overview / Why Hire Shivangi
-  if (q === 'overview' || q.includes('overview') || q.includes('why') || q.includes('strengths') || q.includes('candidate')) {
-    return `<strong>Shivangi Srivastava - Candidate Summary:</strong><br><br>
-    • <strong>Academic Background:</strong> MS in AI @ NJIT (GPA 3.8/4.0, Expected Dec 2026) & B.Tech in CSE AI/ML @ Manipal University (GPA 8.14/10).<br>
-    • <strong>Specialized Expertise:</strong> Retrieval-Augmented Generation (RAG), Graph Neural Networks (GCN/GraphSAGE), SAM 2 Visual Segmentation, and ROS 2 Robotics Perception.<br>
-    • <strong>Industry Internships:</strong> NJIT Residence Life Office Assistant, Salesforce Intern at SmartInternz, Cyber Secured India Intern, and Suvidha Mahila Mandal ML Intern.`;
-  }
-
-  // 1. Education & Academic Performance
-  if (q === 'education' || q.includes('graduat') || q.includes('gpa') || q.includes('degree') || q.includes('njit') || q.includes('manipal') || q.includes('coursework')) {
-    return `<strong>Education & Credentials:</strong><br><br>
-    • <strong>New Jersey Institute of Technology (NJIT)</strong> - <em>MS in Artificial Intelligence</em><br>
-    &nbsp;&nbsp;• <strong>Timeline:</strong> Sept 2025 - Dec 2026 (GPA: 3.8 / 4.0)<br>
-    &nbsp;&nbsp;• <strong>Leadership:</strong> President, Graduate Women in Computing Society (GWiCS)<br>
-    &nbsp;&nbsp;• <strong>Coursework:</strong> Machine Learning, Deep Learning, NLP, Graph Neural Networks, Big Data Analytics, AI for Robotics, Federated Machine Learning, Computational Neuroscience.<br><br>
-    • <strong>Manipal University, Jaipur</strong> - <em>B.Tech (Hons.) CSE in AI & ML</em><br>
-    &nbsp;&nbsp;• <strong>Timeline:</strong> Aug 2021 - Jul 2025 (GPA: 8.14 / 10)<br>
-    &nbsp;&nbsp;• <strong>Roles:</strong> Treasurer @ ANOVA, Head of Content @ LearnIT.`;
-  }
-
-  // 2. Core Projects
-  if (q === 'projects' || q.includes('project') || q.includes('shadowtag') || q.includes('careerlens') || q.includes('rag') || q.includes('sam2') || q.includes('ros') || q.includes('gnn')) {
-    return `<strong>Featured Engineering Projects:</strong><br><br>
-    1. <strong>ShadowTag (Deep Learning Image Watermarking):</strong> 34.7 dB PSNR, 0.96 SSIM, 94.2% recovery (92% after JPEG Q=70).<br>
-    2. <strong>CareerLens (AI Career RAG Assistant):</strong> 0.88 Recall@5, 0.81 MRR, 84% agreement across 100 job descriptions.<br>
-    3. <strong>Autonomous Robotic Perception Pipeline:</strong> TurtleBot perception in Gazebo using ROS 2, YOLOv8, and Zenoh telemetry (0.91 mAP@50 at 18 FPS).<br>
-    4. <strong>Real-Time Multi-Stage Vision Pipeline:</strong> Combined YOLO and SAM 2 across 1,500 images (0.89 mAP@50, 0.87 mean IoU at 14 FPS).<br>
-    5. <strong>Graph Neural Network Benchmarking:</strong> GraphSAGE node classification reaching 88.1% accuracy and 0.87 F1 score.<br>
-    6. <strong>NeuralScene (3D Gaussian Splatting):</strong> 3D room reconstruction from 150 Polycam images (29.8 dB PSNR, 0.94 SSIM).`;
-  }
-
-  // 3. Work Experience
-  if (q === 'experience' || q.includes('experience') || q.includes('intern') || q.includes('salesforce') || q.includes('suvidha') || q.includes('cyber') || q.includes('residence')) {
-    return `<strong>Professional Work Experience:</strong><br><br>
-    1. <strong>Office Assistant</strong> @ <em>NJIT Residence Life</em> (May 2025 - Present)<br>
-    &nbsp;&nbsp;• Assisted main office operations, administrative queries, resident records, and student privacy compliance.<br><br>
-    2. <strong>Salesforce Intern</strong> @ <em>Salesforce x SmartInternz</em> (May 2024 - Jul 2024)<br>
-    &nbsp;&nbsp;• Configured Salesforce applications with key automation components (workflows, validation rules, reporting dashboards).<br><br>
-    3. <strong>Cybersecurity Training Intern</strong> @ <em>Cyber Secured India</em> (Nov 2022 - Feb 2023)<br>
-    &nbsp;&nbsp;• Ethical hacking, vulnerability assessments, penetration testing, and coordinated 20+ national webinars.<br><br>
-    4. <strong>Machine Learning Intern</strong> @ <em>Suvidha Mahila Mandal</em> (Feb 2023 - Mar 2023)<br>
-    &nbsp;&nbsp;• Developed text summarization models using MeanSum architecture in Python and TensorFlow.`;
-  }
-
-  // 4. Technical Skills
-  if (q === 'skills' || q.includes('skill') || q.includes('python') || q.includes('pytorch') || q.includes('docker') || q.includes('sql')) {
-    return `<strong>Technical Skills & Systems:</strong><br><br>
-    • <strong>Programming & Data:</strong> Python, R, C, MATLAB, SQL, PostgreSQL, MongoDB<br>
-    • <strong>AI/ML & GenAI:</strong> PyTorch, TensorFlow, Keras, scikit-learn, PyTorch Geometric, Hugging Face, Sentence Transformers, FAISS, RAG, YOLOv8, SAM 2, OpenCV<br>
-    • <strong>Data Engineering & Cloud:</strong> Spark, Hadoop, ROS 2, Zenoh, Docker, Git, AWS, Google Cloud, Jupyter, Tableau`;
-  }
-
-  // 5. Contact Info
-  if (q === 'contact' || q.includes('contact') || q.includes('email') || q.includes('phone') || q.includes('linkedin')) {
-    return `<strong>Contact Information:</strong><br><br>
-    • <strong>Email:</strong> goforshivangi@gmail.com<br>
-    • <strong>Phone:</strong> +1 (848) 315-8969<br>
-    • <strong>LinkedIn:</strong> linkedin.com/in/shivangisrivastava013<br>
-    • <strong>Location:</strong> Newark, NJ`;
-  }
-
-  // Default Fallback
-  return `<strong>Shivangi Srivastava - AI Assistant:</strong><br><br>
-  Graduate student in Artificial Intelligence at NJIT (GPA 3.8/4.0).<br><br>
-  You can inquire about:<br>
-  • <strong>Education:</strong> Academic degrees and graduate coursework at NJIT and Manipal.<br>
-  • <strong>Projects:</strong> ShadowTag, CareerLens RAG, ROS 2 Robotics, SAM 2 Vision, GNN Benchmarking, 3DGS.<br>
-  • <strong>Experience:</strong> Salesforce, Cybersecurity, ML Summarization, and NJIT Residence Life.<br>
-  • <strong>Skills:</strong> PyTorch, TensorFlow, ROS 2, Docker, SQL, and cloud platforms.`;
-}
-
-window.askQuickQuestion = function(key, label) {
-  const chatMessages = document.getElementById('chatMessages');
-  if (!chatMessages) return;
-
-  const userBubble = document.createElement('div');
-  userBubble.className = 'chat-bubble user';
-  userBubble.textContent = label;
-  chatMessages.appendChild(userBubble);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-
-  setTimeout(() => {
-    const botReply = generateAIReply(key);
-    const botBubble = document.createElement('div');
-    botBubble.className = 'chat-bubble bot';
-    botBubble.innerHTML = botReply;
-    chatMessages.appendChild(botBubble);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  }, 200);
-};
-
-function initChatAssistant() {
-  const chatForm = document.getElementById('chatForm');
-  const chatInput = document.getElementById('chatInput');
-  const chatMessages = document.getElementById('chatMessages');
-
-  if (chatForm && chatInput && chatMessages) {
-    chatForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const query = chatInput.value.trim();
-      if (query) {
-        const userBubble = document.createElement('div');
-        userBubble.className = 'chat-bubble user';
-        userBubble.textContent = query;
-        chatMessages.appendChild(userBubble);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-        chatInput.value = '';
-
-        setTimeout(() => {
-          const reply = generateAIReply(query);
-          const botBubble = document.createElement('div');
-          botBubble.className = 'chat-bubble bot';
-          botBubble.innerHTML = reply;
-          chatMessages.appendChild(botBubble);
-          chatMessages.scrollTop = chatMessages.scrollHeight;
-        }, 250);
-      }
-    });
-  }
-}
-
-/* --- 7. Direct Email Contact Form Handler --- */
-function initContactForm() {
-  const form = document.getElementById('contactForm');
-  if (!form) return;
-
-  form.addEventListener('submit', () => {
-    const submitBtn = form.querySelector('button[type="submit"]');
-    if (submitBtn) {
-      submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Submitting...';
+      document.body.style.overflow = '';
     }
   });
 }
 
-/* --- 8. Hero Terminal Tab Switcher --- */
-window.switchTerminalTab = function(tabKey) {
-  const snippet = document.getElementById('termSnippet');
-  const tabs = document.querySelectorAll('.term-tab');
-  if (!snippet) return;
+/* --- 7. Copy Buttons --- */
+function initCopyButtons() {
+  const copyBtns = document.querySelectorAll('[data-copy]');
+  const toast = document.getElementById('toast');
 
-  tabs.forEach(t => t.classList.remove('active'));
+  copyBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const text = btn.getAttribute('data-copy');
+      if (!text) return;
+      navigator.clipboard.writeText(text).then(() => {
+        if (toast) {
+          toast.innerText = `Copied "${text}" to clipboard!`;
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+      });
+    });
+  });
+}
 
-  if (tabKey === 'core') {
-    if (tabs[0]) tabs[0].classList.add('active');
-    snippet.innerHTML = `<span class="code-keyword">class</span> <span class="code-class">AIEngineer</span>:
-    <br>&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-func">__init__</span>(self):
-    <br>&nbsp;&nbsp;&nbsp;&nbsp;self.name = <span class="code-string">"Shivangi Srivastava"</span>
-    <br>&nbsp;&nbsp;&nbsp;&nbsp;self.degree = <span class="code-string">"MS in AI @ NJIT (GPA 3.8/4.0)"</span>
-    <br>&nbsp;&nbsp;&nbsp;&nbsp;self.specialization = [<span class="code-string">"RAG & LLMs"</span>, <span class="code-string">"Deep Learning"</span>, <span class="code-string">"GNNs"</span>, <span class="code-string">"Robotics Vision"</span>]
-    <br><br>&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-func">get_key_metrics</span>(self):
-    <br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> {<span class="code-string">"shadowtag_psnr"</span>: <span class="code-string">"34.7 dB"</span>, <span class="code-string">"careerlens_mrr"</span>: <span class="code-string">"0.81"</span>}`;
-  } else if (tabKey === 'stack') {
-    if (tabs[1]) tabs[1].classList.add('active');
-    snippet.innerHTML = `{
-    <br>&nbsp;&nbsp;<span class="code-string">"languages"</span>: [<span class="code-string">"Python"</span>, <span class="code-string">"R"</span>, <span class="code-string">"C"</span>, <span class="code-string">"MATLAB"</span>, <span class="code-string">"SQL"</span>],
-    <br>&nbsp;&nbsp;<span class="code-string">"ai_frameworks"</span>: [<span class="code-string">"PyTorch"</span>, <span class="code-string">"TensorFlow"</span>, <span class="code-string">"PyTorch Geometric"</span>, <span class="code-string">"Hugging Face"</span>],
-    <br>&nbsp;&nbsp;<span class="code-string">"genai_rag"</span>: [<span class="code-string">"Sentence Transformers"</span>, <span class="code-string">"FAISS"</span>, <span class="code-string">"RAG"</span>],
-    <br>&nbsp;&nbsp;<span class="code-string">"vision_systems"</span>: [<span class="code-string">"YOLOv8"</span>, <span class="code-string">"SAM 2"</span>, <span class="code-string">"OpenCV"</span>, <span class="code-string">"ROS 2"</span>, <span class="code-string">"Zenoh"</span>, <span class="code-string">"Docker"</span>]
-    <br>}`;
-  } else if (tabKey === 'pitch') {
-    if (tabs[2]) tabs[2].classList.add('active');
-    snippet.innerHTML = `<span class="code-keyword">CANDIDATE SUMMARY & CORE VALUES:</span>
-    <br><br>• <strong>Academic Record:</strong> MS in AI @ NJIT (GPA 3.8/4.0) | President, GWiCS
-    <br>• <strong>Engineering Rigor:</strong> 6 published projects with empirical performance benchmarks
-    <br>• <strong>Professional Experience:</strong> 4 roles across Salesforce automation, ML summarization & cybersecurity
-    <br>• <strong>Technical Execution:</strong> Reproducible PyTorch code, Docker containerization & ROS 2 telemetry`;
+/* --- 8. Portfolio Assistant Chatbot --- */
+function initPortfolioAssistant() {
+  let widget = document.getElementById('portfolioAssistantWidget');
+  if (widget) return;
+
+  widget = document.createElement('div');
+  widget.id = 'portfolioAssistantWidget';
+  widget.innerHTML = `
+    <button class="chat-toggle-btn" id="chatToggleBtn" aria-label="Open Portfolio Assistant" style="position: fixed; bottom: 24px; right: 24px; z-index: 999; padding: 12px 20px; background: linear-gradient(135deg, #06b6d4, #0284c7); color: #fff; border: none; border-radius: 50px; font-weight: 600; cursor: pointer; box-shadow: 0 10px 25px rgba(6,182,212,0.4); display: flex; align-items: center; gap: 8px;">
+      <i class="fa-solid fa-comments"></i> <span>Portfolio Assistant</span>
+    </button>
+    <div class="chat-window-card glass-card" id="chatWindowCard" style="display: none; position: fixed; bottom: 84px; right: 24px; width: 360px; max-width: 90vw; height: 460px; z-index: 1000; flex-direction: column; background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+      <div class="chat-header" style="padding: 14px 18px; background: rgba(30, 41, 59, 0.8); border-bottom: 1px solid rgba(56, 189, 248, 0.2); display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <strong style="color: var(--text-main); font-size: 1rem;"><i class="fa-solid fa-robot"></i> Interactive Portfolio Guide</strong>
+          <div style="font-size: 0.75rem; color: var(--accent-cyan);">Powered by Verified Repo Data</div>
+        </div>
+        <button id="closeChatBtn" style="background: none; border: none; color: var(--text-muted); font-size: 1.2rem; cursor: pointer;">&times;</button>
+      </div>
+      <div class="chat-messages" id="chatMessages" style="flex: 1; padding: 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; font-size: 0.88rem;">
+        <div class="msg msg-assistant" style="background: rgba(30, 41, 59, 0.7); padding: 10px 14px; border-radius: 12px; color: var(--text-main); border: 1px solid rgba(56, 189, 248, 0.15);">
+          Hello! I am your interactive guide to Shivangi's portfolio. Ask me about RAG metrics, GNN benchmarks, ROS 2, or repository links!
+        </div>
+      </div>
+      <div class="chat-quick-queries" style="padding: 8px 12px; display: flex; gap: 6px; overflow-x: auto; border-top: 1px solid rgba(255,255,255,0.05); background: rgba(15, 23, 42, 0.6);">
+        <button class="chip-btn" data-query="rag">RAG Metrics</button>
+        <button class="chip-btn" data-query="gnn">GNN Acc</button>
+        <button class="chip-btn" data-query="ros2">ROS 2</button>
+        <button class="chip-btn" data-query="pouring">Pouring RL</button>
+      </div>
+      <div class="chat-input-row" style="padding: 10px; display: flex; gap: 8px; border-top: 1px solid rgba(56, 189, 248, 0.2); background: rgba(30, 41, 59, 0.8);">
+        <input type="text" id="chatInput" placeholder="Type a question..." style="flex: 1; padding: 8px 12px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; font-size: 0.88rem;">
+        <button id="sendChatBtn" style="padding: 8px 14px; background: #06b6d4; color: #fff; border: none; border-radius: 8px; cursor: pointer;"><i class="fa-solid fa-paper-plane"></i></button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(widget);
+
+  const toggleBtn = document.getElementById('chatToggleBtn');
+  const chatCard = document.getElementById('chatWindowCard');
+  const closeBtn = document.getElementById('closeChatBtn');
+  const sendBtn = document.getElementById('sendChatBtn');
+  const input = document.getElementById('chatInput');
+  const msgs = document.getElementById('chatMessages');
+
+  if (!toggleBtn || !chatCard) return;
+
+  toggleBtn.addEventListener('click', () => {
+    chatCard.style.display = (chatCard.style.display === 'none') ? 'flex' : 'none';
+  });
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      chatCard.style.display = 'none';
+    });
   }
-};
 
-/* --- 9. Interactive Experience Matrix Switcher --- */
-window.switchMatrix = function(key) {
-  const details = document.getElementById('matrixDetails');
-  const tabs = document.querySelectorAll('.matrix-tab');
-  if (!details) return;
+  function handleUserQuery(queryText) {
+    if (!queryText.trim()) return;
 
-  tabs.forEach(t => t.classList.remove('active'));
+    // Append user message
+    const uMsg = document.createElement('div');
+    uMsg.className = 'msg msg-user';
+    uMsg.style.cssText = 'align-self: flex-end; background: #0284c7; color: #fff; padding: 8px 12px; border-radius: 12px; max-width: 85%;';
+    uMsg.innerText = queryText;
+    msgs.appendChild(uMsg);
+    input.value = '';
 
-  if (key === 'njit') {
-    if (tabs[0]) tabs[0].classList.add('active');
-    details.innerHTML = `
-      <div class="matrix-detail-card">
-        <div class="matrix-detail-header">
-          <span class="grad-status-badge">Sept 2025 - Dec 2026</span>
-          <h3>Master of Science in Artificial Intelligence</h3>
-          <p class="matrix-org"><i class="fa-solid fa-building-columns"></i> New Jersey Institute of Technology (NJIT) | Newark, NJ</p>
-        </div>
-        <div class="matrix-body">
-          <div class="matrix-metric-badge">
-            <span class="m-val">3.8 / 4.0</span>
-            <span class="m-lbl">Master's GPA</span>
-          </div>
-          <h4>Graduate Leadership:</h4>
-          <p style="margin-bottom: 14px; font-size: 0.95rem; color: var(--text-main);">President, Graduate Women in Computing Society (GWiCS) - Leading graduate computing community initiatives and student engagement.</p>
-          <h4>Relevant Coursework:</h4>
-          <div class="skills-pills">
-            <span class="pill primary">Machine Learning</span>
-            <span class="pill primary">Deep Learning</span>
-            <span class="pill primary">NLP</span>
-            <span class="pill primary">Graph Neural Networks</span>
-            <span class="pill">Big Data Analytics</span>
-            <span class="pill">AI for Robotics</span>
-            <span class="pill">Federated Machine Learning</span>
-            <span class="pill">Computational Neuroscience</span>
-          </div>
-        </div>
-      </div>`;
-  } else if (key === 'manipal') {
-    if (tabs[1]) tabs[1].classList.add('active');
-    details.innerHTML = `
-      <div class="matrix-detail-card">
-        <div class="matrix-detail-header">
-          <span class="grad-status-badge">Aug 2021 - Jul 2025</span>
-          <h3>B.Tech. (Hons.) Computer Science Engineering - AI & ML</h3>
-          <p class="matrix-org"><i class="fa-solid fa-graduation-cap"></i> Manipal University | Jaipur, India</p>
-        </div>
-        <div class="matrix-body">
-          <div class="matrix-metric-badge">
-            <span class="m-val">8.14 / 10</span>
-            <span class="m-lbl">Bachelor's GPA</span>
-          </div>
-          <h4>Leadership & Student Activities:</h4>
-          <ul class="experience-list">
-            <li><strong>Treasurer:</strong> ANOVA - Data Science Departmental Club, Manipal University.</li>
-            <li><strong>Head of Content:</strong> LearnIT - Official IT Department Club, Manipal University.</li>
-          </ul>
-        </div>
-      </div>`;
-  } else if (key === 'residence') {
-    if (tabs[2]) tabs[2].classList.add('active');
-    details.innerHTML = `
-      <div class="matrix-detail-card">
-        <div class="matrix-detail-header">
-          <span class="grad-status-badge">May 2025 - Present</span>
-          <h3>Office Assistant</h3>
-          <p class="matrix-org"><i class="fa-solid fa-briefcase"></i> NJIT Residence Life | Newark, NJ</p>
-        </div>
-        <div class="matrix-body">
-          <h4>Key Responsibilities:</h4>
-          <ul class="experience-list">
-            <li>Assist in running the Residence Life Main Office by responding to resident inquiries, maintaining records, and fulfilling administrative tasks while preserving student confidentiality.</li>
-            <li>Collaborate with residents and staff members to resolve day-to-day issues, escalate emergencies, and manage multiple queries concurrently.</li>
-          </ul>
-        </div>
-      </div>`;
-  } else if (key === 'salesforce') {
-    if (tabs[3]) tabs[3].classList.add('active');
-    details.innerHTML = `
-      <div class="matrix-detail-card">
-        <div class="matrix-detail-header">
-          <span class="grad-status-badge">May 2024 - Jul 2024</span>
-          <h3>Salesforce Intern</h3>
-          <p class="matrix-org"><i class="fa-solid fa-briefcase"></i> Salesforce x SmartInternz</p>
-        </div>
-        <div class="matrix-body">
-          <h4>Key Responsibilities & Achievements:</h4>
-          <ul class="experience-list">
-            <li>Created and configured Salesforce applications with 3 key automation and reporting components (workflows, validation rules, dashboards) to simplify CRM reporting.</li>
-            <li>Implemented CRM processes end-to-end by translating business requirements into Salesforce configurations and testing created workflows.</li>
-          </ul>
-        </div>
-      </div>`;
-  } else if (key === 'cyber') {
-    if (tabs[4]) tabs[4].classList.add('active');
-    details.innerHTML = `
-      <div class="matrix-detail-card">
-        <div class="matrix-detail-header">
-          <span class="grad-status-badge">Nov 2022 - Feb 2023</span>
-          <h3>Cybersecurity Training Intern</h3>
-          <p class="matrix-org"><i class="fa-solid fa-shield-halved"></i> Cyber Secured India</p>
-        </div>
-        <div class="matrix-body">
-          <h4>Key Responsibilities & Achievements:</h4>
-          <ul class="experience-list">
-            <li>Engaged in ethical hacking, vulnerability assessments, penetration testing, and secure network configurations through practical lab exercises.</li>
-            <li>Participated in coordinating 20+ national cybersecurity webinars, monitored web/YouTube channels for compliance, and enhanced audience participation by 40%.</li>
-          </ul>
-        </div>
-      </div>`;
-  } else if (key === 'suvidha') {
-    if (tabs[5]) tabs[5].classList.add('active');
-    details.innerHTML = `
-      <div class="matrix-detail-card">
-        <div class="matrix-detail-header">
-          <span class="grad-status-badge">Feb 2023 - Mar 2023</span>
-          <h3>Machine Learning Intern</h3>
-          <p class="matrix-org"><i class="fa-solid fa-robot"></i> Suvidha Mahila Mandal</p>
-        </div>
-        <div class="matrix-body">
-          <h4>Key Responsibilities & Achievements:</h4>
-          <ul class="experience-list">
-            <li>Developed text summarization models using the MeanSum architecture in Python and TensorFlow for extractive and abstractive summarization.</li>
-            <li>Conducted literature reviews on neural summarization, analyzed model behavior, and utilized findings in experimentation and content decisions.</li>
-          </ul>
-        </div>
-      </div>`;
+    const lower = queryText.toLowerCase();
+    let reply = "";
+
+    if (lower.includes('rag') || lower.includes('careerlens')) {
+      reply = "AI Career RAG Assistant: Verified Recall@5 of 0.9333, MRR of 0.8367, and Skill F1 of 0.9085 on a 50-job synthetic benchmark.";
+    } else if (lower.includes('gnn') || lower.includes('cora') || lower.includes('graph')) {
+      reply = "GNN Benchmark: Cora GCN reaches 80.72% ± 0.93% Accuracy (0.8007 Macro F1) across 5 seeds. Citeseer GraphSAGE reaches 68.30% ± 0.51% Accuracy.";
+    } else if (lower.includes('ros') || lower.includes('gazebo') || lower.includes('robot')) {
+      reply = "ROS 2 Autonomous Navigation: Functional colcon package with rclpy nodes (/scan, /odom, cmd_vel), state-machine obstacle avoidance, YOLO perception node, and Zenoh/PostgreSQL telemetry.";
+    } else if (lower.includes('pouring') || lower.includes('rl') || lower.includes('pid')) {
+      reply = "Precision Robotic Pouring: Gymnasium environment. Rule-Based & PID controllers reach 100% success (MAE 2.9-5.5 ml). PPO reaches 40% success after reward shaping.";
+    } else if (lower.includes('sam') || lower.includes('vision') || lower.includes('yolo')) {
+      reply = "SAM 2 Vision Pipeline: Multi-stage pipeline combining YOLO object detection with Meta SAM 2 promptable mask segmentation, verified with 100% PyTest suite pass.";
+    } else if (lower.includes('nlp') || lower.includes('summariz')) {
+      reply = "NLP Transformer Summarizer: Long-document summarization with token-aware chunking, hierarchical BART/Flan-T5 models, 3-class sentiment, and ROUGE evaluation.";
+    } else if (lower.includes('github') || lower.includes('code') || lower.includes('repo')) {
+      reply = "All code repositories are available at https://github.com/shivangisrivastava013 with direct links on each project card.";
+    } else {
+      reply = "Shivangi's portfolio features 7 projects across RAG, Graph ML, ROS 2 Robotics, Vision Foundation Models, and Continuous Control RL. Click any project card for direct code links!";
+    }
+
+    setTimeout(() => {
+      const aMsg = document.createElement('div');
+      aMsg.className = 'msg msg-assistant';
+      aMsg.style.cssText = 'background: rgba(30, 41, 59, 0.7); padding: 10px 14px; border-radius: 12px; color: var(--text-main); border: 1px solid rgba(56, 189, 248, 0.15); max-width: 90%;';
+      aMsg.innerText = reply;
+      msgs.appendChild(aMsg);
+      msgs.scrollTop = msgs.scrollHeight;
+    }, 400);
   }
-};
 
-/* --- Laser Pointer Follow Logic --- */
+  if (sendBtn) {
+    sendBtn.addEventListener('click', () => handleUserQuery(input.value));
+  }
+
+  if (input) {
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') handleUserQuery(input.value);
+    });
+  }
+
+  document.querySelectorAll('.chip-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      handleUserQuery(btn.getAttribute('data-query'));
+    });
+  });
+}
+
+/* --- 9. Laser Pointer Effect --- */
 function initLaserPointer() {
   const pointer = document.getElementById('laserPointer');
   const core = document.getElementById('laserCore');
   if (!pointer || !core) return;
 
-  let mouseX = -500;
-  let mouseY = -500;
-  let currentX = -500;
-  let currentY = -500;
+  let mouseX = -500, mouseY = -500;
+  let currentX = -500, currentY = -500;
   let isMoving = false;
 
   window.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
-    
-    // Core moves instantly for zero input delay
     core.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
-    
     if (!isMoving) {
       isMoving = true;
       requestAnimationFrame(animateLaser);
     }
   });
 
-  // Smooth cyan halo lag behind cursor for high refresh rate visual feedback
   function animateLaser() {
     currentX += (mouseX - currentX) * 0.22;
     currentY += (mouseY - currentY) * 0.22;
-
     pointer.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate(-50%, -50%)`;
-
     if (Math.abs(mouseX - currentX) > 0.1 || Math.abs(mouseY - currentY) > 0.1) {
       requestAnimationFrame(animateLaser);
     } else {
       isMoving = false;
     }
   }
-
-  document.addEventListener('mouseleave', () => {
-    pointer.style.opacity = '0';
-    core.style.opacity = '0';
-  });
-
-  document.addEventListener('mouseenter', () => {
-    pointer.style.opacity = '1';
-    core.style.opacity = '1';
-  });
 }
 
-/* --- Dynamic Neural Network Canvas Background --- */
+/* --- 10. Dynamic Neural Background Canvas --- */
 function initBackgroundCanvas() {
   const canvas = document.getElementById('bgCanvas');
   if (!canvas) return;
@@ -588,12 +568,8 @@ function initBackgroundCanvas() {
     mouse.y = e.clientY;
     mouse.active = true;
   });
-  window.addEventListener('mouseleave', () => {
-    mouse.active = false;
-  });
 
   let particles = [];
-  let signals = [];
   const numParticles = Math.min(Math.floor((width * height) / 16000), 75);
 
   function Particle(id) {
@@ -604,152 +580,57 @@ function initBackgroundCanvas() {
     this.vy = (Math.random() - 0.5) * 0.6;
     this.baseRadius = Math.random() * 2 + 1.2;
     this.radius = this.baseRadius;
-    const rand = Math.random();
-    if (rand > 0.6) {
-      this.color = '6, 182, 212'; // Cyan
-    } else if (rand > 0.3) {
-      this.color = '56, 189, 248'; // Sky Blue
-    } else {
-      this.color = '16, 185, 129'; // Emerald
-    }
+    this.color = Math.random() > 0.5 ? '6, 182, 212' : '56, 189, 248';
     this.alpha = Math.random() * 0.45 + 0.3;
-    this.pulsePhase = Math.random() * Math.PI * 2;
   }
 
-  Particle.prototype.update = function(time) {
+  Particle.prototype.update = function() {
     this.x += this.vx;
     this.y += this.vy;
-
     if (this.x < 0) this.x = width;
     if (this.x > width) this.x = 0;
     if (this.y < 0) this.y = height;
     if (this.y > height) this.y = 0;
-
-    // Gentle pulse radius
-    this.radius = this.baseRadius + Math.sin(time * 0.003 + this.pulsePhase) * 0.8;
-
-    // Cursor interaction (repulsion + attraction blend)
-    if (mouse.active) {
-      const dx = mouse.x - this.x;
-      const dy = mouse.y - this.y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < 160) {
-        const force = (160 - dist) / 160;
-        this.x -= (dx / dist) * force * 1.5;
-        this.y -= (dy / dist) * force * 1.5;
-      }
-    }
   };
 
   Particle.prototype.draw = function() {
     ctx.beginPath();
-    ctx.arc(this.x, this.y, Math.max(0.5, this.radius), 0, Math.PI * 2);
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
     ctx.fillStyle = `rgba(${this.color}, ${this.alpha})`;
-    ctx.shadowBlur = 12;
-    ctx.shadowColor = `rgba(${this.color}, 0.9)`;
     ctx.fill();
-    ctx.shadowBlur = 0;
-  };
-
-  function Signal(p1, p2) {
-    this.p1 = p1;
-    this.p2 = p2;
-    this.progress = 0;
-    this.speed = Math.random() * 0.02 + 0.01;
-  }
-
-  Signal.prototype.update = function() {
-    this.progress += this.speed;
-  };
-
-  Signal.prototype.draw = function() {
-    const x = this.p1.x + (this.p2.x - this.p1.x) * this.progress;
-    const y = this.p1.y + (this.p2.y - this.p1.y) * this.progress;
-    ctx.beginPath();
-    ctx.arc(x, y, 2, 0, Math.PI * 2);
-    ctx.fillStyle = '#38bdf8';
-    ctx.shadowBlur = 10;
-    ctx.shadowColor = '#06b6d4';
-    ctx.fill();
-    ctx.shadowBlur = 0;
   };
 
   function initParticles() {
     particles = [];
-    signals = [];
     for (let i = 0; i < numParticles; i++) {
       particles.push(new Particle(i));
     }
   }
 
-  let lastSignalTime = 0;
-
-  function render(time) {
+  function render() {
     ctx.clearRect(0, 0, width, height);
-
-    // Update and draw particles
     for (let i = 0; i < particles.length; i++) {
-      particles[i].update(time);
+      particles[i].update();
       particles[i].draw();
     }
-
-    // Connect close nodes with neural graph edges
     const maxDist = 145;
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
         const dy = particles[i].y - particles[j].y;
         const dist = Math.sqrt(dx * dx + dy * dy);
-
         if (dist < maxDist) {
-          const edgeAlpha = (1 - dist / maxDist) * 0.26;
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(6, 182, 212, ${edgeAlpha})`;
-          ctx.lineWidth = 0.9;
-          ctx.stroke();
-
-          // Periodically spawn data signals along graph edges
-          if (time - lastSignalTime > 800 && Math.random() < 0.015 && signals.length < 12) {
-            signals.push(new Signal(particles[i], particles[j]));
-            lastSignalTime = time;
-          }
-        }
-      }
-
-      // Connect mouse to nearby particles
-      if (mouse.active) {
-        const dx = mouse.x - particles[i].x;
-        const dy = mouse.y - particles[i].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 180) {
-          const alpha = (1 - dist / 180) * 0.35;
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(mouse.x, mouse.y);
-          ctx.strokeStyle = `rgba(56, 189, 248, ${alpha})`;
-          ctx.lineWidth = 1;
+          ctx.strokeStyle = `rgba(6, 182, 212, ${0.25 * (1 - dist / maxDist)})`;
           ctx.stroke();
         }
       }
     }
-
-    // Update and draw signals
-    for (let i = signals.length - 1; i >= 0; i--) {
-      signals[i].update();
-      signals[i].draw();
-      if (signals[i].progress >= 1) {
-        signals.splice(i, 1);
-      }
-    }
-
     requestAnimationFrame(render);
   }
 
   initParticles();
   requestAnimationFrame(render);
 }
-
-
-

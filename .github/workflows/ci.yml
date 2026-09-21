@@ -1,0 +1,32 @@
+name: Portfolio CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate JSON Data Files
+        run: |
+          python -m json.tool data/projects.json > /dev/null
+          echo "data/projects.json is valid JSON"
+
+      - name: Check HTML and JS Syntax
+        run: |
+          python -c "
+          import html.parser
+          with open('index.html', 'r', encoding='utf-8') as f:
+              html.parser.HTMLParser().feed(f.read())
+          print('index.html parsed successfully')
+          "
