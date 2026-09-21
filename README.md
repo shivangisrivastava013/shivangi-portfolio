@@ -1,9 +1,12 @@
 # Shivangi Srivastava - Personal Portfolio Website
 
 [![Portfolio CI](https://github.com/shivangisrivastava013/shivangi-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/shivangisrivastava013/shivangi-portfolio/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-Professional portfolio website for **Shivangi Srivastava**, AI & Machine Learning Engineer and M.S. Candidate in Artificial Intelligence at New Jersey Institute of Technology (NJIT).
+This repository contains Shivangi Srivastava's portfolio website. It presents her AI, machine learning, NLP, computer vision, and robotics projects with links to source code and evaluation artifacts.
+
+## Live website
+
+[View the portfolio](https://shivangisrivastava013.github.io/shivangi-portfolio/)
 
 ## Key Features
 
@@ -41,7 +44,3 @@ To view locally:
    python -m http.server 8000
    ```
 3. Visit `http://localhost:8000`.
-
-## License
-
-This repository is available under the [MIT License](LICENSE).
