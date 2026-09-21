@@ -2,7 +2,7 @@
    Shivangi Srivastava - Portfolio Interactive Script (Data-Driven)
    ========================================================================== */
 
-const PROJECTS_DATA = [
+let PROJECTS_DATA = [
   {
     "id": "career-rag",
     "title": "AI Career RAG Assistant",
@@ -148,12 +148,27 @@ const PROJECTS_DATA = [
   }
 ];
 
-function runInit() {
+async function loadProjectsData() {
+  try {
+    const res = await fetch('data/projects.json');
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data) && data.length > 0) {
+        PROJECTS_DATA = data;
+      }
+    }
+  } catch (err) {
+    console.info('Loaded fallback PROJECTS_DATA array for local file:// protocol');
+  }
+  renderProjectsGrid();
+}
+
+async function runInit() {
   initBackgroundCanvas();
   initLaserPointer();
   initNavbarScroll();
   initMobileMenu();
-  renderProjectsGrid();
+  await loadProjectsData();
   initProjectModals();
   initResumeModal();
   initCopyButtons();
@@ -167,106 +182,33 @@ if (document.readyState === 'loading') {
   runInit();
 }
 
-/* --- 1. Navbar Scroll & Scrollspy --- */
-function initNavbarScroll() {
-  const navbar = document.getElementById('navbar');
-  const navLinks = document.querySelectorAll('.nav-link');
-  const sections = document.querySelectorAll('section[id]');
+/* --- Modal Focus Trapping & Restoration Utilities --- */
+let activeTriggerElement = null;
 
-  window.addEventListener('scroll', () => {
-    if (navbar) {
-      if (window.scrollY > 40) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-    }
+function openModalWithFocus(modal, triggerElement) {
+  if (!modal) return;
+  activeTriggerElement = triggerElement || document.activeElement;
+  modal.classList.add('active');
+  modal.setAttribute('aria-modal', 'true');
+  modal.setAttribute('role', 'dialog');
+  document.body.style.overflow = 'hidden';
 
-    let current = '';
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 120;
-      if (window.scrollY >= sectionTop) {
-        current = section.getAttribute('id');
-      }
-    });
-
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
-    });
-  });
+  const firstFocusable = modal.querySelector('.modal-close, button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+  if (firstFocusable) {
+    firstFocusable.focus();
+  }
 }
 
-/* --- 2. Mobile Navigation Menu --- */
-function initMobileMenu() {
-  const toggleBtn = document.getElementById('menuToggle');
-  const navLinks = document.getElementById('navLinks');
+function closeModalWithFocus(modal) {
+  if (!modal) return;
+  modal.classList.remove('active');
+  modal.removeAttribute('aria-modal');
+  document.body.style.overflow = '';
 
-  if (!toggleBtn || !navLinks) return;
-
-  toggleBtn.addEventListener('click', () => {
-    const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-    toggleBtn.setAttribute('aria-expanded', !isExpanded);
-    navLinks.classList.toggle('active');
-  });
-
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('active');
-      toggleBtn.setAttribute('aria-expanded', 'false');
-    });
-  });
-}
-
-/* --- 3. Dynamic Projects Rendering --- */
-function renderProjectsGrid() {
-  const grid = document.getElementById('projectsGrid');
-  if (!grid) return;
-
-  grid.innerHTML = PROJECTS_DATA.map(proj => {
-    const metricsHtml = proj.metrics.map(m =>
-      `<span class="metric-pill"><strong>${m.label}:</strong> ${m.value}</span>`
-    ).join(' ');
-
-    const techHtml = proj.tech.map(t => `<span>${t}</span>`).join(' ');
-
-    let linksHtml = '';
-    if (proj.github_url) {
-      linksHtml += `<a href="${proj.github_url}" target="_blank" rel="noopener" class="btn btn-small btn-primary"><i class="fa-brands fa-github"></i> View Code</a> `;
-    }
-    if (proj.results_url) {
-      linksHtml += `<a href="${proj.results_url}" target="_blank" rel="noopener" class="btn btn-small btn-secondary"><i class="fa-solid fa-chart-bar"></i> Results</a> `;
-    }
-    if (!proj.github_url) {
-      linksHtml += `<span class="private-tag"><i class="fa-solid fa-lock"></i> Private Research</span> `;
-    }
-    linksHtml += `<button class="btn btn-small btn-outline open-modal-btn" data-project="${proj.id}"><i class="fa-solid fa-circle-info"></i> Details</button>`;
-
-    return `
-      <div class="project-card glass-card ${proj.card_class}" data-category="${proj.category}">
-        <div class="project-banner">
-          <span class="project-badge">${proj.badge}</span>
-          <div class="banner-icon"><i class="fa-solid fa-code"></i></div>
-        </div>
-        <div class="project-content">
-          <h3 class="project-title">${proj.title}</h3>
-          <p class="project-subtitle">${proj.subtitle}</p>
-          <p class="project-desc">${proj.description}</p>
-          <div class="project-metrics" style="margin-bottom: 12px; display: flex; flex-wrap: wrap; gap: 6px; font-size: 0.82rem;">
-            ${metricsHtml}
-          </div>
-          <div class="project-tech" style="margin-bottom: 16px;">
-            ${techHtml}
-          </div>
-          <div class="project-actions" style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
-            ${linksHtml}
-          </div>
-        </div>
-      </div>
-    `;
-  }).join('');
+  if (activeTriggerElement && typeof activeTriggerElement.focus === 'function') {
+    activeTriggerElement.focus();
+    activeTriggerElement = null;
+  }
 }
 
 /* --- 4. Project Modal Controller --- */
@@ -321,21 +263,12 @@ function initProjectModals() {
         </div>
       `;
 
-      modal.classList.add('active');
-      modal.setAttribute('aria-modal', 'true');
-      modal.setAttribute('role', 'dialog');
-      document.body.style.overflow = 'hidden';
+      openModalWithFocus(modal, btn);
     }
   });
 
-  const closeModal = () => {
-    modal.classList.remove('active');
-    modal.removeAttribute('aria-modal');
-    document.body.style.overflow = '';
-  };
-
-  if (modalClose) modalClose.addEventListener('click', closeModal);
-  if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
+  if (modalClose) modalClose.addEventListener('click', () => closeModalWithFocus(modal));
+  if (modalOverlay) modalOverlay.addEventListener('click', () => closeModalWithFocus(modal));
 }
 
 /* --- 5. Resume Modal Controller --- */
@@ -347,33 +280,42 @@ function initResumeModal() {
 
   if (!modal || !openBtn) return;
 
-  const openModal = () => {
-    modal.classList.add('active');
-    modal.setAttribute('aria-modal', 'true');
-    modal.setAttribute('role', 'dialog');
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeModal = () => {
-    modal.classList.remove('active');
-    modal.removeAttribute('aria-modal');
-    document.body.style.overflow = '';
-  };
-
-  openBtn.addEventListener('click', openModal);
-  if (closeBtn) closeBtn.addEventListener('click', closeModal);
-  if (overlay) overlay.addEventListener('click', closeModal);
+  openBtn.addEventListener('click', () => openModalWithFocus(modal, openBtn));
+  if (closeBtn) closeBtn.addEventListener('click', () => closeModalWithFocus(modal));
+  if (overlay) overlay.addEventListener('click', () => closeModalWithFocus(modal));
 }
 
 /* --- 6. Keyboard & Focus Accessibility --- */
 function initAccessibility() {
   document.addEventListener('keydown', (e) => {
+    const activeModal = document.querySelector('.modal.active');
+    if (!activeModal) return;
+
     if (e.key === 'Escape') {
-      const activeModals = document.querySelectorAll('.modal.active');
-      activeModals.forEach(m => {
-        m.classList.remove('active');
-      });
-      document.body.style.overflow = '';
+      closeModalWithFocus(activeModal);
+    }
+
+    if (e.key === 'Tab') {
+      const focusables = Array.from(
+        activeModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
+      );
+
+      if (focusables.length === 0) return;
+
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          last.focus();
+          e.preventDefault();
+        }
+      } else {
+        if (document.activeElement === last) {
+          first.focus();
+          e.preventDefault();
+        }
+      }
     }
   });
 }
