@@ -43,13 +43,13 @@
     "category": "robotics",
     "card_class": "card-emerald",
     "github_url": "https://github.com/shivangisrivastava013/ROS2-Autonomous-Robot-Navigation",
-    "results_url": null,
+    "results_url": "https://github.com/shivangisrivastava013/ROS2-Autonomous-Robot-Navigation/tree/main/results",
     "demo_url": "https://github.com/shivangisrivastava013/ROS2-Autonomous-Robot-Navigation/blob/main/demo.py",
     "description": "Functional ROS 2 Humble package featuring rclpy nodes for laser scans (/scan), odometry (/odom), and cmd_vel commands. Includes state-machine obstacle avoidance, YOLO perception node, Gazebo world launch files, and Zenoh/PostgreSQL telemetry.",
     "tech": ["ROS 2 Humble", "rclpy", "YOLOv8", "Gazebo", "Zenoh", "PostgreSQL", "Docker"],
     "metrics": [
-      { "label": "Package Build", "value": "colcon build", "context": "ROS 2 Humble package" },
-      { "label": "Perception", "value": "YOLO Node", "context": "Obstacle detection" },
+      { "label": "Collision-Free", "value": "100% (1.0)", "context": "50-step navigation trial" },
+      { "label": "Avg Speed", "value": "0.268 m/s", "context": "Waypoint navigation" },
       { "label": "Telemetry", "value": "Zenoh / Postgres", "context": "Distributed logging" }
     ]
   },
