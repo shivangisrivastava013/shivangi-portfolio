@@ -411,7 +411,171 @@ function initPortfolioAssistant() {
   });
 }
 
-/* --- 9. Laser Pointer Effect --- */
+/* --- 9. Hero Terminal Tab Switcher --- */
+window.switchTerminalTab = function(tabKey) {
+  const snippet = document.getElementById('termSnippet');
+  const tabs = document.querySelectorAll('.term-tab');
+  if (!snippet) return;
+
+  tabs.forEach(t => t.classList.remove('active'));
+
+  if (tabKey === 'core') {
+    if (tabs[0]) tabs[0].classList.add('active');
+    snippet.innerHTML = `<span class="code-keyword">class</span> <span class="code-class">AIEngineer</span>:
+    <br>&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-func">__init__</span>(self):
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;self.name = <span class="code-string">"Shivangi Srivastava"</span>
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;self.degree = <span class="code-string">"MS in AI @ NJIT (GPA 3.8/4.0)"</span>
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;self.specialization = [<span class="code-string">"RAG & LLMs"</span>, <span class="code-string">"Deep Learning"</span>, <span class="code-string">"GNNs"</span>, <span class="code-string">"Robotics Vision"</span>]
+    <br><br>&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-func">get_key_metrics</span>(self):
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> {<span class="code-string">"shadowtag_psnr"</span>: <span class="code-string">"34.7 dB"</span>, <span class="code-string">"careerlens_mrr"</span>: <span class="code-string">"0.81"</span>}`;
+  } else if (tabKey === 'stack') {
+    if (tabs[1]) tabs[1].classList.add('active');
+    snippet.innerHTML = `{
+    <br>&nbsp;&nbsp;<span class="code-string">"languages"</span>: [<span class="code-string">"Python"</span>, <span class="code-string">"R"</span>, <span class="code-string">"C"</span>, <span class="code-string">"MATLAB"</span>, <span class="code-string">"SQL"</span>],
+    <br>&nbsp;&nbsp;<span class="code-string">"ai_frameworks"</span>: [<span class="code-string">"PyTorch"</span>, <span class="code-string">"TensorFlow"</span>, <span class="code-string">"PyTorch Geometric"</span>, <span class="code-string">"Hugging Face"</span>],
+    <br>&nbsp;&nbsp;<span class="code-string">"genai_rag"</span>: [<span class="code-string">"Sentence Transformers"</span>, <span class="code-string">"FAISS"</span>, <span class="code-string">"RAG"</span>],
+    <br>&nbsp;&nbsp;<span class="code-string">"vision_systems"</span>: [<span class="code-string">"YOLOv8"</span>, <span class="code-string">"SAM 2"</span>, <span class="code-string">"OpenCV"</span>, <span class="code-string">"ROS 2"</span>, <span class="code-string">"Zenoh"</span>, <span class="code-string">"Docker"</span>]
+    <br>}`;
+  } else if (tabKey === 'pitch') {
+    if (tabs[2]) tabs[2].classList.add('active');
+    snippet.innerHTML = `<span class="code-keyword">CANDIDATE SUMMARY & CORE VALUES:</span>
+    <br><br>✨ <strong>Academic Record:</strong> MS in AI @ NJIT (GPA 3.8/4.0) | President, GWiCS
+    <br>✨ <strong>Engineering Rigor:</strong> 6 published projects with empirical performance benchmarks
+    <br>✨ <strong>Professional Experience:</strong> 4 roles across Salesforce automation, ML summarization & cybersecurity
+    <br>✨ <strong>Technical Execution:</strong> Reproducible PyTorch code, Docker containerization & ROS 2 telemetry`;
+  }
+};
+
+/* --- 10. Interactive Experience Matrix Switcher --- */
+window.switchMatrix = function(key) {
+  const details = document.getElementById('matrixDetails');
+  const tabs = document.querySelectorAll('.matrix-tab');
+  if (!details) return;
+
+  tabs.forEach(t => t.classList.remove('active'));
+
+  if (key === 'njit') {
+    if (tabs[0]) tabs[0].classList.add('active');
+    details.innerHTML = `
+      <div class="matrix-detail-card">
+        <div class="matrix-detail-header">
+          <span class="grad-status-badge">Sept 2025 - Dec 2026</span>
+          <h3>Master of Science in Artificial Intelligence</h3>
+          <p class="matrix-org"><i class="fa-solid fa-building-columns"></i> New Jersey Institute of Technology (NJIT) | Newark, NJ</p>
+        </div>
+        <div class="matrix-body">
+          <div class="matrix-metric-badge">
+            <span class="m-val">3.8 / 4.0</span>
+            <span class="m-lbl">Master's GPA</span>
+          </div>
+          <h4>Graduate Leadership:</h4>
+          <p style="margin-bottom: 14px; font-size: 0.95rem; color: var(--text-main);">President, Graduate Women in Computing Society (GWiCS) - Leading graduate computing community initiatives and student engagement.</p>
+          <h4>Relevant Coursework:</h4>
+          <div class="skills-pills">
+            <span class="pill primary">Machine Learning</span>
+            <span class="pill primary">Deep Learning</span>
+            <span class="pill primary">NLP</span>
+            <span class="pill primary">Graph Neural Networks</span>
+            <span class="pill">Big Data Analytics</span>
+            <span class="pill">AI for Robotics</span>
+            <span class="pill">Federated Machine Learning</span>
+            <span class="pill">Computational Neuroscience</span>
+          </div>
+        </div>
+      </div>`;
+  } else if (key === 'manipal') {
+    if (tabs[1]) tabs[1].classList.add('active');
+    details.innerHTML = `
+      <div class="matrix-detail-card">
+        <div class="matrix-detail-header">
+          <span class="grad-status-badge">Aug 2021 - Jul 2025</span>
+          <h3>B.Tech. (Hons.) Computer Science Engineering - AI & ML</h3>
+          <p class="matrix-org"><i class="fa-solid fa-graduation-cap"></i> Manipal University | Jaipur, India</p>
+        </div>
+        <div class="matrix-body">
+          <div class="matrix-metric-badge">
+            <span class="m-val">8.14 / 10</span>
+            <span class="m-lbl">Bachelor's GPA</span>
+          </div>
+          <h4>Leadership & Student Activities:</h4>
+          <ul class="experience-list">
+            <li><strong>Treasurer:</strong> ANOVA - Data Science Departmental Club, Manipal University.</li>
+            <li><strong>Head of Content:</strong> LearnIT - Official IT Department Club, Manipal University.</li>
+          </ul>
+        </div>
+      </div>`;
+  } else if (key === 'residence') {
+    if (tabs[2]) tabs[2].classList.add('active');
+    details.innerHTML = `
+      <div class="matrix-detail-card">
+        <div class="matrix-detail-header">
+          <span class="grad-status-badge">May 2025 - Present</span>
+          <h3>Office Assistant</h3>
+          <p class="matrix-org"><i class="fa-solid fa-briefcase"></i> NJIT Residence Life | Newark, NJ</p>
+        </div>
+        <div class="matrix-body">
+          <h4>Key Responsibilities:</h4>
+          <ul class="experience-list">
+            <li>Assist in running the Residence Life Main Office by responding to resident inquiries, maintaining records, and fulfilling administrative tasks while preserving student confidentiality.</li>
+            <li>Collaborate with residents and staff members to resolve day-to-day issues, escalate emergencies, and manage multiple queries concurrently.</li>
+          </ul>
+        </div>
+      </div>`;
+  } else if (key === 'salesforce') {
+    if (tabs[3]) tabs[3].classList.add('active');
+    details.innerHTML = `
+      <div class="matrix-detail-card">
+        <div class="matrix-detail-header">
+          <span class="grad-status-badge">May 2024 - Jul 2024</span>
+          <h3>Salesforce Intern</h3>
+          <p class="matrix-org"><i class="fa-solid fa-briefcase"></i> Salesforce x SmartInternz</p>
+        </div>
+        <div class="matrix-body">
+          <h4>Key Responsibilities & Achievements:</h4>
+          <ul class="experience-list">
+            <li>Created and configured Salesforce applications with 3 key automation and reporting components (workflows, validation rules, dashboards) to simplify CRM reporting.</li>
+            <li>Implemented CRM processes end-to-end by translating business requirements into Salesforce configurations and testing created workflows.</li>
+          </ul>
+        </div>
+      </div>`;
+  } else if (key === 'cyber') {
+    if (tabs[4]) tabs[4].classList.add('active');
+    details.innerHTML = `
+      <div class="matrix-detail-card">
+        <div class="matrix-detail-header">
+          <span class="grad-status-badge">Nov 2022 - Feb 2023</span>
+          <h3>Cybersecurity Training Intern</h3>
+          <p class="matrix-org"><i class="fa-solid fa-shield-halved"></i> Cyber Secured India</p>
+        </div>
+        <div class="matrix-body">
+          <h4>Key Responsibilities & Achievements:</h4>
+          <ul class="experience-list">
+            <li>Engaged in ethical hacking, vulnerability assessments, penetration testing, and secure network configurations through practical lab exercises.</li>
+            <li>Participated in coordinating 20+ national cybersecurity webinars, monitored web/YouTube channels for compliance, and enhanced audience participation by 40%.</li>
+          </ul>
+        </div>
+      </div>`;
+  } else if (key === 'suvidha') {
+    if (tabs[5]) tabs[5].classList.add('active');
+    details.innerHTML = `
+      <div class="matrix-detail-card">
+        <div class="matrix-detail-header">
+          <span class="grad-status-badge">Feb 2023 - Mar 2023</span>
+          <h3>Machine Learning Intern</h3>
+          <p class="matrix-org"><i class="fa-solid fa-robot"></i> Suvidha Mahila Mandal</p>
+        </div>
+        <div class="matrix-body">
+          <h4>Key Responsibilities & Achievements:</h4>
+          <ul class="experience-list">
+            <li>Developed text summarization models using the MeanSum architecture in Python and TensorFlow for extractive and abstractive summarization.</li>
+            <li>Conducted literature reviews on neural summarization, analyzed model behavior, and utilized findings in experimentation and content decisions.</li>
+          </ul>
+        </div>
+      </div>`;
+  }
+};
+
+/* --- 11. Interactive Laser Pointer Light --- */
 function initLaserPointer() {
   const pointer = document.getElementById('laserPointer');
   const core = document.getElementById('laserCore');
@@ -441,9 +605,19 @@ function initLaserPointer() {
       isMoving = false;
     }
   }
+
+  document.addEventListener('mouseleave', () => {
+    pointer.style.opacity = '0';
+    core.style.opacity = '0';
+  });
+
+  document.addEventListener('mouseenter', () => {
+    pointer.style.opacity = '1';
+    core.style.opacity = '1';
+  });
 }
 
-/* --- 10. Dynamic Neural Background Canvas --- */
+/* --- 12. Dynamic Neural Network Background Canvas (Interactive) --- */
 function initBackgroundCanvas() {
   const canvas = document.getElementById('bgCanvas');
   if (!canvas) return;
@@ -458,7 +632,18 @@ function initBackgroundCanvas() {
     initParticles();
   });
 
+  let mouse = { x: -1000, y: -1000, active: false };
+  window.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+    mouse.active = true;
+  });
+  window.addEventListener('mouseleave', () => {
+    mouse.active = false;
+  });
+
   let particles = [];
+  let signals = [];
   const numParticles = Math.min(Math.floor((width * height) / 16000), 75);
 
   function Particle(id) {
@@ -469,54 +654,134 @@ function initBackgroundCanvas() {
     this.vy = (Math.random() - 0.5) * 0.6;
     this.baseRadius = Math.random() * 2 + 1.2;
     this.radius = this.baseRadius;
-    this.color = Math.random() > 0.5 ? '6, 182, 212' : '56, 189, 248';
+    const rand = Math.random();
+    if (rand > 0.6) {
+      this.color = '6, 182, 212';
+    } else if (rand > 0.3) {
+      this.color = '56, 189, 248';
+    } else {
+      this.color = '16, 185, 129';
+    }
     this.alpha = Math.random() * 0.45 + 0.3;
+    this.pulsePhase = Math.random() * Math.PI * 2;
   }
 
-  Particle.prototype.update = function() {
+  Particle.prototype.update = function(time) {
     this.x += this.vx;
     this.y += this.vy;
+
     if (this.x < 0) this.x = width;
     if (this.x > width) this.x = 0;
     if (this.y < 0) this.y = height;
     if (this.y > height) this.y = 0;
+
+    this.radius = this.baseRadius + Math.sin(time * 0.003 + this.pulsePhase) * 0.8;
+
+    if (mouse.active) {
+      const dx = mouse.x - this.x;
+      const dy = mouse.y - this.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 160) {
+        const force = (160 - dist) / 160;
+        this.x -= (dx / dist) * force * 1.5;
+        this.y -= (dy / dist) * force * 1.5;
+      }
+    }
   };
 
   Particle.prototype.draw = function() {
     ctx.beginPath();
-    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.arc(this.x, this.y, Math.max(0.5, this.radius), 0, Math.PI * 2);
     ctx.fillStyle = `rgba(${this.color}, ${this.alpha})`;
+    ctx.fill();
+  };
+
+  function Signal(p1, p2) {
+    this.p1 = p1;
+    this.p2 = p2;
+    this.progress = 0;
+    this.speed = Math.random() * 0.02 + 0.01;
+  }
+
+  Signal.prototype.update = function() {
+    this.progress += this.speed;
+  };
+
+  Signal.prototype.draw = function() {
+    const x = this.p1.x + (this.p2.x - this.p1.x) * this.progress;
+    const y = this.p1.y + (this.p2.y - this.p1.y) * this.progress;
+    ctx.beginPath();
+    ctx.arc(x, y, 2, 0, Math.PI * 2);
+    ctx.fillStyle = '#38bdf8';
     ctx.fill();
   };
 
   function initParticles() {
     particles = [];
+    signals = [];
     for (let i = 0; i < numParticles; i++) {
       particles.push(new Particle(i));
     }
   }
 
-  function render() {
+  let lastSignalTime = 0;
+
+  function render(time) {
     ctx.clearRect(0, 0, width, height);
+
     for (let i = 0; i < particles.length; i++) {
-      particles[i].update();
+      particles[i].update(time);
       particles[i].draw();
     }
+
     const maxDist = 145;
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
         const dy = particles[i].y - particles[j].y;
         const dist = Math.sqrt(dx * dx + dy * dy);
+
         if (dist < maxDist) {
+          const edgeAlpha = (1 - dist / maxDist) * 0.26;
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(6, 182, 212, ${0.25 * (1 - dist / maxDist)})`;
+          ctx.strokeStyle = `rgba(6, 182, 212, ${edgeAlpha})`;
+          ctx.lineWidth = 0.9;
+          ctx.stroke();
+
+          if (time - lastSignalTime > 800 && Math.random() < 0.015 && signals.length < 12) {
+            signals.push(new Signal(particles[i], particles[j]));
+            lastSignalTime = time;
+          }
+        }
+      }
+
+      // Connect mouse to nearby particles (glow line effect)
+      if (mouse.active) {
+        const dx = mouse.x - particles[i].x;
+        const dy = mouse.y - particles[i].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 180) {
+          const alpha = (1 - dist / 180) * 0.35;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.strokeStyle = `rgba(56, 189, 248, ${alpha})`;
+          ctx.lineWidth = 1.1;
           ctx.stroke();
         }
       }
     }
+
+    for (let i = signals.length - 1; i >= 0; i--) {
+      signals[i].update();
+      signals[i].draw();
+      if (signals[i].progress >= 1) {
+        signals.splice(i, 1);
+      }
+    }
+
     requestAnimationFrame(render);
   }
 

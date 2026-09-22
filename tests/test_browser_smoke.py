@@ -87,6 +87,18 @@ def test_portfolio_browser_smoke():
             menu_toggle.click()
             assert page.locator("#navLinks").has_class("active")
 
+        # Test matrix tab interactive switching
+        matrix_tabs = page.locator(".matrix-tab")
+        assert matrix_tabs.count() == 6, f"Expected 6 matrix tabs, found {matrix_tabs.count()}"
+        
+        # Click on Manipal tab (2nd tab)
+        matrix_tabs.nth(1).click()
+        assert "Manipal" in page.locator("#matrixDetails").inner_text()
+
+        # Click on Salesforce tab (4th tab)
+        matrix_tabs.nth(3).click()
+        assert "Salesforce" in page.locator("#matrixDetails").inner_text()
+
         browser.close()
 
     print("Browser smoke test passed successfully with 0 JS errors!")
