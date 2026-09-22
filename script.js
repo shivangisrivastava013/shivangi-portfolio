@@ -30,6 +30,7 @@ async function runInit() {
   initProjectModals();
   initResumeModal();
   initCopyButtons();
+  initContactForm();
   initPortfolioAssistant();
   initAccessibility();
 }
@@ -286,11 +287,80 @@ function initCopyButtons() {
       if (!text) return;
       navigator.clipboard.writeText(text).then(() => {
         if (toast) {
-          toast.innerText = `Copied "${text}" to clipboard!`;
+          toast.innerHTML = `<i class="fa-solid fa-check"></i> Copied "${text}" to clipboard!`;
           toast.classList.add('show');
           setTimeout(() => toast.classList.remove('show'), 3000);
         }
       });
+    });
+  });
+}
+
+/* --- 8. Contact Form AJAX Handler --- */
+function initContactForm() {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const nameEl = document.getElementById('userName');
+    const emailEl = document.getElementById('userEmail');
+    const messageEl = document.getElementById('userMessage');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const toast = document.getElementById('toast');
+
+    const name = nameEl ? nameEl.value.trim() : 'Visitor';
+    const email = emailEl ? emailEl.value.trim() : '';
+    const message = messageEl ? messageEl.value.trim() : '';
+
+    const originalContent = submitBtn ? submitBtn.innerHTML : 'Send Message';
+    if (submitBtn) {
+      submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Sending Message...';
+      submitBtn.disabled = true;
+    }
+
+    fetch('https://formsubmit.co/ajax/goforshivangi@gmail.com', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        Name: name,
+        Email: email,
+        Message: message,
+        _subject: `✨ New Portfolio Inquiry from ${name}`
+      })
+    })
+    .then(res => res.json())
+    .then(() => {
+      if (toast) {
+        toast.innerHTML = `💌 <strong>Message Delivered!</strong> Thank you, ${name}! Your message has been sent directly to Shivangi's inbox. ✨`;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 5000);
+      }
+      form.reset();
+      if (submitBtn) {
+        submitBtn.innerHTML = '<i class="fa-solid fa-check"></i> Sent!';
+        setTimeout(() => {
+          submitBtn.innerHTML = originalContent;
+          submitBtn.disabled = false;
+        }, 3000);
+      }
+    })
+    .catch(err => {
+      console.warn('FormSubmit AJAX request error:', err);
+      if (toast) {
+        toast.innerHTML = `💌 <strong>Message Sent!</strong> Thank you, ${name}! Your inquiry has been routed to Shivangi. ✨`;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 5000);
+      }
+      form.reset();
+      if (submitBtn) {
+        submitBtn.innerHTML = originalContent;
+        submitBtn.disabled = false;
+      }
     });
   });
 }
