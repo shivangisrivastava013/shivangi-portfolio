@@ -49,7 +49,7 @@
     "tech": ["ROS 2 Humble", "rclpy", "YOLOv8", "Gazebo", "Zenoh", "PostgreSQL", "Docker"],
     "metrics": [
       { "label": "Collision-Free", "value": "100% (1.0)", "context": "50-step navigation trial" },
-      { "label": "Avg Speed", "value": "0.268 m/s", "context": "Waypoint navigation" },
+      { "label": "Avg Speed", "value": "0.261 m/s", "context": "50-step standalone simulation" },
       { "label": "Telemetry", "value": "Zenoh / Postgres", "context": "Distributed logging" }
     ]
   },
