@@ -49,7 +49,9 @@ def test_portfolio_browser_smoke():
                 res = urllib.request.urlopen(req, timeout=10)
                 assert res.status in (200, 301, 302), f"URL {url} returned HTTP {res.status}"
             except Exception as err:
-                print(f"Warning: {url} check raised {err}")
+                raise AssertionError(
+                    f"Broken results URL for {p['id']}: {url}"
+                ) from err
 
     # 2. Launch headless browser smoke test
     js_errors = []
