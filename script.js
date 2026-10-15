@@ -11,6 +11,7 @@ async function loadProjectsData() {
       const data = await res.json();
       if (Array.isArray(data) && data.length > 0) {
         PROJECTS_DATA = data;
+        updateDynamicProjectCounts();
       }
     } else {
       console.error('Failed to fetch data/projects.json: HTTP status', res.status);
@@ -19,6 +20,115 @@ async function loadProjectsData() {
     console.error('Error loading data/projects.json:', err);
   }
   renderProjectsGrid();
+}
+
+function updateDynamicProjectCounts() {
+  const publicProjects = PROJECTS_DATA.filter(p => p.github_url);
+  const publicCount = publicProjects.length;
+  const totalCount = PROJECTS_DATA.length;
+
+  const heroProjectCount = document.getElementById('heroProjectCount');
+  if (heroProjectCount) {
+    heroProjectCount.textContent = `${publicCount}+`;
+  }
+
+  const evaluatedProjectsCount = document.getElementById('evaluatedProjectsCount');
+  if (evaluatedProjectsCount) {
+    evaluatedProjectsCount.textContent = `${publicCount}`;
+  }
+
+  const totalProjectsCount = document.getElementById('totalProjectsCount');
+  if (totalProjectsCount) {
+    totalProjectsCount.textContent = `${totalCount}`;
+  }
+
+  const rigorCount = document.getElementById('rigorCount');
+  if (rigorCount) {
+    rigorCount.textContent = `${publicCount}`;
+  }
+}
+
+function getProjectActionLinks(project, isModal = false) {
+  const links = [];
+  const btnClass = isModal ? 'btn' : 'btn btn-small';
+
+  // 1. Source Code
+  if (project.github_url) {
+    links.push(`<a href="${project.github_url}" target="_blank" rel="noopener" class="${btnClass} btn-primary"><i class="fa-brands fa-github"></i> Source Code</a>`);
+  }
+
+  // 2. Results / Examples
+  if (project.results_url) {
+    const isExamples = project.results_url.includes('examples/output');
+    const label = isExamples ? 'View Examples' : 'Results';
+    const icon = isExamples ? 'fa-image' : 'fa-chart-line';
+    links.push(`<a href="${project.results_url}" target="_blank" rel="noopener" class="${btnClass} btn-secondary"><i class="fa-solid ${icon}"></i> ${label}</a>`);
+  }
+
+  // 3. Demo (Live Demo vs Recorded Demo vs Run Locally)
+  if (project.demo_url) {
+    let demoLabel = 'Live Demo';
+    let demoIcon = 'fa-arrow-up-right-from-square';
+
+    if (project.demo_type === 'local' || project.demo_url.includes('#quickstart') || project.demo_url.endsWith('.py')) {
+      demoLabel = 'Run Locally';
+      demoIcon = 'fa-terminal';
+    } else if (project.demo_type === 'recorded' || project.demo_url.includes('youtube') || project.demo_url.includes('loom') || project.demo_url.endsWith('.mp4')) {
+      demoLabel = 'Recorded Demo';
+      demoIcon = 'fa-video';
+    } else if (project.demo_type === 'live') {
+      demoLabel = 'Live Demo';
+      demoIcon = 'fa-arrow-up-right-from-square';
+    }
+
+    links.push(`<a href="${project.demo_url}" target="_blank" rel="noopener" class="${btnClass} btn-secondary"><i class="fa-solid ${demoIcon}"></i> ${demoLabel}</a>`);
+  }
+
+  // 4. Academic Research tag for private projects
+  if (!project.github_url) {
+    links.push('<span class="private-tag"><i class="fa-solid fa-lock"></i> Academic Research</span>');
+  }
+
+  // 5. Details button (only on cards)
+  if (!isModal) {
+    links.push(`<button class="btn btn-small btn-outline open-modal-btn" data-project="${project.id}"><i class="fa-solid fa-circle-info"></i> Details</button>`);
+  }
+
+  return links;
+}
+
+/* --- Dynamic Projects Grid Rendering --- */
+function renderProjectsGrid() {
+  const grid = document.getElementById('projectsGrid');
+  if (!grid) return;
+
+  grid.innerHTML = PROJECTS_DATA.map(project => {
+    const metrics = project.metrics.map(metric =>
+      `<span class="metric-pill"><strong>${metric.label}:</strong> ${metric.value}</span>`
+    ).join('');
+
+    const technologies = project.tech.map(item => `<span>${item}</span>`).join('');
+    const links = getProjectActionLinks(project, false);
+    const verifiedDate = project.last_verified ? `<div class="project-verification"><i class="fa-regular fa-calendar-check"></i> Last verified: ${project.last_verified}</div>` : '';
+
+    return `
+      <article class="project-card glass-card ${project.card_class}" data-category="${project.category}">
+        <div class="project-banner">
+          <span class="project-badge">${project.badge}</span>
+          <div class="banner-icon"><i class="fa-solid fa-code"></i></div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">${project.title}</h3>
+          <p class="project-subtitle">${project.subtitle}</p>
+          <p class="project-desc">${project.description}</p>
+          <div class="project-metrics">${metrics}</div>
+          ${verifiedDate}
+          <div class="project-tech">${technologies}</div>
+          <div class="project-actions">${links.join(' ')}</div>
+        </div>
+      </article>
+    `;
+  }).join('');
 }
 
 async function runInit() {
@@ -83,55 +193,6 @@ function initMobileMenu() {
   });
 }
 
-/* --- 3. Dynamic Projects Grid Rendering --- */
-function renderProjectsGrid() {
-  const grid = document.getElementById('projectsGrid');
-  if (!grid) return;
-
-  grid.innerHTML = PROJECTS_DATA.map(project => {
-    const metrics = project.metrics.map(metric =>
-      `<span class="metric-pill"><strong>${metric.label}:</strong> ${metric.value}</span>`
-    ).join('');
-
-    const technologies = project.tech.map(item => `<span>${item}</span>`).join('');
-
-    const links = [];
-    if (project.github_url) {
-      links.push(`<a href="${project.github_url}" target="_blank" rel="noopener" class="btn btn-small btn-primary"><i class="fa-brands fa-github"></i> View Code</a>`);
-    }
-    if (project.results_url) {
-      const isExamples = project.results_url.includes('examples/output');
-      const label = isExamples ? 'View Examples' : 'View Results';
-      const icon = isExamples ? 'fa-image' : 'fa-chart-bar';
-      links.push(`<a href="${project.results_url}" target="_blank" rel="noopener" class="btn btn-small btn-secondary"><i class="fa-solid ${icon}"></i> ${label}</a>`);
-    }
-    if (project.demo_url) {
-      links.push(`<a href="${project.demo_url}" target="_blank" rel="noopener" class="btn btn-small btn-secondary"><i class="fa-solid fa-play"></i> View Demo</a>`);
-    }
-    if (!project.github_url) {
-      links.push('<span class="private-tag"><i class="fa-solid fa-lock"></i> Private Research</span>');
-    }
-    links.push(`<button class="btn btn-small btn-outline open-modal-btn" data-project="${project.id}"><i class="fa-solid fa-circle-info"></i> Details</button>`);
-
-    return `
-      <article class="project-card glass-card ${project.card_class}" data-category="${project.category}">
-        <div class="project-banner">
-          <span class="project-badge">${project.badge}</span>
-          <div class="banner-icon"><i class="fa-solid fa-code"></i></div>
-        </div>
-        <div class="project-content">
-          <h3 class="project-title">${project.title}</h3>
-          <p class="project-subtitle">${project.subtitle}</p>
-          <p class="project-desc">${project.description}</p>
-          <div class="project-metrics">${metrics}</div>
-          <div class="project-tech">${technologies}</div>
-          <div class="project-actions">${links.join(' ')}</div>
-        </div>
-      </article>
-    `;
-  }).join('');
-}
-
 /* --- Modal Focus Trapping & Restoration Utilities --- */
 let activeTriggerElement = null;
 
@@ -180,20 +241,8 @@ function initProjectModals() {
     if (data) {
       const techPills = data.tech.map(t => `<span class="pill">${t}</span>`).join(' ');
       const metricsList = data.metrics.map(m => `<li><strong>${m.label}:</strong> ${m.value} <em>(${m.context})</em></li>`).join('');
-
-      let actionButtons = '';
-      if (data.github_url) {
-        actionButtons += `<a href="${data.github_url}" target="_blank" rel="noopener" class="btn btn-primary"><i class="fa-brands fa-github"></i> Open Repository</a> `;
-      }
-      if (data.results_url) {
-        const isExamples = data.results_url.includes('examples/output');
-        const label = isExamples ? 'View Examples' : 'View Results';
-        const icon = isExamples ? 'fa-image' : 'fa-chart-line';
-        actionButtons += `<a href="${data.results_url}" target="_blank" rel="noopener" class="btn btn-secondary"><i class="fa-solid ${icon}"></i> ${label}</a> `;
-      }
-      if (data.demo_url) {
-        actionButtons += `<a href="${data.demo_url}" target="_blank" rel="noopener" class="btn btn-secondary"><i class="fa-solid fa-play"></i> View Demo</a> `;
-      }
+      const actionButtons = getProjectActionLinks(data, true);
+      const verifiedLine = data.last_verified ? `<p style="color: var(--text-dim); font-size: 0.85rem; margin-bottom: 16px;"><i class="fa-regular fa-calendar-check"></i> <strong>Last verified:</strong> ${data.last_verified}</p>` : '';
 
       modalBody.innerHTML = `
         <span class="modal-badge">${data.badge}</span>
@@ -210,12 +259,14 @@ function initProjectModals() {
         </p>
 
         <h4 style="color: var(--text-main); margin-bottom: 8px;">Results and Evidence:</h4>
-        <ul style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.8; margin-bottom: 24px; padding-left: 20px;">
+        <ul style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.8; margin-bottom: 16px; padding-left: 20px;">
           ${metricsList}
         </ul>
 
+        ${verifiedLine}
+
         <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px;">
-          ${actionButtons}
+          ${actionButtons.join(' ')}
         </div>
       `;
 
@@ -390,6 +441,7 @@ function initPortfolioAssistant() {
         </div>
       </div>
       <div class="chat-quick-queries" style="padding: 8px 12px; display: flex; gap: 6px; overflow-x: auto; border-top: 1px solid rgba(255,255,255,0.05); background: rgba(15, 23, 42, 0.6);">
+        <button class="chip-btn" data-query="faultline">FaultLine MLOps</button>
         <button class="chip-btn" data-query="rag">RAG Metrics</button>
         <button class="chip-btn" data-query="gnn">GNN Acc</button>
         <button class="chip-btn" data-query="ros2">ROS 2</button>
@@ -436,7 +488,9 @@ function initPortfolioAssistant() {
     const lower = queryText.toLowerCase();
     let reply = "";
 
-    if (lower.includes('rag') || lower.includes('careerlens')) {
+    if (lower.includes('faultline') || lower.includes('observab') || lower.includes('incident') || lower.includes('drift') || lower.includes('rollback')) {
+      reply = "FaultLine: Operational ML incident response & observability prototype monitoring delivery predictions. Achieved 93.3% fault detection across 15 injected-fault runs (0 false alerts across clean runs). Features automated root cause diagnosis with Gemini/OpenAI explanations and automated rollback restoring healthy MAE to 1.82 - 1.91 min.";
+    } else if (lower.includes('rag') || lower.includes('careerlens')) {
       reply = "AI Career RAG Assistant: Verified Recall@5 of 0.9333, MRR of 0.8367, and Skill F1 of 0.9085 on a 50-job synthetic benchmark.";
     } else if (lower.includes('gnn') || lower.includes('cora') || lower.includes('graph')) {
       reply = "GNN Benchmark: Cora GCN reaches 80.72% ± 0.93% Accuracy (0.8007 Macro F1) across 5 seeds. Citeseer GraphSAGE reaches 68.30% ± 0.51% Accuracy.";
@@ -451,7 +505,7 @@ function initPortfolioAssistant() {
     } else if (lower.includes('github') || lower.includes('code') || lower.includes('repo')) {
       reply = "All code repositories are available at https://github.com/shivangisrivastava013 with direct links on each project card.";
     } else {
-      reply = "Shivangi's portfolio features 8 projects across RAG, Graph ML, ROS 2 Robotics, Vision Foundation Models, and Continuous Control RL. Click any project card for direct code links!";
+      reply = `Shivangi's portfolio features ${PROJECTS_DATA.length} projects across MLOps & Observability, RAG, Graph ML, ROS 2 Robotics, Vision Foundation Models, and Continuous Control RL. Click any project card for direct code and results links!`;
     }
 
     setTimeout(() => {
@@ -489,28 +543,31 @@ window.switchTerminalTab = function(tabKey) {
 
   tabs.forEach(t => t.classList.remove('active'));
 
+  const publicCount = PROJECTS_DATA.filter(p => p.github_url).length || 7;
+
   if (tabKey === 'core') {
     if (tabs[0]) tabs[0].classList.add('active');
     snippet.innerHTML = `<span class="code-keyword">class</span> <span class="code-class">AIEngineer</span>:
     <br>&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-func">__init__</span>(self):
     <br>&nbsp;&nbsp;&nbsp;&nbsp;self.name = <span class="code-string">"Shivangi Srivastava"</span>
     <br>&nbsp;&nbsp;&nbsp;&nbsp;self.degree = <span class="code-string">"MS in AI @ NJIT (GPA 3.8/4.0)"</span>
-    <br>&nbsp;&nbsp;&nbsp;&nbsp;self.specialization = [<span class="code-string">"RAG & LLMs"</span>, <span class="code-string">"Deep Learning"</span>, <span class="code-string">"GNNs"</span>, <span class="code-string">"Robotics Vision"</span>]
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;self.specialization = [<span class="code-string">"MLOps & Observability"</span>, <span class="code-string">"RAG & LLMs"</span>, <span class="code-string">"GNNs"</span>, <span class="code-string">"Robotics Vision"</span>]
     <br><br>&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-func">get_key_metrics</span>(self):
-    <br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> {<span class="code-string">"shadowtag_psnr"</span>: <span class="code-string">"34.7 dB"</span>, <span class="code-string">"careerlens_mrr"</span>: <span class="code-string">"0.81"</span>}`;
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> {<span class="code-string">"faultline_detection"</span>: <span class="code-string">"93.3%"</span>, <span class="code-string">"rag_recall@5"</span>: <span class="code-string">"0.933"</span>}`;
   } else if (tabKey === 'stack') {
     if (tabs[1]) tabs[1].classList.add('active');
     snippet.innerHTML = `{
     <br>&nbsp;&nbsp;<span class="code-string">"languages"</span>: [<span class="code-string">"Python"</span>, <span class="code-string">"R"</span>, <span class="code-string">"C"</span>, <span class="code-string">"MATLAB"</span>, <span class="code-string">"SQL"</span>],
+    <br>&nbsp;&nbsp;<span class="code-string">"mlops_observability"</span>: [<span class="code-string">"FastAPI"</span>, <span class="code-string">"Evidently AI"</span>, <span class="code-string">"Prometheus"</span>, <span class="code-string">"Grafana"</span>, <span class="code-string">"Docker"</span>],
     <br>&nbsp;&nbsp;<span class="code-string">"ai_frameworks"</span>: [<span class="code-string">"PyTorch"</span>, <span class="code-string">"TensorFlow"</span>, <span class="code-string">"PyTorch Geometric"</span>, <span class="code-string">"Hugging Face"</span>],
-    <br>&nbsp;&nbsp;<span class="code-string">"genai_rag"</span>: [<span class="code-string">"Sentence Transformers"</span>, <span class="code-string">"FAISS"</span>, <span class="code-string">"RAG"</span>],
-    <br>&nbsp;&nbsp;<span class="code-string">"vision_systems"</span>: [<span class="code-string">"YOLOv8"</span>, <span class="code-string">"SAM 2"</span>, <span class="code-string">"OpenCV"</span>, <span class="code-string">"ROS 2"</span>, <span class="code-string">"Zenoh"</span>, <span class="code-string">"Docker"</span>]
+    <br>&nbsp;&nbsp;<span class="code-string">"genai_rag"</span>: [<span class="code-string">"Sentence Transformers"</span>, <span class="code-string">"FAISS"</span>, <span class="code-string">"RAG"</span>, <span class="code-string">"Gemini API"</span>],
+    <br>&nbsp;&nbsp;<span class="code-string">"vision_systems"</span>: [<span class="code-string">"YOLOv8"</span>, <span class="code-string">"SAM 2"</span>, <span class="code-string">"OpenCV"</span>, <span class="code-string">"ROS 2"</span>, <span class="code-string">"Zenoh"</span>]
     <br>}`;
   } else if (tabKey === 'pitch') {
     if (tabs[2]) tabs[2].classList.add('active');
     snippet.innerHTML = `<span class="code-keyword">CANDIDATE SUMMARY & CORE VALUES:</span>
     <br><br>✨ <strong>Academic Record:</strong> MS in AI @ NJIT (GPA 3.8/4.0) | President, GWiCS
-    <br>✨ <strong>Engineering Rigor:</strong> 6 published projects with empirical performance benchmarks
+    <br>✨ <strong>Engineering Rigor:</strong> ${publicCount} public repositories with empirical performance benchmarks
     <br>✨ <strong>Professional Experience:</strong> 4 roles across Salesforce automation, ML summarization & cybersecurity
     <br>✨ <strong>Technical Execution:</strong> Reproducible PyTorch code, Docker containerization & ROS 2 telemetry`;
   }
