@@ -28,14 +28,14 @@
     "card_class": "card-cyan",
     "github_url": "https://github.com/shivangisrivastava013/AI-Career-RAG-Assistant",
     "results_url": "https://github.com/shivangisrivastava013/AI-Career-RAG-Assistant/tree/main/artifacts",
-    "demo_url": null,
-    "demo_type": null,
+    "demo_url": "https://github.com/shivangisrivastava013/AI-Career-RAG-Assistant/blob/main/app.py",
+    "demo_type": "local",
     "last_verified": "October 2026",
     "description": "RAG-based career assistant matching candidate profiles against a synthetic 50-job benchmark. Features two-stage retrieval with Sentence Transformers and FAISS, structured required/preferred skill extraction, and template-based recommendations.",
     "tech": ["Python", "RAG", "Sentence Transformers", "FAISS", "Streamlit", "Docker"],
     "metrics": [
-      { "label": "Recall@5", "value": "0.9333", "context": "50-job synthetic benchmark" },
-      { "label": "MRR", "value": "0.8367", "context": "Mean Reciprocal Rank" },
+      { "label": "Recall@5", "value": "0.9500", "context": "50-job synthetic benchmark" },
+      { "label": "MRR", "value": "0.8500", "context": "Mean Reciprocal Rank" },
       { "label": "Skill F1", "value": "0.9085", "context": "Structured skill extraction" }
     ]
   },
