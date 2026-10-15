@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css?v=7.0" />
+  <link rel="stylesheet" href="style.css?v=8.0" />
 </head>
 <body>
 
@@ -88,7 +88,7 @@
               <span class="stat-label">B.Tech GPA (Manipal)</span>
             </div>
             <div class="stat-card stat-card-blue">
-              <span class="stat-number">6+</span>
+              <span class="stat-number" id="heroProjectCount">7+</span>
               <span class="stat-label">Published Projects</span>
             </div>
             <div class="stat-card stat-card-amber">
@@ -142,9 +142,9 @@
                 <br>&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-func">__init__</span>(self):
                 <br>&nbsp;&nbsp;&nbsp;&nbsp;self.name = <span class="code-string">"Shivangi Srivastava"</span>
                 <br>&nbsp;&nbsp;&nbsp;&nbsp;self.degree = <span class="code-string">"MS in AI @ NJIT (GPA 3.8/4.0)"</span>
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;self.specialization = [<span class="code-string">"RAG & LLMs"</span>, <span class="code-string">"Deep Learning"</span>, <span class="code-string">"GNNs"</span>, <span class="code-string">"Robotics Vision"</span>]
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;self.specialization = [<span class="code-string">"MLOps & Observability"</span>, <span class="code-string">"RAG & LLMs"</span>, <span class="code-string">"GNNs"</span>, <span class="code-string">"Robotics Vision"</span>]
                 <br><br>&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-func">get_key_metrics</span>(self):
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> {<span class="code-string">"shadowtag_psnr"</span>: <span class="code-string">"34.7 dB"</span>, <span class="code-string">"careerlens_mrr"</span>: <span class="code-string">"0.81"</span>}
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> {<span class="code-string">"faultline_detection"</span>: <span class="code-string">"93.3%"</span>, <span class="code-string">"rag_recall@5"</span>: <span class="code-string">"0.933"</span>}
               </div>
             </div>
             <div class="avatar-footer">
@@ -285,7 +285,7 @@
         <div class="section-header text-center">
           <span class="section-badge"><i class="fa-solid fa-cubes"></i> PORTFOLIO WORK</span>
           <h2 class="section-title">Featured Engineering Projects</h2>
-          <p class="section-subtitle">Evaluated systems spanning deep learning image watermarking, RAG retrieval, ROS 2 autonomous navigation, SAM 2 visual segmentation, GNNs, and 3D reconstruction.</p>
+          <p class="section-subtitle"><span id="totalProjectsCount">9</span> evaluated systems spanning MLOps incident response, RAG retrieval, PyTorch GNNs, ROS 2 autonomous navigation, SAM 2 visual segmentation, continuous control RL, and 3D reconstruction.</p>
         </div>
 
         <div class="projects-bento-grid" id="projectsGrid">
@@ -473,7 +473,7 @@
             <div class="wholesome-grid-card" style="border-top-color: var(--accent-emerald);">
               <div class="wholesome-icon" style="color: var(--accent-emerald);"><i class="fa-solid fa-diagram-project"></i></div>
               <h4>Empirical Validation</h4>
-              <p>6 evaluated projects across RAG vector retrieval, PyTorch GNNs, SAM 2 zero-shot vision, ROS 2 autonomous navigation, and digital steganography.</p>
+              <p><span id="evaluatedProjectsCount">7</span> evaluated open-source projects across MLOps incident response, RAG vector retrieval, PyTorch GNNs, SAM 2 zero-shot vision, ROS 2 autonomous navigation, and continuous control RL.</p>
             </div>
             <div class="wholesome-grid-card" style="border-top-color: var(--accent-blue);">
               <div class="wholesome-icon" style="color: var(--accent-blue);"><i class="fa-solid fa-briefcase"></i></div>
@@ -693,6 +693,9 @@
 
           <hr>
           <h3>PROJECTS</h3>
+          <p>• <strong>FaultLine: ML Incident Observability & Recovery</strong> | FastAPI, PostgreSQL, Prometheus, Grafana, Evidently AI, Gemini API, Docker<br>
+          Operational ML incident response prototype monitoring a delivery-time prediction service. Tracks data quality, concept drift, and performance degradation; triggers automated investigations, grounded LLM explanations, and rapid rollback recovery (93.3% fault detection, zero false alerts, restored MAE 1.82 - 1.91 min).</p>
+
           <p>• <strong>AI Career RAG Assistant</strong> | Python, RAG, Sentence Transformers, FAISS, Streamlit, Docker<br>
           Built an enterprise RAG system matching candidate profiles against a 50-job benchmark. Reached 0.9333 Recall@5, 0.8367 MRR, and 0.9085 F1 score for structured required/preferred skill extraction.</p>
 
@@ -730,6 +733,6 @@
   <!-- Toast Notification Container -->
   <div class="toast" id="toast">Copied to clipboard.</div>
 
-  <script src="script.js?v=19.0"></script>
+  <script src="script.js?v=20.0"></script>
 </body>
 </html>
