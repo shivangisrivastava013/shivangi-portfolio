@@ -1,5 +1,25 @@
 [
   {
+    "id": "faultline",
+    "title": "FaultLine: ML Incident Observability & Recovery",
+    "subtitle": "Automated Root-Cause Diagnosis & Rollback Simulation",
+    "badge": "MLOps & Observability Prototype",
+    "category": "mlops",
+    "card_class": "card-cyan",
+    "github_url": "https://github.com/shivangisrivastava013/FaultLine",
+    "results_url": "https://github.com/shivangisrivastava013/FaultLine/blob/main/evaluation/results/benchmark_summary.md",
+    "demo_url": "https://github.com/shivangisrivastava013/FaultLine#quickstart-guide",
+    "demo_type": "local",
+    "last_verified": "October 2026",
+    "description": "Production-style ML observability and incident response prototype monitoring a delivery-time prediction service. Tracks data quality, concept drift, and performance degradation; triggers automated investigations, grounded LLM explanations (Gemini / OpenAI), and rapid rollback recovery.",
+    "tech": ["FastAPI", "PostgreSQL", "Prometheus", "Grafana", "Evidently AI", "Gemini API", "OpenAI", "Docker"],
+    "metrics": [
+      { "label": "Fault Detection", "value": "93.3% (14/15 runs)", "context": "15 injected-fault runs; invalid input spike at 66.7%" },
+      { "label": "False Alerts", "value": "0", "context": "3 clean baseline runs" },
+      { "label": "Restored MAE", "value": "1.82 - 1.91 min", "context": "Isolated post-rollback evaluation on champion_v1" }
+    ]
+  },
+  {
     "id": "career-rag",
     "title": "AI Career RAG Assistant",
     "subtitle": "Enterprise RAG Architecture & Skill Gap Engine",
@@ -9,6 +29,8 @@
     "github_url": "https://github.com/shivangisrivastava013/AI-Career-RAG-Assistant",
     "results_url": "https://github.com/shivangisrivastava013/AI-Career-RAG-Assistant/tree/main/artifacts",
     "demo_url": null,
+    "demo_type": null,
+    "last_verified": "October 2026",
     "description": "RAG-based career assistant matching candidate profiles against a synthetic 50-job benchmark. Features two-stage retrieval with Sentence Transformers and FAISS, structured required/preferred skill extraction, and template-based recommendations.",
     "tech": ["Python", "RAG", "Sentence Transformers", "FAISS", "Streamlit", "Docker"],
     "metrics": [
@@ -27,6 +49,8 @@
     "github_url": "https://github.com/shivangisrivastava013/GNN-Citation-Network-Classification",
     "results_url": "https://github.com/shivangisrivastava013/GNN-Citation-Network-Classification/tree/main/results",
     "demo_url": null,
+    "demo_type": null,
+    "last_verified": "October 2026",
     "description": "PyTorch Geometric framework evaluating MLP, GCN, and GraphSAGE on Cora and Citeseer datasets. Evaluated across 5 random seeds using validation early stopping and single test set evaluation.",
     "tech": ["PyTorch Geometric", "GCN", "GraphSAGE", "PyTorch", "Planetoid", "Docker"],
     "metrics": [
@@ -45,6 +69,8 @@
     "github_url": "https://github.com/shivangisrivastava013/ROS2-Autonomous-Robot-Navigation",
     "results_url": "https://github.com/shivangisrivastava013/ROS2-Autonomous-Robot-Navigation/tree/main/results",
     "demo_url": "https://github.com/shivangisrivastava013/ROS2-Autonomous-Robot-Navigation/blob/main/demo.py",
+    "demo_type": "local",
+    "last_verified": "October 2026",
     "description": "Functional ROS 2 Humble package featuring rclpy nodes for laser scans (/scan), odometry (/odom), and cmd_vel commands. Includes state-machine obstacle avoidance, YOLO perception node, Gazebo world launch files, and Zenoh/PostgreSQL telemetry.",
     "tech": ["ROS 2 Humble", "rclpy", "YOLOv8", "Gazebo", "Zenoh", "PostgreSQL", "Docker"],
     "metrics": [
@@ -63,6 +89,8 @@
     "github_url": "https://github.com/shivangisrivastava013/SAM2-Image-Segmentation",
     "results_url": "https://github.com/shivangisrivastava013/SAM2-Image-Segmentation/tree/main/examples/output",
     "demo_url": null,
+    "demo_type": null,
+    "last_verified": "October 2026",
     "description": "Multi-stage visual segmentation pipeline combining YOLO bounding-box detection with Meta SAM 2 promptable mask segmentation. Includes benchmark runner and mock CPU validation mode.",
     "tech": ["SAM 2", "YOLO", "PyTorch", "OpenCV", "PyTest", "Docker"],
     "metrics": [
@@ -80,6 +108,8 @@
     "github_url": "https://github.com/shivangisrivastava013/Robotic-Pouring-Motion-Control",
     "results_url": "https://github.com/shivangisrivastava013/Robotic-Pouring-Motion-Control/tree/main/results",
     "demo_url": null,
+    "demo_type": null,
+    "last_verified": "October 2026",
     "description": "Gymnasium continuous-control environment modeling numerical fluid dynamics. Benchmarks Rule-Based and PID feedback controllers against PPO and SAC continuous reinforcement learning baselines.",
     "tech": ["Gymnasium", "Stable-Baselines3", "PPO", "SAC", "PID", "PyTorch", "Docker"],
     "metrics": [
@@ -98,6 +128,8 @@
     "github_url": "https://github.com/shivangisrivastava013/NLP-Transformer-Summarizer",
     "results_url": "https://github.com/shivangisrivastava013/NLP-Transformer-Summarizer/tree/main/results",
     "demo_url": null,
+    "demo_type": null,
+    "last_verified": "October 2026",
     "description": "Long-document summarization workbench with token-aware chunking, hierarchical BART and Flan-T5 support, threshold-based neutral sentiment handling, transparent fallback reporting, and ROUGE evaluation.",
     "tech": ["Hugging Face", "BART", "Flan-T5", "ROUGE", "BERTScore", "Streamlit", "Docker"],
     "metrics": [
@@ -110,36 +142,40 @@
     "id": "shadowtag",
     "title": "ShadowTag - Image Watermarking",
     "subtitle": "Convolutional Autoencoders for Steganography",
-    "badge": "Private Academic Research Project",
+    "badge": "Academic Research (Private)",
     "category": "cv",
     "card_class": "card-amber",
     "github_url": null,
     "results_url": null,
     "demo_url": null,
-    "description": "Convolutional encoder-decoder architecture embedding invisible watermarks into images and recovering them post distortions (JPEG compression, cropping). Private academic research project.",
+    "demo_type": null,
+    "last_verified": "October 2026",
+    "description": "Convolutional encoder-decoder architecture embedding invisible watermarks into images and recovering them post distortions (JPEG compression, cropping). Private academic research project with reported experimental results.",
     "tech": ["Python", "TensorFlow", "PyTorch", "OpenCV", "Autoencoders"],
     "metrics": [
-      { "label": "PSNR", "value": "34.7 dB", "context": "Image fidelity" },
-      { "label": "SSIM", "value": "0.96", "context": "Structural similarity" },
-      { "label": "Recovery", "value": "94.2%", "context": "Post distortion" }
+      { "label": "PSNR", "value": "34.7 dB", "context": "Reported academic research result (image fidelity)" },
+      { "label": "SSIM", "value": "0.96", "context": "Reported academic research result (structural similarity)" },
+      { "label": "Recovery", "value": "94.2%", "context": "Reported academic research result (post distortion)" }
     ]
   },
   {
     "id": "neuralscene",
     "title": "NeuralScene 3DGS",
     "subtitle": "3D Gaussian Splatting Room Reconstruction",
-    "badge": "Private Academic Research Project",
+    "badge": "Academic Research (Private)",
     "category": "3d",
     "card_class": "card-indigo",
     "github_url": null,
     "results_url": null,
     "demo_url": null,
-    "description": "Reconstructed interior spaces from 150 Polycam images using COLMAP for camera poses and 3D Gaussian Splatting with gsplat. Private academic research project.",
+    "demo_type": null,
+    "last_verified": "October 2026",
+    "description": "Reconstructed interior spaces from 150 Polycam images using COLMAP for camera poses and 3D Gaussian Splatting with gsplat. Private academic research project with reported experimental results.",
     "tech": ["COLMAP", "3DGS", "gsplat", "PyTorch", "CUDA"],
     "metrics": [
-      { "label": "PSNR", "value": "29.8 dB", "context": "Novel view rendering" },
-      { "label": "SSIM", "value": "0.94", "context": "Structural accuracy" },
-      { "label": "LPIPS", "value": "0.12", "context": "Perceptual metric" }
+      { "label": "PSNR", "value": "29.8 dB", "context": "Reported academic research result (novel view)" },
+      { "label": "SSIM", "value": "0.94", "context": "Reported academic research result (structural accuracy)" },
+      { "label": "LPIPS", "value": "0.12", "context": "Reported academic research result (perceptual metric)" }
     ]
   }
 ]
