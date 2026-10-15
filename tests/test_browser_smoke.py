@@ -34,7 +34,7 @@ def test_portfolio_browser_smoke():
     with open(json_path, "r", encoding="utf-8") as f:
         projects = json.load(f)
 
-    assert len(projects) == 8, f"Expected 8 projects in projects.json, found {len(projects)}"
+    assert len(projects) == 9, f"Expected 9 projects in projects.json, found {len(projects)}"
 
     server = start_server_if_needed(8000, root_dir=project_root)
 
@@ -69,9 +69,9 @@ def test_portfolio_browser_smoke():
         # Check JS uncaught errors
         assert len(js_errors) == 0, f"Uncaught JS errors found on page load: {js_errors}"
 
-        # Verify 8 project cards rendered dynamically
+        # Verify 9 project cards rendered dynamically
         card_count = page.locator(".project-card").count()
-        assert card_count == 8, f"Expected 8 .project-card elements rendered, found {card_count}"
+        assert card_count == len(projects), f"Expected {len(projects)} .project-card elements rendered, found {card_count}"
 
         # Test modal opening
         first_modal_btn = page.locator(".open-modal-btn").first
