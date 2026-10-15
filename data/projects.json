@@ -48,14 +48,14 @@
     "card_class": "card-sky",
     "github_url": "https://github.com/shivangisrivastava013/GNN-Citation-Network-Classification",
     "results_url": "https://github.com/shivangisrivastava013/GNN-Citation-Network-Classification/tree/main/results",
-    "demo_url": null,
-    "demo_type": null,
+    "demo_url": "https://github.com/shivangisrivastava013/GNN-Citation-Network-Classification/blob/main/notebooks/gnn_citation_walkthrough.ipynb",
+    "demo_type": "local",
     "last_verified": "October 2026",
     "description": "PyTorch Geometric framework evaluating MLP, GCN, and GraphSAGE on Cora and Citeseer datasets. Evaluated across 5 random seeds using validation early stopping and single test set evaluation.",
     "tech": ["PyTorch Geometric", "GCN", "GraphSAGE", "PyTorch", "Planetoid", "Docker"],
     "metrics": [
-      { "label": "Cora GCN Acc", "value": "80.72% ± 0.93%", "context": "5-seed average" },
-      { "label": "Cora GCN F1", "value": "0.8007", "context": "Macro F1" },
+      { "label": "Cora GCN Acc", "value": "80.76% ± 0.92%", "context": "5-seed average" },
+      { "label": "Cora GCN F1", "value": "0.8009", "context": "Macro F1" },
       { "label": "Citeseer GraphSAGE Acc", "value": "68.30% ± 0.51%", "context": "5-seed average" }
     ]
   },
