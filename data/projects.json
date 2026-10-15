@@ -87,15 +87,16 @@
     "category": "cv",
     "card_class": "card-blue",
     "github_url": "https://github.com/shivangisrivastava013/SAM2-Image-Segmentation",
-    "results_url": "https://github.com/shivangisrivastava013/SAM2-Image-Segmentation/tree/main/examples/output",
-    "demo_url": null,
-    "demo_type": null,
+    "results_url": "https://github.com/shivangisrivastava013/SAM2-Image-Segmentation/tree/main/results",
+    "demo_url": "https://github.com/shivangisrivastava013/SAM2-Image-Segmentation/blob/main/demo.py",
+    "demo_type": "local",
     "last_verified": "October 2026",
-    "description": "Multi-stage visual segmentation pipeline combining YOLO bounding-box detection with Meta SAM 2 promptable mask segmentation. Includes benchmark runner and mock CPU validation mode.",
-    "tech": ["SAM 2", "YOLO", "PyTorch", "OpenCV", "PyTest", "Docker"],
+    "description": "Multi-stage visual segmentation pipeline combining YOLO bounding-box detection with Meta SAM 2 promptable mask segmentation. Evaluates real SAM 2 Hiera benchmarks alongside mock CPU validation.",
+    "tech": ["SAM 2", "YOLOv8", "PyTorch", "OpenCV", "PyTest", "Docker"],
     "metrics": [
-      { "label": "Test Suite", "value": "100% Pass", "context": "11/11 PyTest cases" },
-      { "label": "Pipeline Mode", "value": "Zero-Shot SAM 2", "context": "Promptable segmentation" }
+      { "label": "Box mIoU", "value": "0.7650", "context": "Real SAM 2 Hiera-Small" },
+      { "label": "Mean Dice", "value": "0.8670", "context": "Zero-shot instance masks" },
+      { "label": "Pipeline Latency", "value": "33.9 ms", "context": "YOLOv8 + SAM 2 pipeline" }
     ]
   },
   {
