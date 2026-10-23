@@ -102,17 +102,19 @@ function renderProjectsGrid() {
   const grid = document.getElementById('projectsGrid');
   if (!grid) return;
 
-  grid.innerHTML = PROJECTS_DATA.map(project => {
-    const metrics = project.metrics.map(metric =>
-      `<span class="metric-pill"><strong>${metric.label}:</strong> ${metric.value}</span>`
-    ).join('');
+  grid.innerHTML = PROJECTS_DATA.map((project, index) => {
+    const isSecondary = index >= 6;
+    const metrics = project.metrics.map(metric => {
+      const isPrivateMetric = metric.context && metric.context.includes('Academic project');
+      return `<span class="metric-pill" title="${metric.context}"><strong>${metric.label}:</strong> ${metric.value}${isPrivateMetric ? ' <span class="metric-academic-tag">(Academic, source private)</span>' : ''}</span>`;
+    }).join('');
 
     const technologies = project.tech.map(item => `<span>${item}</span>`).join('');
     const links = getProjectActionLinks(project, false);
     const verifiedDate = project.last_verified ? `<div class="project-verification"><i class="fa-regular fa-calendar-check"></i> Last verified: ${project.last_verified}</div>` : '';
 
     return `
-      <article class="project-card glass-card ${project.card_class}" data-category="${project.category}">
+      <article class="project-card glass-card ${project.card_class} ${isSecondary ? 'project-secondary' : 'project-featured'}" data-category="${project.category}">
         <div class="project-banner">
           <span class="project-badge">${project.badge}</span>
           <div class="banner-icon"><i class="fa-solid fa-code"></i></div>
@@ -131,6 +133,24 @@ function renderProjectsGrid() {
   }).join('');
 }
 
+function initMoreProjectsToggle() {
+  const toggleBtn = document.getElementById('toggleMoreProjectsBtn');
+  const grid = document.getElementById('projectsGrid');
+  const toggleText = document.getElementById('toggleMoreProjectsText');
+  const toggleIcon = document.getElementById('toggleMoreProjectsIcon');
+  if (!toggleBtn || !grid) return;
+
+  toggleBtn.addEventListener('click', () => {
+    const isExpanded = grid.classList.toggle('show-all');
+    if (toggleText) {
+      toggleText.textContent = isExpanded ? 'Show Top 6 Featured Only' : 'View All 9 Projects';
+    }
+    if (toggleIcon) {
+      toggleIcon.className = isExpanded ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down';
+    }
+  });
+}
+
 async function runInit() {
   initBackgroundCanvas();
   initLaserPointer();
@@ -143,6 +163,7 @@ async function runInit() {
   initContactForm();
   initPortfolioAssistant();
   initAccessibility();
+  initMoreProjectsToggle();
 }
 
 if (document.readyState === 'loading') {

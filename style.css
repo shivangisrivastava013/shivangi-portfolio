@@ -778,6 +778,22 @@ button, input, textarea {
 
 }
 
+/* Top 6 Featured vs Secondary/More Projects */
+.project-card.project-secondary {
+  display: none;
+}
+
+.projects-bento-grid.show-all .project-card.project-secondary {
+  display: flex;
+}
+
+.metric-academic-tag {
+  font-size: 0.72rem;
+  color: var(--accent-amber);
+  display: block;
+  margin-top: 2px;
+}
+
 .card-amber { border-top: 3px solid var(--accent-amber); }
 .card-cyan { border-top: 3px solid var(--accent-cyan); }
 .card-emerald { border-top: 3px solid var(--accent-emerald); }

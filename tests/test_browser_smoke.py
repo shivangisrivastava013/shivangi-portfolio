@@ -101,6 +101,17 @@ def test_portfolio_browser_smoke():
         matrix_tabs.nth(3).click()
         assert "Salesforce" in page.locator("#matrixDetails").inner_text()
 
+        # Test featured projects vs more projects toggle
+        assert page.locator(".project-card.project-featured").count() == 6
+        assert page.locator(".project-card.project-secondary").count() == 3
+        more_btn = page.locator("#toggleMoreProjectsBtn")
+        assert more_btn.is_visible()
+        more_btn.click()
+        assert "show-all" in (page.locator("#projectsGrid").get_attribute("class") or "")
+        assert page.locator(".project-card.project-secondary").first.is_visible()
+        more_btn.click()
+        assert "show-all" not in (page.locator("#projectsGrid").get_attribute("class") or "")
+
         browser.close()
 
     print("Browser smoke test passed successfully with 0 JS errors!")
