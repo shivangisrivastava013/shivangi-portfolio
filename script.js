@@ -510,7 +510,7 @@ function initPortfolioAssistant() {
     let reply = "";
 
     if (lower.includes('faultline') || lower.includes('observab') || lower.includes('incident') || lower.includes('drift') || lower.includes('rollback')) {
-      reply = "FaultLine: Operational ML incident response & observability prototype monitoring delivery predictions. Achieved 93.3% fault detection across 15 injected-fault runs (0 false alerts across clean runs). Features automated root cause diagnosis with Gemini/OpenAI explanations and automated rollback restoring healthy MAE to 1.82 - 1.91 min.";
+      reply = "FaultLine: Operational ML incident response & observability prototype monitoring delivery predictions. Achieved 94.4% fault detection across 18 injected-fault runs, with zero false alerts across three clean-control runs. Features automated root cause diagnosis with Gemini/OpenAI explanations and automated rollback restoring healthy MAE to 1.82 - 1.91 min.";
     } else if (lower.includes('rag') || lower.includes('careerlens')) {
       reply = "AI Career RAG Assistant: Verified Recall@5 of 0.9333, MRR of 0.8367, and Skill F1 of 0.9085 on a 50-job synthetic benchmark.";
     } else if (lower.includes('gnn') || lower.includes('cora') || lower.includes('graph')) {
@@ -574,7 +574,7 @@ window.switchTerminalTab = function(tabKey) {
     <br>&nbsp;&nbsp;&nbsp;&nbsp;self.degree = <span class="code-string">"MS in AI @ NJIT (GPA 3.8/4.0)"</span>
     <br>&nbsp;&nbsp;&nbsp;&nbsp;self.specialization = [<span class="code-string">"MLOps & Observability"</span>, <span class="code-string">"RAG & LLMs"</span>, <span class="code-string">"GNNs"</span>, <span class="code-string">"Robotics Vision"</span>]
     <br><br>&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-func">get_key_metrics</span>(self):
-    <br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> {<span class="code-string">"faultline_detection"</span>: <span class="code-string">"93.3%"</span>, <span class="code-string">"rag_recall@5"</span>: <span class="code-string">"0.933"</span>}`;
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> {<span class="code-string">"faultline_detection"</span>: <span class="code-string">"94.4%"</span>, <span class="code-string">"rag_recall@5"</span>: <span class="code-string">"0.933"</span>}`;
   } else if (tabKey === 'stack') {
     if (tabs[1]) tabs[1].classList.add('active');
     snippet.innerHTML = `{
